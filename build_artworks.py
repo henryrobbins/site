@@ -4,11 +4,10 @@ root = os.path.dirname(os.path.abspath(__file__)) + "/art-3699"
 sys.path.insert(0,root)
 from netpbm import netpbm
 
-VIMEO = lambda x : "https://player.vimeo.com/video/%d?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" % x
-VIMEO_NUMBERS = {
-    "format.mp4" : 543896900,
-    "faces_mod_animation.mp4" : 544012195,
-    "water_cup_mod_animation.mp4" : 544012231
+VIMEO_ID = {
+    "format.mp4" : "543896900",
+    "faces_mod_animation.mp4" : "544012195",
+    "water_cup_mod_animation.mp4" : "544012231"
 }
 
 REPO_PATH = "https://github.com/henryrobbins/art-3699/tree/master"
@@ -38,7 +37,7 @@ for root, subdirs, files in os.walk('art-3699'):
                     images.append(to_path)
                 elif work.split(".")[-1] == 'mp4':
                     name = work.split('/')[-1]
-                    videos.append(VIMEO(VIMEO_NUMBERS[name]))
+                    videos.append(VIMEO_ID[name])
                 else:
                     print("%s NOT written." % to_path)
                 print("%s written." % to_path)

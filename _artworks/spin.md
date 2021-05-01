@@ -5,7 +5,8 @@ title: spin
 date: 2021-02-08
 medium: Bash and Python script
 link: https://github.com/henryrobbins/art-3699/tree/master/spin
-works: []
+images: []
+videos: []
 ---
 
 `spin.sh` and `spin.py` are a Bash and Python script respectively which return

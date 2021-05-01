@@ -32,3 +32,5 @@ for work in artworks:
         f.write('link: %s/%s\n' % (REPO_PATH, work))
         f.write('---\n')
         f.write(description)
+
+print("artwork compilation success.")

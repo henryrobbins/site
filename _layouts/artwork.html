@@ -20,9 +20,9 @@ layout: default
   {% for work in page.works %}
     {% assign type = work | split: "." %}
     {% if type[1] == "mp4" %}
-      <iframe src="../{{ work }}", style="img"></iframe>
+      <iframe src="{{ site.baseurl }}/{{ work }}", style="img"></iframe>
     {% else %}
-      <img src="../{{ work }}" alt="{{ work }}", style="img"></img>
+      <img src="{{ site.baseurl }}/{{ work }}" alt="{{ work }}", style="img"></img>
     {% endif %}
   {% endfor %}
   </div>

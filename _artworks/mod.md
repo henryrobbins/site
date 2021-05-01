@@ -8,7 +8,6 @@ link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/mod
 images: [art/netpbm/mod/road_day_mod_8.png, art/netpbm/mod/sky_mod_8.png, art/netpbm/mod/faces_mod_12.png, art/netpbm/mod/beebe_trail_mod_8.png, art/netpbm/mod/stomp_mod_25.png, art/netpbm/mod/water_cup_mod_7.png]
 videos: [https://player.vimeo.com/video/544012195?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479, https://player.vimeo.com/video/544012231?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479]
 ---
-
 The images sky (2021-02-24), faces (2021-03-07), and stomp (2021-03-07)
 were photographed by Ella Clemons.
 

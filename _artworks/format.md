@@ -8,7 +8,6 @@ link: https://github.com/henryrobbins/art-3699/tree/master/format
 images: []
 videos: [https://player.vimeo.com/video/543896900?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479]
 ---
-
 `format.py` is a Python script which takes two arguments: a text file and an
 integer w. The text is optimally split into lines with a target line width of
 w. This optimization is done via a reduction to the shortest path problem in

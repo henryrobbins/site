@@ -32,8 +32,9 @@ for root, subdirs, files in os.walk('art-3699'):
                 if work.split(".")[-1] in ["pbm", "pgm", "ppm"]:
                     from_path = work
                     to_path = "art/" + '/'.join(from_path[:-3].split('/')[1:]) + "png"
-                    img = netpbm.read(from_path)
-                    netpbm.write_png(to_path, img, 600)
+                    if not os.path.exists(to_path):
+                        img = netpbm.read(from_path)
+                        netpbm.write_png(to_path, img, 600)
                     images.append(to_path)
                 elif work.split(".")[-1] == 'mp4':
                     name = work.split('/')[-1]
@@ -72,7 +73,7 @@ for work in artworks:
         f.write('link: %s/%s\n' % (REPO_PATH, '/'.join(work.split('/')[1:])))
         f.write('images: [%s]\n' % ', '.join(artworks[work]["images"]))
         f.write('videos: [%s]\n' % ', '.join(artworks[work]["videos"]))
-        f.write('---\n')
+        f.write('---')
         f.write(description)
 
 print("artwork compilation success.")

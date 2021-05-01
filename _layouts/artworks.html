@@ -2,8 +2,33 @@
 layout: default
 ---
 
+<h1>Artworks</h1>
+
+<style>
+    img {
+      /* margin: 40px; */
+      width: auto;
+      height: auto;
+      max-width: 100px;
+      max-height: 100px;
+      display: block;
+      background-size: cover;
+    }
+</style>
+
 {{ content }}
 
 {% for artwork in site.artworks %}
-    <li><a href="{{ artwork.url }}">{{ artwork.title }}</a></li>
+    <div>
+    {% if artwork.images.size > 0 %}
+        <img src="{{ site.baseurl }}/{{ artwork.images | first }}", align="right", style="img"></img>
+    {% endif %}
+    </div>
+    <div>
+    <b>{{ artwork.artist }}</b><br>
+    <a href="{{ artwork.url }}"><i>{{ artwork.title }}</i> ({{ artwork.date | date : "%Y"}})</a><br>
+    {{ artwork.content | truncate : 200}} <br>
+    </div>
+    <hr>
+
 {% endfor %}

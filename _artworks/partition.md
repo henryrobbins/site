@@ -8,7 +8,6 @@ link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/partition
 images: [art/netpbm/partition/road_day_partition_8.png, art/netpbm/partition/sky_partition_8.png, art/netpbm/partition/tree_partition_8.png, art/netpbm/partition/beebe_day_partition_8.png, art/netpbm/partition/waterfall_partition_8.png, art/netpbm/partition/risley_partition_8.png, art/netpbm/partition/creek_partition_8.png, art/netpbm/partition/fallen_tree_partition_8.png, art/netpbm/partition/old_man_partition_8.png, art/netpbm/partition/wading_partition_8.png, art/netpbm/partition/island_partition_8.png]
 videos: []
 ---
-
 The images waterfall (2021-03-20), risley (2021-03-21), creek (2021-03-21),
 fallen_tree (2021-03-21), old_man (2021-03-21), wading (2021-03-21), and
 island (2021-03-21) were photographed by River Chavez.

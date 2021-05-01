@@ -8,7 +8,6 @@ link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/dissolve
 images: [art/netpbm/dissolve/dissolve.png, art/netpbm/dissolve/dissolve2.png, art/netpbm/dissolve/dissolve3.png, art/netpbm/dissolve/beebe_trail_h70.png, art/netpbm/dissolve/beebe_trail_h100.png, art/netpbm/dissolve/beebe_trail_h140.png, art/netpbm/dissolve/beebe_trail_v80.png, art/netpbm/dissolve/beebe_trail_h60v47.png, art/netpbm/dissolve/beebe_trail_h71v251.png]
 videos: []
 ---
-
 This series contains two groups of images: those that were hand-crafted and
 those that were created by a script. dissolve.pgm, dissolve2.pgm, and
 dissolve3.pgm were hand-crafted (2021-02-26). The beebe_trail subseries is

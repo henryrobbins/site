@@ -8,7 +8,6 @@ link: https://github.com/henryrobbins/art-3699/tree/master/spin
 images: []
 videos: []
 ---
-
 `spin.sh` and `spin.py` are a Bash and Python script respectively which return
 a spinning bar rotating every t seconds where t is an argument to both scripts.
 The bar will rotate unitl CRTL+C is pressed. An example call for both scripts

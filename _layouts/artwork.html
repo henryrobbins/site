@@ -3,10 +3,18 @@ layout: default
 ---
 
 <style>
-  img {
-    border: 10px solid white;
-    width: 600;
+  figure {
+    margin: 40px;
+    width: 75%;
+    display: inline-block;
   }
+  figure img {
+    vertical-align: middle;
+    /* border: 1px solid black; */
+  }
+  figure figcaption {
+    text-align: center;
+}
 </style>
 
 <body>
@@ -16,15 +24,21 @@ layout: default
   <a href="{{ page.link }}"><i><u>source code</u></i></a><br><br>
   {{ content }}
 
-  <div style="width:600px; margin:0 auto;"></div>
+  <div class="center">
   {% for work in page.works %}
+    <figure>
     {% assign type = work | split: "." %}
     {% if type[1] == "mp4" %}
       <iframe src="{{ site.baseurl }}/{{ work }}", style="img"></iframe>
     {% else %}
-      <img src="{{ site.baseurl }}/{{ work }}" alt="{{ work }}", style="img"></img>
+      <img src="{{ site.baseurl }}/{{ work }}", style="img"></img>
     {% endif %}
+    {% assign tmp = work | split: "/" %}
+    {% assign name = tmp[-1] %}
+    <figcaption><i>{{ name }}</i> ({{ page.date | date : "%Y"}})<br></figcaption>
+    </figure>
   {% endfor %}
-  </div>
+</div>
+
 
 </body>

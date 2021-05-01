@@ -5,6 +5,7 @@ title: format
 date: 2021-02-08
 medium: Python script
 link: https://github.com/henryrobbins/art-3699/tree/master/format
+works: []
 ---
 
 `format.py` is a Python script which takes two arguments: a text file and an

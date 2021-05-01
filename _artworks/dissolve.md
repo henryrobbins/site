@@ -5,6 +5,7 @@ title: dissolve
 date: 2021-03-02
 medium: Netpbm (P2)
 link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/dissolve
+works: [art-3699/netpbm/dissolve/dissolve.png, art-3699/netpbm/dissolve/dissolve2.png, art-3699/netpbm/dissolve/dissolve3.png, art-3699/netpbm/dissolve/beebe_trail_h70.png, art-3699/netpbm/dissolve/beebe_trail_h100.png, art-3699/netpbm/dissolve/beebe_trail_h140.png, art-3699/netpbm/dissolve/beebe_trail_v80.png, art-3699/netpbm/dissolve/beebe_trail_h60v47.png, art-3699/netpbm/dissolve/beebe_trail_h71v251.png]
 ---
 
 This series contains two groups of images: those that were hand-crafted and

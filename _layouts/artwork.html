@@ -1,10 +1,30 @@
 ---
 layout: default
 ---
+
+<style>
+  img {
+    border: 10px solid white;
+    width: 600;
+  }
+</style>
+
 <body>
   <b>{{ page.artist }}</b><br>
   <i>{{ page.title }}</i> ({{ page.date | date : "%Y"}})<br>
   {{ page.medium }}<br>
   <a href="{{ page.link }}"><i><u>source code</u></i></a><br><br>
   {{ content }}
+
+  <div style="width:600px; margin:0 auto;"></div>
+  {% for work in page.works %}
+    {% assign type = work | split: "." %}
+    {% if type[1] == "mp4" %}
+      <iframe src="../{{ work }}", style="img"></iframe>
+    {% else %}
+      <img src="../{{ work }}" alt="{{ work }}", style="img"></img>
+    {% endif %}
+  {% endfor %}
+  </div>
+
 </body>

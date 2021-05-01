@@ -17,7 +17,7 @@ for root, subdirs, files in os.walk('art-3699'):
             for work in works:
                 if work.split(".")[-1] in ["pbm", "pgm", "ppm"]:
                     from_path = work
-                    to_path = from_path[:-3] + "png"
+                    to_path = "art/" + '/'.join(from_path[:-3].split('/')[1:]) + "png"
                     img = netpbm.read(from_path)
                     netpbm.write_png(to_path, img)
                     tmp.append(to_path)

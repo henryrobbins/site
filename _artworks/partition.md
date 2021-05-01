@@ -5,7 +5,7 @@ title: partition
 date: 2021-03-20
 medium: Netpbm (P2)
 link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/partition
-works: [art-3699/netpbm/partition/road_day_partition_8.png, art-3699/netpbm/partition/sky_partition_8.png, art-3699/netpbm/partition/tree_partition_8.png, art-3699/netpbm/partition/beebe_day_partition_8.png, art-3699/netpbm/partition/waterfall_partition_8.png, art-3699/netpbm/partition/risley_partition_8.png, art-3699/netpbm/partition/creek_partition_8.png, art-3699/netpbm/partition/fallen_tree_partition_8.png, art-3699/netpbm/partition/old_man_partition_8.png, art-3699/netpbm/partition/wading_partition_8.png, art-3699/netpbm/partition/island_partition_8.png]
+works: [art/netpbm/partition/road_day_partition_8.png, art/netpbm/partition/sky_partition_8.png, art/netpbm/partition/tree_partition_8.png, art/netpbm/partition/beebe_day_partition_8.png, art/netpbm/partition/waterfall_partition_8.png, art/netpbm/partition/risley_partition_8.png, art/netpbm/partition/creek_partition_8.png, art/netpbm/partition/fallen_tree_partition_8.png, art/netpbm/partition/old_man_partition_8.png, art/netpbm/partition/wading_partition_8.png, art/netpbm/partition/island_partition_8.png]
 ---
 
 The images waterfall (2021-03-20), risley (2021-03-21), creek (2021-03-21),

@@ -1,0 +1,10 @@
+spin
+format
+netpbm/mother_of_all_demos
+netpbm/color_matrix
+netpbm/polyominoes
+netpbm/dissolve
+netpbm/mod
+netpbm/drunk_walk
+netpbm/partition
+netpbm/clip

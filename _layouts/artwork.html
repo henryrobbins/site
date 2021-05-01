@@ -1,0 +1,10 @@
+---
+layout: default
+---
+<body>
+  <b>{{ page.artist }}</b><br>
+  <i>{{ page.title }}</i> ({{ page.date | date : "%Y"}})<br>
+  {{ page.medium }}<br>
+  <a href="{{ page.link }}"><i><u>source code</u></i></a><br><br>
+  {{ content }}
+</body>

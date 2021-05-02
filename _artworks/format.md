@@ -6,7 +6,7 @@ date: 2021-02-08
 medium: Python script
 link: https://github.com/henryrobbins/art-3699/tree/master/format
 images: []
-videos: [543896900]
+videos: [[format.mp4, 543896900]]
 ---
 `format.py` is a Python script which takes two arguments: a text file and an
 integer w. The text is optimally split into lines with a target line width of

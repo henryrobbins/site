@@ -7,14 +7,17 @@ from netpbm import netpbm
 VIMEO_ID = {
     "format.mp4" : "543896900",
     "faces_mod_animation.mp4" : "544012195",
-    "water_cup_mod_animation.mp4" : "544012231"
+    "water_cup_mod_animation.mp4" : "544012231",
+    "stewart_pinches_chaos.mp4" : "544260565",
+    "stewart_rgb_chaos.mp4" : "544260549",
+    "stewart_clip.mp4" : "544260538",
+    "stewart_mod.mp4" : "544260328",
+    "stewart_film.mp4" : "XXXXXXXXX",
 }
 
 REPO_PATH = "https://github.com/henryrobbins/art-3699/tree/master"
 
-IGNORE = [
-    "art-3699/animation/stewart"
-]
+IGNORE = []
 
 artworks = {}
 for root, subdirs, files in os.walk('art-3699'):
@@ -37,7 +40,7 @@ for root, subdirs, files in os.walk('art-3699'):
                     images.append(to_path)
                 elif work.split(".")[-1] == 'mp4':
                     name = work.split('/')[-1]
-                    videos.append(VIMEO_ID[name])
+                    videos.append([name, VIMEO_ID[name]])
                 else:
                     print("%s NOT written." % to_path)
                 print("%s written." % to_path)
@@ -71,7 +74,7 @@ for work in artworks:
         f.write('medium: %s\n' % medium)
         f.write('link: %s/%s\n' % (REPO_PATH, '/'.join(work.split('/')[1:])))
         f.write('images: [%s]\n' % ', '.join(artworks[work]["images"]))
-        f.write('videos: [%s]\n' % ', '.join(artworks[work]["videos"]))
+        f.write('videos: [%s]\n' % ', '.join(['[%s]' % ", ".join(i) for i in (artworks[work]["videos"])]))
         f.write('---')
         f.write(description)
 

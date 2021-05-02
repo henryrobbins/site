@@ -42,7 +42,12 @@ layout: default
   <!-- include videos -->
   <div class="center">
   {% for video in page.videos %}
-    <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/{{ video }}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="format"></iframe></div>
+  <figure>
+    {% assign name = video[0] %}
+    {% assign id = video[1] %}
+    <div style="padding:70% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/{{ id }}?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="format"></iframe></div>
+  <figcaption><i>{{ name }}</i> ({{ page.date | date : "%Y"}})<br></figcaption>
+  </figure>
   {% endfor %}
   </div>
 

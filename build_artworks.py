@@ -14,7 +14,9 @@ VIMEO_ID = {
     "stewart_mod.mp4" : "544260328",
     "stewart_film.mp4" : "XXXXXXXXX",
     "node_conway_animation.mp4" : "544390242",
-    "node_reverse_conway_animation.mp4" : "544390256"
+    "node_reverse_conway_animation.mp4" : "544390256",
+    "rhizomes_conway_animation.mp4" : "544645491",
+    "rhizomes_reverse_conway_animation.mp4" : "544649676"
 }
 
 REPO_PATH = "https://github.com/henryrobbins/art-3699/tree/master"

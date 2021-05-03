@@ -12,7 +12,7 @@ VIMEO_ID = {
     "stewart_rgb_chaos.mp4" : "544260549",
     "stewart_clip.mp4" : "544260538",
     "stewart_mod.mp4" : "544260328",
-    "stewart_film.mp4" : "XXXXXXXXX",
+    "stewart_film.mp4" : "544732299",
     "node_conway_animation.mp4" : "544390242",
     "node_reverse_conway_animation.mp4" : "544390256",
     "rhizomes_conway_animation.mp4" : "544645491",

@@ -13,6 +13,8 @@ VIMEO_ID = {
     "stewart_clip.mp4" : "544260538",
     "stewart_mod.mp4" : "544260328",
     "stewart_film.mp4" : "XXXXXXXXX",
+    "node_conway_animation.mp4" : "544390242",
+    "node_reverse_conway_animation.mp4" : "544390256"
 }
 
 REPO_PATH = "https://github.com/henryrobbins/art-3699/tree/master"
@@ -42,8 +44,8 @@ for root, subdirs, files in os.walk('art-3699'):
                     name = work.split('/')[-1]
                     videos.append([name, VIMEO_ID[name]])
                 else:
-                    print("%s NOT written." % to_path)
-                print("%s written." % to_path)
+                    print("%s NOT written." % work)
+                print("%s written." % work)
             artworks[root] = {"images":images, "videos":videos}
 
 for work in artworks:

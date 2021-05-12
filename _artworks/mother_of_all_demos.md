@@ -8,7 +8,8 @@ link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/mother_of_all_
 images: [art/netpbm/mother_of_all_demos/mother_of_all_demos.png]
 videos: []
 ---
-This work is based off of the [Highlights of the 1968 "Mother of All Demos"](https://youtube.com/playlist?list=PLCGFadV4FqU2yAqCzKaxnKKXgnJBUrKTE)
+This work is based off of the [Highlights of the 1968 "Mother of All
+Demos"](https://youtube.com/playlist?list=PLCGFadV4FqU2yAqCzKaxnKKXgnJBUrKTE)
 given by Doug Engelbart. It was the "world debut of personal and interactive
 computing". The playlist consists of 10 parts. From each video, the part
 number, view count, likes, and dislikes were recorded. These numbers were then

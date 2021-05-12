@@ -1,5 +1,6 @@
 import os
 import sys
+from shutil import copyfile
 root = os.path.dirname(os.path.abspath(__file__)) + "/art-3699"
 sys.path.insert(0,root)
 from netpbm import netpbm
@@ -35,7 +36,13 @@ for root, subdirs, files in os.walk('art-3699'):
             images = []
             videos = []
             for work in works:
-                if work.split(".")[-1] in ["pbm", "pgm", "ppm"]:
+                if work.split(".")[-1] == 'png':
+                    to_path = "art/" + '/'.join(work.split('/')[1:])
+                    dirs = '/'.join(to_path.split('/')[:-1])
+                    os.makedirs(dirs, exist_ok=True)
+                    copyfile(work, to_path)
+                    images.append(to_path)
+                elif work.split(".")[-1] in ["pbm", "pgm", "ppm"]:
                     from_path = work
                     to_path = "art/" + '/'.join(from_path[:-3].split('/')[1:]) + "png"
                     if not os.path.exists(to_path):

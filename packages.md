@@ -1,5 +1,5 @@
 ---
-layout: python_packages
+layout: packages
 title: Projects
 permalink: /projects/
 ---

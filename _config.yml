@@ -31,7 +31,7 @@ linkedin_username: hwr26
 collections:
   artworks:
     output: true
-  python_packages:
+  packages:
     output: true
 
 # Build settings

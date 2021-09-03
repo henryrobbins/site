@@ -6,7 +6,7 @@ layout: default
 
 {{ content }}
 
-{% for package in site.python_packages %}
+{% for package in site.packages %}
     <b>{{ package.name }}</b><br>
     {% for badge in package.badges %}
         <embed type="text/html" src="{{ badge }}">

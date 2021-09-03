@@ -1,0 +1,27 @@
+---
+layout: default
+name: vinal
+description: A Python package for visualizing graph algorithms
+github: https://github.com/henryrobbins/vinal
+docs: https://vinal.henryrobbins.com
+badges: [
+    https://img.shields.io/pypi/pyversions/gilp.svg,
+    https://readthedocs.org/projects/vinal/badge/?version=latest
+]
+---
+vinal is a Python package for visualizing graph/network algorithms. Currently, the following algorithms are implemented:
+
+- [Shortest path problem](https://en.wikipedia.org/wiki/Shortest_path_problem)
+    - [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+- [Minimum Spanning Tree (MST)](https://en.wikipedia.org/wiki/Minimum_spanning_tree)
+    - [Prim's Algorithm](https://en.wikipedia.org/wiki/Prim%27s_algorithm)
+    - [Kruskal's Algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm)
+    - [Reverse Kruskal's Algorithm](https://en.wikipedia.org/wiki/Reverse-delete_algorithm)
+- [Travelling Salesman Problem (TSP)](https://en.wikipedia.org/wiki/Travelling_salesman_problem)
+    - Random neighbor
+    - [Nearest neighbor](https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm)
+    - Nearest insertion
+    - Furthest insertion
+    - [2-OPT](https://en.wikipedia.org/wiki/2-opt)
+
+[NetworkX](https://networkx.org/) graphs can be constructed from a single ```.csv``` file of node locations. Alternatively, one can specify edges of the graph by providing an additional ```.csv``` file of edges. The package relies on [bokeh](https://docs.bokeh.org/en/latest/index.html) to generate standalone HTML files which can be viewed in a Jupyter Notebook inline or in a web browser.

@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+<h1>Python Packages</h1>
+
+{{ content }}
+
+{% for package in site.python_packages %}
+    <b>{{ package.name }}</b><br>
+    {% for badge in package.badges %}
+        <embed type="text/html" src="{{ badge }}">
+    {% endfor %}
+    <br>
+    <i>{{ package.description }}</i><br>
+    <a href="{{ package.github }}"><i>GitHub Page</i></a><br>
+    <a href="{{ package.docs }}"><i>Documentation</i></a><br>
+    <hr>
+{% endfor %}

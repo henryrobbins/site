@@ -3,7 +3,7 @@ import sys
 from shutil import copyfile
 root = os.path.dirname(os.path.abspath(__file__)) + "/art-3699"
 sys.path.insert(0,root)
-from netpbm import netpbm
+from dmtools import netpbm
 
 VIMEO_ID = {
     "format.mp4" : "543896900",

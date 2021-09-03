@@ -8,24 +8,12 @@ layout: default
 
 {% for package in site.packages %}
     <b>{{ package.name }}</b><br>
-    {% for badge in package.badges %}
+    <!-- {% for badge in package.badges %}
         <embed type="text/html" src="{{ badge }}">
-    {% endfor %}
+    {% endfor %} -->
     <br>
     <i>{{ package.description }}</i><br>
     <a href="{{ package.github }}"><i>GitHub Page</i></a><br>
     <a href="{{ package.docs }}"><i>Documentation</i></a><br>
     <hr>
-{% endfor %}
-
-{% for artwork in site.artworks %}
-    <div>
-    </div>
-    <div>
-    <b>{{ artwork.artist }}</b><br>
-    <a href="{{ artwork.url }}"><i>{{ artwork.title }}</i> ({{ artwork.date | date : "%Y"}})</a><br>
-    {{ artwork.content | truncate : 200}} <br>
-    </div>
-    <hr>
-
 {% endfor %}

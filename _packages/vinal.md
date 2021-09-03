@@ -4,10 +4,7 @@ name: vinal
 description: A Python package for visualizing graph algorithms
 github: https://github.com/henryrobbins/vinal
 docs: https://vinal.henryrobbins.com
-# badges: [
-#     https://img.shields.io/pypi/pyversions/gilp.svg,
-#     https://readthedocs.org/projects/vinal/badge/?version=latest
-# ]
+badges: [https://img.shields.io/pypi/pyversions/gilp.svg, https://readthedocs.org/projects/vinal/badge/?version=latest]
 ---
 vinal is a Python package for visualizing graph/network algorithms. Currently, the following algorithms are implemented:
 

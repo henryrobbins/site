@@ -7,7 +7,7 @@ docs: https://gilp.henryrobbins.com
 badges: [
     https://img.shields.io/pypi/pyversions/gilp.svg,
     https://circleci.com/gh/henryrobbins/gilp.svg?style=shield&circle-token=23cdbbfe0a606bd908e1a2a92bdff6f66d3e1c54,
-    https://readthedocs.org/projects/gilp/badge/?version=latest
+    https://readthedocs.org/projects/gilp/badge/?version=latest,
     https://codecov.io/gh/henryrobbins/gilp/branch/master/graphs/badge.svg
 ]
 ---

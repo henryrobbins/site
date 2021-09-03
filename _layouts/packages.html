@@ -17,3 +17,15 @@ layout: default
     <a href="{{ package.docs }}"><i>Documentation</i></a><br>
     <hr>
 {% endfor %}
+
+{% for artwork in site.artworks %}
+    <div>
+    </div>
+    <div>
+    <b>{{ artwork.artist }}</b><br>
+    <a href="{{ artwork.url }}"><i>{{ artwork.title }}</i> ({{ artwork.date | date : "%Y"}})</a><br>
+    {{ artwork.content | truncate : 200}} <br>
+    </div>
+    <hr>
+
+{% endfor %}

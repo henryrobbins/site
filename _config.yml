@@ -29,9 +29,9 @@ github_username:  henryrobbins
 linkedin_username: hwr26
 
 collections:
-  artworks:
-    output: true
   packages:
+    output: true
+  artworks:
     output: true
 
 # Build settings

@@ -5,7 +5,7 @@ title: mother_of_all_demos
 date: 2021-02-24
 medium: Netpbm (P1)
 link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/mother_of_all_demos
-images: [art/netpbm/mother_of_all_demos/mother_of_all_demos.png]
+images: [artwork/netpbm/mother_of_all_demos/mother_of_all_demos.png]
 videos: []
 ---
 This work is based off of the [Highlights of the 1968 "Mother of All

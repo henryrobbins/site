@@ -5,7 +5,7 @@ title: color_matrix
 date: 2021-02-24
 medium: Netpbm (P3)
 link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/color_matrix
-images: [art/netpbm/color_matrix/color_matrix.png]
+images: [artwork/netpbm/color_matrix/color_matrix.png]
 videos: []
 ---
 The rows and columns of the matrix are the colors white, red, green, blue, and

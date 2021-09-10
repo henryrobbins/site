@@ -5,7 +5,7 @@ title: mod
 date: 2021-03-07
 medium: Netpbm (P2) and MPEG-4
 link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/mod
-images: [art/netpbm/mod/road_day_mod_8.png, art/netpbm/mod/sky_mod_8.png, art/netpbm/mod/faces_mod_12.png, art/netpbm/mod/beebe_trail_mod_8.png, art/netpbm/mod/stomp_mod_25.png, art/netpbm/mod/water_cup_mod_7.png]
+images: [artwork/netpbm/mod/beebe_trail_mod_8.png, artwork/netpbm/mod/faces_mod_12.png, artwork/netpbm/mod/stomp_mod_25.png, artwork/netpbm/mod/sky_mod_8.png, artwork/netpbm/mod/road_day_mod_8.png, artwork/netpbm/mod/water_cup_mod_7.png]
 videos: [[faces_mod_animation.mp4, 544012195], [water_cup_mod_animation.mp4, 544012231]]
 ---
 The images sky (2021-02-24), faces (2021-03-07), and stomp (2021-03-07)

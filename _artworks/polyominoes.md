@@ -4,7 +4,7 @@ artist: Henry Robbins
 title: polyominoes
 date: 2021-02-26
 medium: Netpbm (P1)
-link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/polyominoes
+link: https://github.com/henryrobbins/artwork/tree/master/netpbm/polyominoes
 images: [artwork/netpbm/polyominoes/polyominoes.png]
 videos: []
 ---

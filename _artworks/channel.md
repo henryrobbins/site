@@ -1,0 +1,16 @@
+---
+layout: artwork
+artist: Henry Robbins
+title: channel
+date: 2021-03-29
+medium: Netpbm (P3)
+link: https://github.com/henryrobbins/artwork/tree/master/netpbm/channel
+images: [artwork/netpbm/channel/math_channel_abs(sin(x*5))_x_x.png, artwork/netpbm/channel/math_channel_1-x_1-x_1-x.png, artwork/netpbm/channel/math_channel_1-x_x_x.png, artwork/netpbm/channel/math_channel_abs(sin(x*10))_x_x.png, artwork/netpbm/channel/math_channel_x_abs(sin(x*5))_x.png, artwork/netpbm/channel/math_channel_x_x_abs(sin(x*10)).png, artwork/netpbm/channel/math_channel_ceil(x*5)_over_5_x_x.png, artwork/netpbm/channel/math_channel_triangle_1.0_0.4_x_x.png, artwork/netpbm/channel/math_channel_x_x_triangle_1.0_0.4.png, artwork/netpbm/channel/math_channel_abs(sin(x*10))_x_abs(sin(x*10+10)).png]
+videos: []
+---
+This work was generated using code adapted from Dan Torop. His script separates
+pixels of a P3 Netpbm image into the three color channels allowing each color
+channel to be modified independently. I further generalized this script by
+allowing for an anonymous function to be passed for each channel. The current
+pieces explore the application of the sin, ceiling, and triangle wave fucntions.
+

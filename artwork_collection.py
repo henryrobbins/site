@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-REPO_PATH = "https://github.com/henryrobbins/art-3699/tree/master"
+REPO_PATH = "https://github.com/henryrobbins/artwork/tree/master"
 
 for root, _, files in os.walk('artwork'):
     if "README.md" in files:

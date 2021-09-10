@@ -4,7 +4,7 @@ artist: Henry Robbins and River Chavez
 title: resolution
 date: 2021-04-04
 medium: Netpbm (P2 and P3)
-link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/resolution
+link: https://github.com/henryrobbins/artwork/tree/master/netpbm/resolution
 images: [artwork/netpbm/resolution/florida_resolution.png, artwork/netpbm/resolution/paper_resolution.png]
 videos: []
 ---

@@ -4,7 +4,7 @@ artist: Henry Robbins
 title: clip
 date: 2021-03-23
 medium: Netpbm (P2)
-link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/clip
+link: https://github.com/henryrobbins/artwork/tree/master/netpbm/clip
 images: [artwork/netpbm/clip/creek_clip_0_0.png, artwork/netpbm/clip/tree_light_clip_1_2.png, artwork/netpbm/clip/beebe_trail_clip_0_0.png, artwork/netpbm/clip/buildings_night_clip_2_3.png, artwork/netpbm/clip/road_day_clip_0_0.png, artwork/netpbm/clip/porch_clip_4_8.png, artwork/netpbm/clip/wall_light_clip_5_6.png, artwork/netpbm/clip/laundry_clip_0_1.png]
 videos: []
 ---

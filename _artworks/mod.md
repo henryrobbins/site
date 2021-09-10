@@ -4,7 +4,7 @@ artist: Henry Robbins and Ella Clemons
 title: mod
 date: 2021-03-07
 medium: Netpbm (P2) and MPEG-4
-link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/mod
+link: https://github.com/henryrobbins/artwork/tree/master/netpbm/mod
 images: [artwork/netpbm/mod/beebe_trail_mod_8.png, artwork/netpbm/mod/faces_mod_12.png, artwork/netpbm/mod/stomp_mod_25.png, artwork/netpbm/mod/sky_mod_8.png, artwork/netpbm/mod/road_day_mod_8.png, artwork/netpbm/mod/water_cup_mod_7.png]
 videos: [[faces_mod_animation.mp4, 544012195], [water_cup_mod_animation.mp4, 544012231]]
 ---

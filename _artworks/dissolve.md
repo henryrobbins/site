@@ -4,7 +4,7 @@ artist: Henry Robbins
 title: dissolve
 date: 2021-03-02
 medium: Netpbm (P2)
-link: https://github.com/henryrobbins/art-3699/tree/master/netpbm/dissolve
+link: https://github.com/henryrobbins/artwork/tree/master/netpbm/dissolve
 images: [artwork/netpbm/dissolve/beebe_trail_h71v251.png, artwork/netpbm/dissolve/beebe_trail_v80.png, artwork/netpbm/dissolve/beebe_trail_h140.png, artwork/netpbm/dissolve/dissolve3.png, artwork/netpbm/dissolve/dissolve2.png, artwork/netpbm/dissolve/dissolve.png, artwork/netpbm/dissolve/beebe_trail_h60v47.png, artwork/netpbm/dissolve/beebe_trail_h100.png, artwork/netpbm/dissolve/beebe_trail_h70.png]
 videos: []
 ---

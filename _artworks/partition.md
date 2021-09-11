@@ -21,6 +21,5 @@ Benson](https://en.wikipedia.org/wiki/Richard_Benson_(photographer))
 image.  This image transformation technique is based on
 this idea. Each column corresponds to a different gradient in the image. The
 first two rows highlight pixels of the corresponding gradient in white and
-black respectivley. The next two rows highlight the pixels and background in
+black respectively. The next two rows highlight the pixels and background in
 the color of the corresponding gradient.
-

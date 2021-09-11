@@ -25,4 +25,3 @@ A vector (some row in the case of 'h' and column in the case of 'w') at
 location i is chosen from the image to dissolve. In some images, consecutive
 dissolves are applied. For example, beebe_trail_h60v47 is acheived by first
 dissolving down from row 60 and then dissolving to the left from column 47.
-

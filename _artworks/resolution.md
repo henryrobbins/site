@@ -17,4 +17,3 @@ resolution of each section was adjusted according to this rule. The script used
 to carry out this procedure was designed for a black and white image.  In
 `florida_resolution.ppm`, this script was applied to a color image resulting in
 various anomalies which were embraced.
-

@@ -16,4 +16,3 @@ is a classic example of complex "emergent" behavior stemming from seemingly
 simple rules. In this work, Conway's Game of Life was seeded from a source
 image and evolved until a stable state was reached. The resulting animation was
 then overlaid on top of the original source image.
-

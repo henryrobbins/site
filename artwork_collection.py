@@ -17,12 +17,6 @@ for root, _, files in os.walk('artwork'):
             title = title.strip('*')
             date = date[:-6].strip('()')
             medium = medium.strip('\n')
-            stop = "To compile this work, use the following commands.\n"
-            try:
-                i = description.index(stop)
-                description = ''.join(description[:i])
-            except ValueError:
-                description = ''.join(description)
         files.remove('README.md')
 
         # Parse vimeo.txt for any videos
@@ -50,4 +44,4 @@ for root, _, files in os.walk('artwork'):
             videos_str = ', '.join(['[%s]' % ", ".join(i) for i in (videos)])
             f.write('videos: [%s]\n' % videos_str)
             f.write('---')
-            f.write(description)
+            f.writelines(description)

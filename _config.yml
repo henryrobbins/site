@@ -29,7 +29,7 @@ github_username:  henryrobbins
 linkedin_username: hwr26
 
 collections:
-  packages:
+  projects:
     output: true
   artworks:
     output: true

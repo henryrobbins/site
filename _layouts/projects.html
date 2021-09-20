@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<h1>Projects</h1>
+<br clear="all" />
+
+<style>
+    img {
+      /* margin: 40px; */
+      width: auto;
+      height: auto;
+      display: block;
+      background-size: cover;
+    }
+    .logo {
+      max-width: 200px;
+      max-height: 100px;
+    }
+    .sponsor {
+      max-width: 50px;
+      max-height: 50px;
+    }
+    .vspace {
+     margin-bottom: 1cm;
+    }
+</style>
+
+{{ content }}
+
+{% for project in site.projects reversed %}
+    <div>
+        <img src="{{ site.baseurl }}/{{ project.logo }}", align="right", style="img", class="logo"></img>
+    </div>
+    <div align="left", class="vspace">
+        <h3><b>{{ project.name }}</b></h3>
+        <i>{{ project.description }}</i><br>
+        <a href="{{ project.github }}">GitHub Page</a>
+        {% if project.website != "None" %}
+          and <a href="{{ project.website }}">Website</a><br>
+        {% endif %}
+        <!-- {% if project.sponsors.size > 0 %}
+          <u>Sponsors</u>
+        {% endif %} -->
+    </div>
+
+    <!-- {% for sponsor in project.sponsors %}
+    <img src="{{ site.baseurl }}/{{ sponsor }}", align="left", style="img", class="sponsor"></img>
+    {% endfor %} -->
+
+    <br clear="all" />
+    <br>
+
+{% endfor %}

@@ -1,5 +1,5 @@
 ---
-layout: packages
+layout: projects
 title: Projects
 permalink: /projects/
 ---

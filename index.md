@@ -16,7 +16,7 @@ and Optimization. In August 2020, I took a break from that work to aid Cornell
 in providing in person instruction under the restrictions of COVID-19. My
 contributions included re-optimizing course schedules and formulating a
 mathematical model to schedule and assign rooms for exams. You can read more
-about this effort in
+about the effort in
 [this short article](https://www.engineering.cornell.edu/spotlights/unsung-engineering-behind-cornells-fall-2020-schedule).
 
 My broad research interests lie in studying applied combinatorial optimization
@@ -24,5 +24,5 @@ problems with computational components. My coursework has focused on the topics
 of discrete optimization and algorithms. I also enjoy studying how these
 topics can be used in imagemaking.
 
-Outside of my studies, I am a captain on the Cornell Men's Squash Team and an
+Outside of my studies, I am a co-captain of the Cornell Men's Squash Team and an
 Umphreak looking forward to the next show.

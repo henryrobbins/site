@@ -2,7 +2,9 @@
 layout: default
 ---
 
-<h1>Artworks</h1>
+<div align="center">
+    <h2>Artworks</h2>
+</div>
 <br clear="all" />
 
 <style>
@@ -10,8 +12,8 @@ layout: default
       /* margin: 40px; */
       width: auto;
       height: auto;
-      max-width: 100px;
-      max-height: 100px;
+      max-width: 150px;
+      max-height: 150px;
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -19,8 +21,8 @@ layout: default
     }
     .wrapper {
       display: grid;
-      grid-template-columns: auto auto;
-      grid-gap: 10px;
+      grid-template-columns: auto min-content;
+      grid-gap: 20px;
     }
     .box {
       padding: 10px;

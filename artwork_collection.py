@@ -31,7 +31,7 @@ for root, _, files in os.walk('artwork'):
         images = [str(path / image) for image in files]
 
         # Write artwork layout markdown
-        md = "_artworks/%s.md" % work
+        md = "_artworks/%s-%s.md" % (date, work)
         with open(md, 'w') as f:
             f.write('---\n')
             f.write('layout: artwork\n')

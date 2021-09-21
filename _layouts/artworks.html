@@ -3,6 +3,7 @@ layout: default
 ---
 
 <h1>Artworks</h1>
+<br clear="all" />
 
 <style>
     img {
@@ -12,23 +13,31 @@ layout: default
       max-width: 100px;
       max-height: 100px;
       display: block;
+      margin-left: auto;
+      margin-right: auto;
       background-size: cover;
+    }
+    .wrapper {
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-gap: 10px;
+    }
+    .box {
+      padding: 10px;
     }
 </style>
 
-{{ content }}
-
+<div class="wrapper">
 {% for artwork in site.artworks %}
-    <div>
+    <div align="left", class="box">
+        <b>{{ artwork.artist }}</b><br>
+        <a href="{{ artwork.url }}"><i>{{ artwork.title }}</i> ({{ artwork.date | date : "%Y"}})</a><br>
+        {{ artwork.content | truncate : 250}} <br>
+    </div>
+    <div class="box">
     {% if artwork.images.size > 0 %}
         <img src="{{ site.baseurl }}/{{ artwork.images | first }}", align="right", style="img"></img>
     {% endif %}
     </div>
-    <div>
-    <b>{{ artwork.artist }}</b><br>
-    <a href="{{ artwork.url }}"><i>{{ artwork.title }}</i> ({{ artwork.date | date : "%Y"}})</a><br>
-    {{ artwork.content | truncate : 200}} <br>
-    </div>
-    <hr>
-
 {% endfor %}
+</div>

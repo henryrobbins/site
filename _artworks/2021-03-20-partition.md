@@ -4,8 +4,8 @@ artist: Henry Robbins and River Chavez
 title: partition
 date: 2021-03-20
 medium: Netpbm (P2)
-link: https://github.com/henryrobbins/artwork/tree/master/netpbm/partition
-images: [artwork/netpbm/partition/sky_partition_8.png, artwork/netpbm/partition/waterfall_partition_8.png, artwork/netpbm/partition/old_man_partition_8.png, artwork/netpbm/partition/risley_partition_8.png, artwork/netpbm/partition/island_partition_8.png, artwork/netpbm/partition/tree_partition_8.png, artwork/netpbm/partition/beebe_day_partition_8.png, artwork/netpbm/partition/creek_partition_8.png, artwork/netpbm/partition/wading_partition_8.png, artwork/netpbm/partition/road_day_partition_8.png, artwork/netpbm/partition/fallen_tree_partition_8.png]
+link: https://github.com/henryrobbins/artwork/tree/master/partition
+images: [artwork/partition/sky_partition_8.png, artwork/partition/waterfall_partition_8.png, artwork/partition/old_man_partition_8.png, artwork/partition/risley_partition_8.png, artwork/partition/island_partition_8.png, artwork/partition/tree_partition_8.png, artwork/partition/beebe_day_partition_8.png, artwork/partition/creek_partition_8.png, artwork/partition/wading_partition_8.png, artwork/partition/road_day_partition_8.png, artwork/partition/fallen_tree_partition_8.png]
 videos: []
 ---
 The images waterfall (2021-03-20), risley (2021-03-21), creek (2021-03-21),

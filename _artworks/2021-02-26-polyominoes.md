@@ -4,8 +4,8 @@ artist: Henry Robbins
 title: polyominoes
 date: 2021-02-26
 medium: Netpbm (P1)
-link: https://github.com/henryrobbins/artwork/tree/master/netpbm/polyominoes
-images: [artwork/netpbm/polyominoes/polyominoes.png]
+link: https://github.com/henryrobbins/artwork/tree/master/polyominoes
+images: [artwork/polyominoes/polyominoes.png]
 videos: []
 ---
 The [free polyominoes](https://en.wikipedia.org/wiki/Polyomino) for n in [1..4]

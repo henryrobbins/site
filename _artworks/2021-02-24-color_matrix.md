@@ -4,8 +4,8 @@ artist: Henry Robbins
 title: color_matrix
 date: 2021-02-24
 medium: Netpbm (P3)
-link: https://github.com/henryrobbins/artwork/tree/master/netpbm/color_matrix
-images: [artwork/netpbm/color_matrix/color_matrix.png]
+link: https://github.com/henryrobbins/artwork/tree/master/color_matrix
+images: [artwork/color_matrix/color_matrix.png]
 videos: []
 ---
 The rows and columns of the matrix are the colors white, red, green, blue, and

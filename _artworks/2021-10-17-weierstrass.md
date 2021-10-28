@@ -5,7 +5,7 @@ title: weierstrass
 date: 2021-10-17
 medium: PNG and MPEG-4
 link: https://github.com/henryrobbins/artwork/tree/master/weierstrass
-images: [artwork/weierstrass/sunset_weierstrass_20.png, artwork/weierstrass/sunset_weierstrass_10.png]
+images: [artwork/weierstrass/circuit_1_weierstrass_20.png, artwork/weierstrass/sunset_weierstrass_20.png, artwork/weierstrass/circuit_2_weierstrass_20.png, artwork/weierstrass/sunset_weierstrass_10.png, artwork/weierstrass/circuit_3_weierstrass_20.png]
 videos: []
 ---
 TODO: Add description

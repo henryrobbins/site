@@ -30,11 +30,9 @@ layout: default
   <!-- include images -->
   <div class="center">
   {% for image in page.images %}
-    {% assign tmp = image | split: "/" %}
-    {% assign name = tmp[-1] %}
     <figure>
-      <img src="{{ site.baseurl }}/{{ image }}", style="img"></img>
-    <figcaption><i>{{ name }}</i> ({{ page.date | date : "%Y"}})<br></figcaption>
+      <img src="{{ site.baseurl }}/{{ image[1] }}", style="img"></img>
+    <figcaption><i>{{ image[0] }}</i> ({{ page.date | date : "%Y"}})<br></figcaption>
     </figure>
   {% endfor %}
   </div>

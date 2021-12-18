@@ -1,7 +1,7 @@
 .PHONY: artwork
 artwork:
 	rm -rf artwork
-	cp -r ~/git/artwork/archive ./artwork
+	cp -r ~/git/artwork/web_archive ./artwork
 	python artwork_collection.py
 
 build:

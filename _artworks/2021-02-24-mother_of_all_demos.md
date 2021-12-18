@@ -4,9 +4,10 @@ artist: Henry Robbins
 title: mother_of_all_demos
 date: 2021-02-24
 medium: Netpbm (P1)
-link: https://github.com/henryrobbins/artwork/tree/master/mother_of_all_demos
-images: [artwork/mother_of_all_demos/mother_of_all_demos.png]
-videos: []
+link: https://github.com/henryrobbins/artwork/mother_of_all_demos/master/resolution
+images:
+  mother_of_all_demos.pbm: artwork/mother_of_all_demos/mother_of_all_demos.png
+videos:
 ---
 This work is based off of the [Highlights of the 1968 "Mother of All
 Demos"](https://youtube.com/playlist?list=PLCGFadV4FqU2yAqCzKaxnKKXgnJBUrKTE)

@@ -39,7 +39,8 @@ layout: default
     </div>
     <div class="box">
     {% if artwork.images.size > 0 %}
-        <img src="{{ site.baseurl }}/{{ artwork.images | first }}", align="right", style="img"></img>
+        {% assign first = artwork.images | first %}
+        <img src="{{ site.baseurl }}/{{ first[1] }}", align="right", style="img"></img>
     {% endif %}
     </div>
 {% endfor %}

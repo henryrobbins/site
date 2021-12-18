@@ -4,9 +4,20 @@ artist: Henry Robbins and River Chavez
 title: partition
 date: 2021-03-20
 medium: Netpbm (P2)
-link: https://github.com/henryrobbins/artwork/tree/master/partition
-images: [artwork/partition/sky_partition_8.png, artwork/partition/waterfall_partition_8.png, artwork/partition/old_man_partition_8.png, artwork/partition/risley_partition_8.png, artwork/partition/island_partition_8.png, artwork/partition/tree_partition_8.png, artwork/partition/beebe_day_partition_8.png, artwork/partition/creek_partition_8.png, artwork/partition/wading_partition_8.png, artwork/partition/road_day_partition_8.png, artwork/partition/fallen_tree_partition_8.png]
-videos: []
+link: https://github.com/henryrobbins/artwork/partition/master/resolution
+images:
+  beebe_day_partition_8.pgm: artwork/partition/beebe_day_partition_8.png
+  creek_partition_8.pgm: artwork/partition/creek_partition_8.png
+  fallen_tree_partition_8.pgm: artwork/partition/fallen_tree_partition_8.png
+  island_partition_8.pgm: artwork/partition/island_partition_8.png
+  old_man_partition_8.pgm: artwork/partition/old_man_partition_8.png
+  risley_partition_8.pgm: artwork/partition/risley_partition_8.png
+  road_day_partition_8.pgm: artwork/partition/road_day_partition_8.png
+  sky_partition_8.pgm: artwork/partition/sky_partition_8.png
+  tree_partition_8.pgm: artwork/partition/tree_partition_8.png
+  wading_partition_8.pgm: artwork/partition/wading_partition_8.png
+  waterfall_partition_8.pgm: artwork/partition/waterfall_partition_8.png
+videos:
 ---
 The images waterfall (2021-03-20), risley (2021-03-21), creek (2021-03-21),
 fallen_tree (2021-03-21), old_man (2021-03-21), wading (2021-03-21), and

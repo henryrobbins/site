@@ -35,7 +35,7 @@ layout: default
     <div align="left", class="box">
         <b>{{ artwork.artist }}</b><br>
         <a href="{{ artwork.url }}"><i>{{ artwork.title }}</i> ({{ artwork.date | date : "%Y"}})</a><br>
-        {{ artwork.content | truncate : 250}} <br>
+        {{ artwork.content | truncate : 260}} <br>
     </div>
     <div class="box">
     {% if artwork.images.size > 0 %}

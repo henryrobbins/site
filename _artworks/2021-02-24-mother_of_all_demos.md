@@ -4,7 +4,7 @@ artist: Henry Robbins
 title: mother_of_all_demos
 date: 2021-02-24
 medium: Netpbm (P1)
-link: https://github.com/henryrobbins/artwork/mother_of_all_demos/master/resolution
+link: https://github.com/henryrobbins/artwork/tree/master/mother_of_all_demos
 images:
   mother_of_all_demos.pbm: artwork/mother_of_all_demos/mother_of_all_demos.png
 videos:

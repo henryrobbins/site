@@ -4,7 +4,7 @@ artist: Henry Robbins and River Chavez
 title: partition
 date: 2021-03-20
 medium: Netpbm (P2)
-link: https://github.com/henryrobbins/artwork/partition/master/resolution
+link: https://github.com/henryrobbins/artwork/tree/master/partition
 images:
   beebe_day_partition_8.pgm: artwork/partition/beebe_day_partition_8.png
   creek_partition_8.pgm: artwork/partition/creek_partition_8.png

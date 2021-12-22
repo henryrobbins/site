@@ -4,7 +4,7 @@ artist: Henry Robbins
 title: weierstrass
 date: 2021-10-17
 medium: PNG and MPEG-4
-link: https://github.com/henryrobbins/artwork/weierstrass/master/resolution
+link: https://github.com/henryrobbins/artwork/tree/master/weierstrass
 images:
   circuit_1_weierstrass_20.png: artwork/weierstrass/circuit_1_weierstrass_20.png
   circuit_2_weierstrass_20.png: artwork/weierstrass/circuit_2_weierstrass_20.png

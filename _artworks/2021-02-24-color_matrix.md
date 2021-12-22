@@ -4,7 +4,7 @@ artist: Henry Robbins
 title: color_matrix
 date: 2021-02-24
 medium: Netpbm (P3)
-link: https://github.com/henryrobbins/artwork/color_matrix/master/resolution
+link: https://github.com/henryrobbins/artwork/tree/master/color_matrix
 images:
   color_matrix.ppm: artwork/color_matrix/color_matrix.png
 videos:

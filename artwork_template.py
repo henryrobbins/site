@@ -4,7 +4,7 @@ artist: {label["author"]}
 title: {label["title"]}
 date: {label["date"]}
 medium: {label["medium"]}
-link: https://github.com/henryrobbins/{path}/master/resolution
+link: {label["link"]}
 images:{images}
 videos:{videos}
 ---

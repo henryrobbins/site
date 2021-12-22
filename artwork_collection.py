@@ -9,6 +9,8 @@ TEMPLATE = compile(template_file, '<fstring_from_file>', 'eval')
 for path in [x[0] for x in os.walk('artwork')][1:]:
 
     label = json.load(open(f"{path}/label.json"))
+    label["link"] = f"{REPO_PATH}/{label['title']}"
+
     description = open(f"{path}/description.md").read()
 
     images = {}
@@ -27,6 +29,6 @@ for path in [x[0] for x in os.walk('artwork')][1:]:
     images = get_yaml(images)
     videos = get_yaml(videos)
 
-    md = f"_artworks/{label['date']}-{path.split('/')[1]}.md"
+    md = f"_artworks/{label['date']}-{label['title']}.md"
     with open(md, 'w') as f:
         f.write(eval(TEMPLATE))

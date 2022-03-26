@@ -53,6 +53,7 @@ possibilities this software offers as an artistic medium.
 <img src="images/SW_corner.jpeg" width="500"/>
 <img src="images/layout_on_wall.jpeg" width="500"/>
 <img src="images/nook.jpeg" width="500"/>
+<img src="images/me_taken_by_Nasha.jpeg" width="500"/>
 
 ## Works
 

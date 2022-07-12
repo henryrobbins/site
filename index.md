@@ -5,7 +5,7 @@
 layout: home
 ---
 
-# <img alt="me" src="images/profile.JPG" height="300">
+# <img alt="me" src="images/profile.jpeg" height="300">
 
 I am a Cornell Engineering student ('22) studying Operations Research and Computer
 Science. In Summer 2021, I was a Data Science Intern on Uber's Matching and

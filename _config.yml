@@ -28,6 +28,10 @@ url: "https://henryrobbins.com" # the base hostname & protocol for your site, e.
 github_username:  henryrobbins
 linkedin_username: hwr26
 
+header_pages:
+  - art/index.md
+  - projects.html
+
 collections:
   projects:
     output: true

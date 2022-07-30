@@ -27,6 +27,27 @@ layout: default
   <!-- description -->
   {{ content }}
 
+  <!-- include features -->
+  {% assign exhibition_list = site.empty %}
+  {% for exhibition in site.exhibitions %}
+    {% if exhibition.featured contains page.title %}
+      {% assign exhibition_list = exhibition_list | push: exhibition %}
+    {% endif %}
+  {% endfor %}
+
+  {% if exhibition_list.size > 1 %}
+    <h2>Exhibition List</h2>
+    <ul>
+    {% for e in exhibition_list %}
+    <li> <a href="{{ e.url }}">{{ e.name }}</a> ({{ e.year }}) </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  {% if exhibition_list.size > 0 %}
+    {% assign e = exhibition_list[0] %}
+    <b>Exhibit</b>: <a href="{{ e.url }}">{{ e.name }}</a> ({{ e.year }})
+  {% endif %}
+
   <!-- include images -->
   <div class="center">
   {% for image in page.images %}

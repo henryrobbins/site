@@ -3,6 +3,7 @@ layout: default
 name: decluttering, exaptation
 year: 2022
 location: Tjaden Gallery, Cornell University. Ithaca, NY
+featured: ["memory", "composite", "tsp", "weierstrass", "partition"]
 images: /images/decluttering_exaptation
 ---
 # decluttering, exaptation (2022)
@@ -46,6 +47,13 @@ continued to be developed in a collaborative effort by both artists as part of
 the "Image Toolmaking Lab" which is part of [AAP's](https://aap.cornell.edu)
 new program of research labs. The exhibit hopes to spread awareness of the
 possibilities this software offers as an artistic medium.
+
+## Featured Work
+
+{% for feature in page.featured %}
+{%- assign w = site.artworks | where:"title", feature | first -%}
+- {{ w.artist }}. *[{{ w.title }}]({{ w.url }})* ({{ w.date | date : "%Y" }})
+{% endfor %}
 
 ## Gallery
 

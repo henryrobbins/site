@@ -37,6 +37,8 @@ collections:
     output: true
   artworks:
     output: true
+  exhibitions:
+    output: true
 
 # Build settings
 theme: minima

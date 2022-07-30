@@ -1,7 +1,10 @@
 ---
 layout: default
+name: decluttering, exaptation
+year: 2022
+location: Tjaden Gallery, Cornell University. Ithaca, NY
+images: /images/decluttering_exaptation
 ---
-
 # decluttering, exaptation (2022)
 
 *"Featuring work created by Khaly Durst and Henry Robbins, "decluttering,
@@ -11,8 +14,8 @@ of new tools and workflows. With the use of
 by Henry Robbins, both artists work towards destructing the digital image
 through the use of their own workflows and code."*
 
-<img src="images/poster.jpeg" width="250"/>
-<img src="images/layout.jpeg" width="400"/>
+<img src="{{ page.images }}/poster.jpeg" width="250"/>
+<img src="{{ page.images }}/layout.jpeg" width="400"/>
 
 
 The exhibition features work created by both artists to explore the limits of
@@ -46,35 +49,35 @@ possibilities this software offers as an artistic medium.
 
 ## Gallery
 
-<img src="images/E_wall.jpeg" width="500"/>
-<img src="images/NE_corner_2.jpeg" width="500"/>
-<img src="images/SE_corner.jpeg" width="500"/>
-<img src="images/NE_corner.jpeg" width="500"/>
-<img src="images/SW_corner.jpeg" width="500"/>
-<img src="images/layout_on_wall.jpeg" width="500"/>
-<img src="images/nook.jpeg" width="500"/>
-<img src="images/me_taken_by_Nasha.jpeg" width="500"/>
+<img src="{{ page.images }}/E_wall.jpeg" width="500"/>
+<img src="{{ page.images }}/NE_corner_2.jpeg" width="500"/>
+<img src="{{ page.images }}/SE_corner.jpeg" width="500"/>
+<img src="{{ page.images }}/NE_corner.jpeg" width="500"/>
+<img src="{{ page.images }}/SW_corner.jpeg" width="500"/>
+<img src="{{ page.images }}/layout_on_wall.jpeg" width="500"/>
+<img src="{{ page.images }}/nook.jpeg" width="500"/>
+<img src="{{ page.images }}/me_taken_by_Nasha.jpeg" width="500"/>
 
 ## Works
 
-<img src="images/work_1.jpeg" width="250"/>
-<img src="images/works_2-4.jpeg" width="250"/>
-<img src="images/works_5-7.jpeg" width="250"/>
-<img src="images/works_8-13.jpeg" width="250"/>
+<img src="{{ page.images }}/work_1.jpeg" width="250"/>
+<img src="{{ page.images }}/works_2-4.jpeg" width="250"/>
+<img src="{{ page.images }}/works_5-7.jpeg" width="250"/>
+<img src="{{ page.images }}/works_8-13.jpeg" width="250"/>
 
-<img src="images/work_14.jpeg" width="250"/>
-<img src="images/work_15.jpeg" width="250"/>
-<img src="images/work_16.jpeg" width="250"/>
+<img src="{{ page.images }}/work_14.jpeg" width="250"/>
+<img src="{{ page.images }}/work_15.jpeg" width="250"/>
+<img src="{{ page.images }}/work_16.jpeg" width="250"/>
 
-<img src="images/works_17-18.jpeg" width="250"/>
-<img src="images/works_19-20.jpeg" width="250"/>
+<img src="{{ page.images }}/works_17-18.jpeg" width="250"/>
+<img src="{{ page.images }}/works_19-20.jpeg" width="250"/>
 
-<img src="images/works_21-22.jpeg" width="250"/>
-<img src="images/works_25-26.jpeg" width="250"/>
+<img src="{{ page.images }}/works_21-22.jpeg" width="250"/>
+<img src="{{ page.images }}/works_25-26.jpeg" width="250"/>
 
-<img src="images/work_23.jpeg" width="250"/>
-<img src="images/work_24.jpeg" width="250"/>
+<img src="{{ page.images }}/work_23.jpeg" width="250"/>
+<img src="{{ page.images }}/work_24.jpeg" width="250"/>
 
-<img src="images/rescale_pedestal.jpeg" width="250"/>
-<img src="images/composite_pedestal.jpeg" width="250"/>
-<img src="images/curves_pedestal.jpeg" width="250"/>
+<img src="{{ page.images }}/rescale_pedestal.jpeg" width="250"/>
+<img src="{{ page.images }}/composite_pedestal.jpeg" width="250"/>
+<img src="{{ page.images }}/curves_pedestal.jpeg" width="250"/>

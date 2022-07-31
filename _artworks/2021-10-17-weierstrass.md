@@ -6,11 +6,11 @@ date: 2021-10-17
 medium: PNG and MPEG-4
 link: https://github.com/henryrobbins/artwork/tree/master/weierstrass
 images:
-  circuit_1_weierstrass_20.png: artwork/weierstrass/circuit_1_weierstrass_20.png
-  circuit_2_weierstrass_20.png: artwork/weierstrass/circuit_2_weierstrass_20.png
-  circuit_3_weierstrass_20.png: artwork/weierstrass/circuit_3_weierstrass_20.png
-  sunset_weierstrass_10.png: artwork/weierstrass/sunset_weierstrass_10.png
-  sunset_weierstrass_20.png: artwork/weierstrass/sunset_weierstrass_20.png
+  circuit_1_weierstrass_20.png: artwork/weierstrass/circuit_1_weierstrass_20.jpeg
+  circuit_2_weierstrass_20.png: artwork/weierstrass/circuit_2_weierstrass_20.jpeg
+  circuit_3_weierstrass_20.png: artwork/weierstrass/circuit_3_weierstrass_20.jpeg
+  sunset_weierstrass_10.png: artwork/weierstrass/sunset_weierstrass_10.jpeg
+  sunset_weierstrass_20.png: artwork/weierstrass/sunset_weierstrass_20.jpeg
 videos:
 permalink: /art/weierstrass
 ---

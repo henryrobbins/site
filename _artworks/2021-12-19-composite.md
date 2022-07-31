@@ -6,13 +6,13 @@ date: 2021-12-19
 medium: PNG
 link: https://github.com/henryrobbins/artwork/tree/master/composite
 images:
-  erosion_peeling_clip_composite.png: artwork/composite/erosion_peeling_clip_composite.png
-  peeling_erosion_clip_composite.png: artwork/composite/peeling_erosion_clip_composite.png
-  road_2_road_sunset_clip_composite.png: artwork/composite/road_2_road_sunset_clip_composite.png
-  road_2_road_sunset_composite.png: artwork/composite/road_2_road_sunset_composite.png
-  road_sunset_taughannock_1_clip_composite.png: artwork/composite/road_sunset_taughannock_1_clip_composite.png
-  taughannock_1_peeling_clip_composite.png: artwork/composite/taughannock_1_peeling_clip_composite.png
-  taughannock_1_road_sunset_normalize_composite.png: artwork/composite/taughannock_1_road_sunset_normalize_composite.png
+  erosion_peeling_clip_composite.png: artwork/composite/erosion_peeling_clip_composite.jpeg
+  peeling_erosion_clip_composite.png: artwork/composite/peeling_erosion_clip_composite.jpeg
+  road_2_road_sunset_clip_composite.png: artwork/composite/road_2_road_sunset_clip_composite.jpeg
+  road_2_road_sunset_composite.png: artwork/composite/road_2_road_sunset_composite.jpeg
+  road_sunset_taughannock_1_clip_composite.png: artwork/composite/road_sunset_taughannock_1_clip_composite.jpeg
+  taughannock_1_peeling_clip_composite.png: artwork/composite/taughannock_1_peeling_clip_composite.jpeg
+  taughannock_1_road_sunset_normalize_composite.png: artwork/composite/taughannock_1_road_sunset_normalize_composite.jpeg
 videos:
 permalink: /art/composite
 ---

@@ -6,7 +6,7 @@ date: 2021-02-24
 medium: Netpbm (P3)
 link: https://github.com/henryrobbins/artwork/tree/master/color_matrix
 images:
-  color_matrix.ppm: artwork/color_matrix/color_matrix.png
+  color_matrix.ppm: artwork/color_matrix/color_matrix.jpeg
 videos:
 permalink: /art/color_matrix
 ---

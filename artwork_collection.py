@@ -17,7 +17,7 @@ for path in [x[0] for x in os.walk('artwork')][1:]:
     for work in label["works"]:
         base, ext = os.path.splitext(work)
         if ext != ".mp4":
-            images[work] = f"{path}/{base}.png"
+            images[work] = f"{path}/{base}.jpeg"
 
     videos = label.get("vimeo", {})
 

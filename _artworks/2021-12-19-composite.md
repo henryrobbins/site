@@ -14,6 +14,7 @@ images:
   taughannock_1_peeling_clip_composite.png: artwork/composite/taughannock_1_peeling_clip_composite.png
   taughannock_1_road_sunset_normalize_composite.png: artwork/composite/taughannock_1_road_sunset_normalize_composite.png
 videos:
+permalink: /art/composite
 ---
 Like the weierstrass series, this work explores the result of substituting
 carefully chosen parameters in image transformation algorithms with unbased

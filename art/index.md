@@ -2,6 +2,7 @@
 layout: default
 title: Art
 tab: true
+permalink: /art
 ---
 
 ## Exhibitions
@@ -11,4 +12,4 @@ tab: true
 
 ## Archive
 
-A complete archive of work can be found [here](art_archive).
+A complete archive of work can be found [here](/art/archive).

@@ -2,7 +2,7 @@
 layout: default
 title: Experience
 tab: true
-permalink: /experiences/
+permalink: /experience/
 ---
 
 # Experience

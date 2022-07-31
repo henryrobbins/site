@@ -8,6 +8,7 @@ link: https://github.com/henryrobbins/artwork/tree/master/steal_your_face
 images:
   steal_your_face.png: artwork/steal_your_face/steal_your_face.png
 videos:
+permalink: /art/steal_your_face
 ---
 This work uses a particular style of [ASCII
 art](https://en.wikipedia.org/wiki/ASCII_art) in which "symbols with various

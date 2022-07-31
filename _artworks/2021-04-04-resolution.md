@@ -9,6 +9,7 @@ images:
   florida_resolution.pgm: artwork/resolution/florida_resolution.png
   paper_resolution.pgm: artwork/resolution/paper_resolution.png
 videos:
+permalink: /art/resolution
 ---
 The images paper and florida were photographed by River Chavez.
 

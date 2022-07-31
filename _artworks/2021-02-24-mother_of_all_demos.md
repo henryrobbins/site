@@ -8,6 +8,7 @@ link: https://github.com/henryrobbins/artwork/tree/master/mother_of_all_demos
 images:
   mother_of_all_demos.pbm: artwork/mother_of_all_demos/mother_of_all_demos.png
 videos:
+permalink: /art/mother_of_all_demos
 ---
 This work is based off of the [Highlights of the 1968 "Mother of All
 Demos"](https://youtube.com/playlist?list=PLCGFadV4FqU2yAqCzKaxnKKXgnJBUrKTE)

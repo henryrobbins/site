@@ -5,6 +5,7 @@ year: 2022
 location: Tjaden Gallery, Cornell University. Ithaca, NY
 featured: ["memory", "composite", "tsp", "weierstrass", "partition"]
 images: /images/decluttering_exaptation
+permalink: /exhibition/decluttering-exaptation-2022
 ---
 # decluttering, exaptation (2022)
 

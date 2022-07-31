@@ -8,6 +8,7 @@ link: https://github.com/henryrobbins/artwork/tree/master/color_matrix
 images:
   color_matrix.ppm: artwork/color_matrix/color_matrix.png
 videos:
+permalink: /art/color_matrix
 ---
 The rows and columns of the matrix are the colors white, red, green, blue, and
 black in that order. The remaining entries of the matrix are the respective

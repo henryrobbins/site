@@ -13,6 +13,7 @@ images:
   4_step_drunk_walk.pgm: artwork/drunk_walk/4_step_drunk_walk.png
   64_step_drunk_walk.pgm: artwork/drunk_walk/64_step_drunk_walk.png
 videos:
+permalink: /art/drunk_walk
 ---
 In mathematics, the Drunkard's walk most often refers to a point in the
 euclidean plane iteratively moving in a random cardinal direction. This work is

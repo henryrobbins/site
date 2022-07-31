@@ -7,5 +7,6 @@ medium: {label["medium"]}
 link: {label["link"]}
 images:{images}
 videos:{videos}
+permalink: /art/{label["title"]}
 ---
 {description}"""

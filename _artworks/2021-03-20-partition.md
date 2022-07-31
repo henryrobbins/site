@@ -18,6 +18,7 @@ images:
   wading_partition_8.pgm: artwork/partition/wading_partition_8.png
   waterfall_partition_8.pgm: artwork/partition/waterfall_partition_8.png
 videos:
+permalink: /art/partition
 ---
 The images waterfall (2021-03-20), risley (2021-03-21), creek (2021-03-21),
 fallen_tree (2021-03-21), old_man (2021-03-21), wading (2021-03-21), and

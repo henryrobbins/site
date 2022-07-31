@@ -8,6 +8,7 @@ company: Cornell University
 projects: ["simpar"]
 github: cornell-covid-modeling
 github_link: https://github.com/cornell-covid-modeling
+permalink: /experience/cornell-covid-response
 ---
 
 In March 2020, I was sent home from Cornell amidst the Covid-19 pandemic.  I

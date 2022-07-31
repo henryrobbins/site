@@ -12,6 +12,7 @@ images:
   sunset_weierstrass_10.png: artwork/weierstrass/sunset_weierstrass_10.png
   sunset_weierstrass_20.png: artwork/weierstrass/sunset_weierstrass_20.png
 videos:
+permalink: /art/weierstrass
 ---
 In image rescaling, filters are carefully chosen to result in "good" rescaled
 representations of an image. This work explores what happens when you lift that

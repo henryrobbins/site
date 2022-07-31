@@ -34,7 +34,7 @@ permalink: /projects/
 <div class="wrapper">
 {% for project in site.projects reversed %}
     <div align="left", class="box">
-        <h3><b>{{ project.name }}</b></h3>
+        <h3><b>{{ project.name }} ({{ project.date | date : "%Y" }})</b></h3>
         <i>{{ project.description }}</i><br>
         <a href="{{ project.url }}">About</a> |
         <a href="{{ project.github }}">GitHub Page</a>

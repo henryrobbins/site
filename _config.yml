@@ -31,6 +31,7 @@ linkedin_username: hwr26
 header_pages:
   - art/index.md
   - projects.html
+  - experiences.md
 
 collections:
   projects:
@@ -38,6 +39,8 @@ collections:
   artworks:
     output: true
   exhibitions:
+    output: true
+  experiences:
     output: true
 
 # Build settings

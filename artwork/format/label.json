@@ -4,7 +4,6 @@
     "date": "2021-02-08",
     "medium": "MPEG-4",
     "works": [
-        "format.py",
         "format.mp4"
     ],
     "vimeo": {

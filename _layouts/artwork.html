@@ -43,7 +43,7 @@ layout: default
     {% endfor %}
     </ul>
   {% endif %}
-  {% if exhibition_list.size > 0 %}
+  {% if exhibition_list.size == 1 %}
     {% assign e = exhibition_list[0] %}
     <b>Exhibit</b>: <a href="{{ e.url }}">{{ e.name }}</a> ({{ e.year }})
   {% endif %}

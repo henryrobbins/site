@@ -40,16 +40,17 @@ continued to advise Cornell administration since the beginning of the Covid-19
 pandemic. I developed the [cotat][cotat] Python package to visualize Cornell
 contact tracing data. In December 2021, Cornell was the first university to see
 Omicron cases on campus. See this [CNN article][cnn].  Visualization created by
-this tool were used in an internal report providing insight into spread during
-this surge. In January of 2022, I led the development of [simpar][simpar], a
-Python package used to simulate the spread of Covid-19 through a heterogeneous
-population. This tool was central in generating predictions which directly
-informed Cornell's Spring 2022 policies and were used to advise administration
-throughout the spring semester.
+this tool were used in an internal report prepared by [Jaylen C. Perkins,
+MPH][jcp] providing insight into spread during this surge. In January of 2022,
+I led the development of [simpar][simpar], a Python package used to simulate
+the spread of Covid-19 through a heterogeneous population. This tool was
+central in generating predictions which directly informed Cornell's Spring 2022
+policies and were used to advise administration throughout the spring semester.
 
 [simpar]: https://github.com/cornell-covid-modeling/simpar
 [cotat]: https://github.com/cornell-covid-modeling/cotat
 [conner]: https://www.linkedin.com/in/connorlawless
+[jcp]: https://www.linkedin.com/in/jaylen-c-perkins
 [ong]: https://www.orie.cornell.edu/faculty-directory/oktay-gunluk
 [dpw]: https://www.engineering.cornell.edu/faculty-directory/david-p-williamson
 [bld]: https://www.engineering.cornell.edu/faculty-directory/brenda-lynn-dietrich

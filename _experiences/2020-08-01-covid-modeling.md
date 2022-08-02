@@ -35,12 +35,12 @@ be found in [this article][schedule]. The hard work of these teams led to
 Cornell's ability to provide an in-person education for the Fall 2020 semester.
 This [Bloomberg article][bloomberg] summarizes the victory.
 
-In Fall 2021, I was asked to join the Cornell Covid Modeling Team which has
-continued to advise Cornell administration since the beginning of the Covid-19
-pandemic. I developed the [cotat][cotat] Python package to visualize Cornell
+In Fall 2021, I was asked to join a team of [Cornell ORIE][orie] faculty and
+PhD students to advise Cornell leadership on the university's Covid-19
+policies.  I developed the [cotat][cotat] Python package to visualize Cornell
 contact tracing data. In December 2021, Cornell was the first university to see
-Omicron cases on campus. See this [CNN article][cnn].  Visualization created by
-this tool were used in an internal report prepared by [Jaylen C. Perkins,
+Omicron cases on campus. See this [CNN article][cnn].  Visualizations created
+by this tool were used in an internal report prepared by [Jaylen C. Perkins,
 MPH][jcp] providing insight into spread during this surge. In January of 2022,
 I led the development of [simpar][simpar], a Python package used to simulate
 the spread of Covid-19 through a heterogeneous population. This tool was
@@ -61,3 +61,4 @@ policies and were used to advise administration throughout the spring semester.
 [forbes]: https://www.forbes.com/sites/alexandrasternlicht/2020/06/30/cornell-says-its-safer-to-bring-students-back-to-campus-will-resume-classes-september-2/
 [bloomberg]: https://www.bloomberg.com/news/articles/2020-10-28/cornell-chalks-up-rare-covid-19-containment-victory#xj4y7vzkg
 [cnn]: https://www.cnn.com/2021/12/14/us/cornell-university-covid-cases/index.html
+[orie]: https://www.orie.cornell.edu/orie

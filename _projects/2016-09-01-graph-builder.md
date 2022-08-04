@@ -1,15 +1,13 @@
 ---
-layout: default
+layout: project
 name: Graph Builder
-logo: images/graph_builder_logo.png
+logo: images/logos/graph_builder_logo.png
 sponsors: []
 description: A Java program for constructing and analyzing graphs
 github: https://github.com/henryrobbins/graph-builder
 website: None
 permalink: /projects/graph-builder
 ---
-
-# <img alt="Graph Builder" src="../images/graph_builder_logo.png" height="90">
 
 Graph Builder is a Java program for constructing [graphs][graph]. It
 currently supports undirected, directed, and structural graphs. Additionally,

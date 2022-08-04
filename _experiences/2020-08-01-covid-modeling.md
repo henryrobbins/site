@@ -5,7 +5,7 @@ start: 2020-08-01
 end: 2022-05-31
 role: Data Scientist
 company: Cornell University
-projects: ["simpar"]
+projects: ["simpar", "cotat"]
 github: cornell-covid-modeling
 github_link: https://github.com/cornell-covid-modeling
 permalink: /experience/cornell-covid-response

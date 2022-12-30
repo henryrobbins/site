@@ -5,6 +5,7 @@ title: polyominoes
 date: 2021-02-26
 medium: Netpbm (P1)
 link: https://github.com/henryrobbins/artwork/tree/master/polyominoes
+physical:
 images:
   polyominoes.pbm: artwork/polyominoes/polyominoes.jpeg
 videos:

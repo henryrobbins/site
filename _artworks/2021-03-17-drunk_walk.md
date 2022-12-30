@@ -5,6 +5,7 @@ title: drunk_walk
 date: 2021-03-17
 medium: Netpbm (P2)
 link: https://github.com/henryrobbins/artwork/tree/master/drunk_walk
+physical:
 images:
   1024_step_drunk_walk.pgm: artwork/drunk_walk/1024_step_drunk_walk.jpeg
   16_step_drunk_walk.pgm: artwork/drunk_walk/16_step_drunk_walk.jpeg

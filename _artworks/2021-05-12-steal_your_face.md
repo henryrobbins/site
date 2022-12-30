@@ -5,6 +5,7 @@ title: steal_your_face
 date: 2021-05-12
 medium: ASCII and PNG
 link: https://github.com/henryrobbins/artwork/tree/master/steal_your_face
+physical:
 images:
   steal_your_face.png: artwork/steal_your_face/steal_your_face.jpeg
 videos:

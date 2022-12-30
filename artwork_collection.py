@@ -13,11 +13,18 @@ for path in [x[0] for x in os.walk('artwork')][1:]:
 
     description = open(f"{path}/description.md").read()
 
+    physical = {}
     images = {}
     for work in label["works"]:
         base, ext = os.path.splitext(work)
-        if ext != ".mp4":
-            images[work] = f"{path}/{base}.jpeg"
+        if base not in label.get("physical", {}).keys():
+            if ext != ".mp4":
+                images[work] = f"{path}/{base}.jpeg"
+        else:
+            physical[base] = {
+                "path": f"{path}/{base}.jpeg",
+                "dimension": label["physical"][base]["dimension"]
+            }
 
     videos = label.get("vimeo", {})
 
@@ -26,6 +33,7 @@ for path in [x[0] for x in os.walk('artwork')][1:]:
         lines = yaml.dump(dict).strip('\n').split('\n')
         return "\n" + "\n".join(["  " + line for line in lines])
 
+    physical = get_yaml(physical)
     images = get_yaml(images)
     videos = get_yaml(videos)
 

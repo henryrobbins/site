@@ -48,6 +48,16 @@ layout: default
     <b>Exhibit</b>: <a href="{{ e.url }}">{{ e.name }}</a> ({{ e.year }})
   {% endif %}
 
+  <!-- include physical -->
+  <div class="center">
+    {% for image in page.physical %}
+      <figure>
+      <img src="{{ site.baseurl }}/{{ image[1].path }}", style="img"></img>
+      <figcaption><i>{{ image[0] }}</i>, {{ image[1].dimension }} ({{ page.date | date : "%Y"}})<br></figcaption>
+      </figure>
+  {% endfor %}
+  </div>
+
   <!-- include images -->
   <div class="center">
   {% for image in page.images %}

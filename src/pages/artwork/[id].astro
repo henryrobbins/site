@@ -1,0 +1,182 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const artwork = await getCollection("artwork");
+  return artwork.map((art) => ({
+    params: { id: art.data.id },
+    props: { art },
+  }));
+}
+
+const { art } = Astro.props;
+const { Content } = await render(art);
+
+const exhibitions = await getCollection("exhibitions");
+const featuredExhibitions = exhibitions.filter((exhibition) =>
+  exhibition.data.featured?.includes(art.data.title)
+);
+
+const formatYear = (date: Date) => date.getFullYear();
+---
+
+<Layout title={art.data.title} description={art.data.description}>
+
+  <Content/>
+  <!-- Gallery label -->
+  <div class="artwork-header">
+    <b>{art.data.artist}</b><br />
+    <i>{art.data.title}</i> ({art.data.date})<br />
+    {art.data.medium}<br />
+    <a href={art.data.link}><i><u>source code</u></i></a><br /><br />
+  </div>
+
+  <!-- Description -->
+  <div class="description">
+    <slot />
+  </div>
+
+  <!-- Exhibition List -->
+  {
+    featuredExhibitions.length > 1 && (
+      <div class="exhibitions">
+        <h2>Exhibition List</h2>
+        <ul>
+          {featuredExhibitions.map((exhibition) => (
+            <li>
+              <a href={`/exhibitions/${exhibition.slug}`}>
+                {exhibition.data.name}
+              </a>{" "}
+              ({exhibition.data.year})
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+
+  {
+    featuredExhibitions.length === 1 && (
+      <div class="single-exhibition">
+        <b>Exhibit</b>:
+        <a href={`/exhibitions/${featuredExhibitions[0].slug}`}>
+          {featuredExhibitions[0].data.name}
+        </a>{" "}
+        ({featuredExhibitions[0].data.year})
+      </div>
+    )
+  }
+
+  <!-- Physical artworks -->
+  {
+    art.data.physical && (
+      <div class="center">
+        {Object.entries(art.data.physical).map(([name, details]) => (
+          <figure>
+            <img src={`/assets/${details.path}`} alt={name} />
+            <figcaption>
+              <i>{name}</i>, {details.dimension} ({formatYear(art.data.date)}
+              )<br />
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    )
+  }
+
+
+  <!-- Images -->
+  {
+    art.data.images && (
+      <div class="center">
+        {Object.entries(art.data.images).map(([name, details]) => (
+          <span>{name}</span>
+          <figure>
+            <img src={`/assets/${details}`} alt={name} />
+            <figcaption>
+              <i>{name}</i> ({formatYear(art.data.date)})<br />
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    )
+  }
+
+  <!-- Videos -->
+  {
+    art.data.videos && (
+      <div class="center">
+        {Object.values(art.data.videos).map(([name, id]) => (
+          <figure>
+            <div class="video-container">
+              <iframe
+                src={`https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`}
+                frameborder="0"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+                title={name}
+              />
+            </div>
+            <figcaption>
+              <i>{name}</i> ({formatYear(art.data.date)})<br />
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    )
+  }
+</Layout>
+
+<style>
+  figure {
+    margin: 40px;
+    width: 75%;
+    display: inline-block;
+  }
+
+  figure img {
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+  }
+
+  figure figcaption {
+    text-align: center;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .video-container {
+    padding: 70% 0 0 0;
+    position: relative;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .artwork-header {
+    margin-bottom: 2rem;
+  }
+
+  .description {
+    margin-bottom: 2rem;
+  }
+
+  .exhibitions,
+  .single-exhibition {
+    margin-bottom: 2rem;
+  }
+
+  .exhibitions ul {
+    list-style-type: disc;
+    margin-left: 2rem;
+  }
+</style>

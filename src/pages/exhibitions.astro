@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const exhibitions = await getCollection("exhibitions");
+---
+
+<Layout
+  title="Exhibitions"
+  description="Explore our past and upcoming exhibitions."
+>
+  <h1>Exhibitions</h1>
+  <ul>
+    {
+      exhibitions.map((exhibition) => (
+        <li>
+          <a href={`/exhibitions/${exhibition.id}`}>{exhibition.data.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</Layout>

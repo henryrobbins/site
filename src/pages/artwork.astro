@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { Link } from "@heroui/react";
+
+const artwork = await getCollection("artwork");
+
+// Helper function to strip HTML and truncate text
+function truncateText(text: string, maxLength = 200) {
+  if (!text) return "";
+  const stripped = text.replace(/<[^>]*>/g, ""); // Remove HTML tags
+  return stripped.length > maxLength
+    ? stripped.substring(0, maxLength) + "..."
+    : stripped;
+}
+
+// Helper function to get first image from images object/array
+function getFirstImage(images) {
+  if (!images) return null;
+
+  // If images is an object with key-value pairs
+  if (typeof images === "object" && !Array.isArray(images)) {
+    const firstKey = Object.keys(images)[0];
+    return firstKey ? images[firstKey] : null;
+  }
+
+  // If images is an array
+  if (Array.isArray(images) && images.length > 0) {
+    return images[0];
+  }
+
+  return null;
+}
+---
+
+<Layout title="Artwork" description="A collection of my artwork.">
+  <div class="flex flex-col items-center justify-center min-h-screen">
+    {
+      artwork
+        .sort(
+          (a, b) =>
+            new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+        )
+        .map((artwork) => (
+          <div class="flex items-center gap-6 max-w-4xl mx-auto p-6">
+            <div class="flex-1">
+              <>
+                <b>{artwork.data.artist}</b>
+                <br />
+              </>
+              <>
+                <Link href={`/artwork/${artwork.data.id}`}>
+                  <i>{artwork.data.title}</i> (
+                  {new Date(artwork.data.date).getFullYear()})
+                </Link>
+                <br />
+              </>
+              {truncateText(artwork.body)} <br />
+            </div>
+            <div>
+              {artwork.data.images && getFirstImage(artwork.data.images) && (
+                <img
+                  src={`/assets/${getFirstImage(artwork.data.images)}`}
+                  style="img"
+                  class="w-32 h-32 object-contain"
+                />
+              )}
+            </div>
+          </div>
+        ))
+    }
+  </div>
+</Layout>

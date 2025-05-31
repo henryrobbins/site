@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { Link } from "@heroui/react";
+
+const experiences = await getCollection("experiences");
+
+function truncateText(text: string, maxLength = 250) {
+  if (!text) return "";
+  const stripped = text.replace(/<[^>]*>/g, ""); // Remove HTML tags
+  return stripped.length > maxLength
+    ? stripped.substring(0, maxLength) + "..."
+    : stripped;
+}
+---
+
+<Layout
+  title="Experiences"
+  description="A collection of my professional experiences."
+>
+  <div class="flex flex-col items-center justify-center">
+    {
+      experiences
+        .sort(
+          (a, b) =>
+            new Date(b.data.end).getTime() - new Date(a.data.end).getTime()
+        )
+        .map((experience) => (
+          <div class="max-w-4xl mx-auto p-6">
+            <p>
+              <strong>{experience.data.name}</strong>, {experience.data.company}
+              ,{" "}
+              <>
+                <em>{experience.data.role}</em>
+                <br />
+              </>
+              <>
+                <em>
+                  {experience.data.start.getFullYear()} -{" "}
+                  {experience.data.end.getFullYear()}
+                </em>
+                <br />
+              </>
+              <Link href={`/experiences/${experience.data.id}`}>About</Link>
+              <>
+                | <Link href={experience.data.github}>GitHub</Link>
+                <br />
+              </>
+              {truncateText(experience.body)}
+            </p>
+          </div>
+        ))
+    }
+  </div>
+</Layout>

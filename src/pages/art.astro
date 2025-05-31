@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { Link } from "@heroui/react";
+
+const exhibitions = await getCollection("exhibitions");
+---
+
+<Layout title="Art" description="A page for exhibitions">
+  <h2>Exhibitions</h2>
+  <ul class="wrapper">
+    {
+      exhibitions.map((exhibition) => (
+        <li>
+          <div class="artwork-container">
+            ({exhibition.data.year})
+            <Link href={`/exhibitions/${exhibition.data.id}`}>
+              {exhibition.data.name}
+            </Link>
+            {exhibition.data.location}
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+  <h2>Archive</h2>
+  A complete list of archive can be found <Link href={`/artwork`}> here </Link>.
+</Layout>

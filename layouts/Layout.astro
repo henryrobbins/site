@@ -1,0 +1,53 @@
+---
+import "./src/styles/global.css";
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "My Astro Site" } = Astro.props;
+
+// Define your navigation links here
+const navLinks = [
+  { href: "/", text: "Home" },
+  { href: "/art", text: "Art" },
+  { href: "/projects", text: "Project" },
+  { href: "/experiences", text: "Experience" },
+];
+
+// Get current path for active link styling
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div>
+          <h1>Henry Robbins</h1>
+          <ul>
+            {
+              navLinks.map((link) => (
+                <li>
+                  <a href={link.href}>{link.text}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main class="main">
+      <slot />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import { Link } from "@heroui/react";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { id: project.data.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout>
+  <div>
+    {
+      project.data.website && project.data.website !== "None" ? (
+        <a href={project.data.website}>
+          <img
+            src={`/assets/${project.data.logo}`}
+            alt={`${project.data.name} logo`}
+            class="w-32 h-32 object-contain"
+          />
+        </a>
+      ) : (
+        <img
+          src={`/assets/${project.data.logo}`}
+          alt={`${project.data.name} logo`}
+          class="w-32 h-32 object-contain"
+        />
+      )
+    }
+  </div>
+  <div class="flex-1">
+    <div class="mb-4">
+      <i class="block mb-2">{project.data.description}</i>
+      <div class="space-x-1">
+        <Link href={project.data.github}>GitHub Page</Link>
+        {
+          project.data.website && (
+            <>
+              <span>|</span>
+              <Link href={project.data.website}>Website</Link>
+            </>
+          )
+        }
+      </div>
+    </div>
+  </div>
+  <Content />
+</Layout>

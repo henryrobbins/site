@@ -40,6 +40,7 @@ export const exhibitionCollection = defineCollection({
     location: z.string(),
     featured: z.array(z.string()).optional(),
     images: z.string().optional(),
+    thumbnail: z.string(),
   }),
 });
 

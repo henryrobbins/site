@@ -5,6 +5,7 @@ year: 2022
 location: Bowery Art Room. New York, NY
 featured: ["weave"]
 images: /images/art_groove
+thumbnail: prints.jpeg
 ---
 # Art Groove (2022)
 

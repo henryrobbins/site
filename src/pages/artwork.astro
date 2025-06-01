@@ -1,18 +1,11 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import Layout from "../../layouts/Layout.astro";
-import { Link } from "@heroui/react";
+import { Card, Link } from "@heroui/react";
 
 const artwork = await getCollection("artwork");
-
-// Helper function to strip HTML and truncate text
-function truncateText(text: string, maxLength = 200) {
-  if (!text) return "";
-  const stripped = text.replace(/<[^>]*>/g, ""); // Remove HTML tags
-  return stripped.length > maxLength
-    ? stripped.substring(0, maxLength) + "..."
-    : stripped;
-}
+const exhibitions = await getCollection("exhibitions");
 
 // Helper function to get first image from images object/array
 function getFirstImage(images) {
@@ -34,7 +27,41 @@ function getFirstImage(images) {
 ---
 
 <Layout title="Artwork" description="A collection of my artwork.">
-  <div class="flex flex-col items-center justify-center min-h-screen">
+  <h2 class="text-lg font-semibold text-center pb-6">EXHIBITIONS</h2>
+  <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
+    {
+      exhibitions
+        .sort((a, b) => b.data.year - a.data.year)
+        .map((artwork) => (
+          <Link href={`/artwork/${artwork.data.id}`} className="text-white">
+            <Card radius="none" shadow="none" className="w-64 h-64">
+              <div class="absolute inset-0 overflow-hidden">
+                <Image
+                  src={
+                    import(
+                      `/assets/${artwork.data.images}/${artwork.data.thumbnail}`
+                    )
+                  }
+                  alt={artwork.data.name}
+                  class="w-full h-full object-cover"
+                  quality={100}
+                  loading={"lazy"}
+                />
+              </div>
+
+              <div class="absolute bottom-0 left-0 right-0 p-4 text-white backdrop-blur-sm bg-black/50">
+                {artwork.data.name} ({artwork.data.year})
+              </div>
+            </Card>
+          </Link>
+        ))
+    }
+  </div>
+
+  <div class="my-8"></div>
+
+  <h2 class="text-lg text-center font-semibold pb-6">WORK</h2>
+  <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
     {
       artwork
         .sort(
@@ -42,31 +69,28 @@ function getFirstImage(images) {
             new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
         )
         .map((artwork) => (
-          <div class="flex items-center gap-6 max-w-4xl mx-auto p-6">
-            <div class="flex-1">
-              <>
-                <b>{artwork.data.artist}</b>
-                <br />
-              </>
-              <>
-                <Link href={`/artwork/${artwork.data.id}`}>
-                  <i>{artwork.data.title}</i> (
-                  {new Date(artwork.data.date).getFullYear()})
-                </Link>
-                <br />
-              </>
-              {truncateText(artwork.body)} <br />
-            </div>
-            <div>
-              {artwork.data.images && getFirstImage(artwork.data.images) && (
-                <img
-                  src={`/assets/${getFirstImage(artwork.data.images)}`}
-                  style="img"
-                  class="w-32 h-32 object-contain"
-                />
-              )}
-            </div>
-          </div>
+          <Link href={`/artwork/${artwork.data.id}`} className="text-white">
+            <Card radius="none" shadow="none" className="w-64 h-64">
+              <div class="absolute inset-0 overflow-hidden">
+                {artwork.data.images && getFirstImage(artwork.data.images) && (
+                  <Image
+                    src={
+                      import(`/assets/${getFirstImage(artwork.data.images)}`)
+                    }
+                    alt={artwork.data.title}
+                    class="w-full h-full object-cover"
+                    quality={100}
+                    loading={"lazy"}
+                  />
+                )}
+              </div>
+
+              <div class="absolute bottom-0 left-0 right-0 p-4 text-white backdrop-blur-sm bg-black/50">
+                {artwork.data.title}{" "}
+                {`(${new Date(artwork.data.date).getFullYear()})`}
+              </div>
+            </Card>
+          </Link>
         ))
     }
   </div>

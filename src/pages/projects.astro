@@ -1,13 +1,18 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { Link } from "@heroui/react";
+import { Card, Link } from "@heroui/react";
+import {
+  IconBrandGithubFilled,
+  IconInfoSquare,
+  IconWorldWww,
+} from "@tabler/icons-react";
 
 const projects = await getCollection("projects");
 ---
 
-<Layout title="Projects" description="A collection of my projects.">
-  <div class="flex flex-col items-center justify-center min-h-screen">
+<Layout title="Projects" description="A portfolio of my projects">
+  <div class="flex flex-row flex-wrap items-center gap-6 justify-center">
     {
       projects
         .sort(
@@ -15,46 +20,42 @@ const projects = await getCollection("projects");
             new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
         )
         .map((project) => (
-          <div class="flex items-center gap-6 max-w-4xl mx-auto p-6">
-            <div class="flex-1">
-              <h3 class="text-xl font-bold mb-2">
-                {project.data.name} ({new Date(project.data.date).getFullYear()}
-                )
-              </h3>
-              <div class="mb-4">
-                <i class="block mb-2">{project.data.description}</i>
-                <div class="space-x-1">
-                  <Link href={`/projects/${project.data.id}`}>About</Link>
-                  <span>|</span>
-                  <Link href={project.data.github}>GitHub Page</Link>
+          <Card radius="sm" shadow="sm" className="w-64 h-72">
+            <div class="flex flex-col gap-2 w-full h-full p-4">
+              <div class="flex items-center justify-center">
+                <img
+                  src={`/assets/${project.data.logo.color}`}
+                  alt={`${project.data.name} logo`}
+                  class="h-20 object-contain"
+                />
+              </div>
+              <div class="flex flex-col justify-between h-full">
+                <div>
+                  <h2 class="text-lg font-semibold mb-2">
+                    {project.data.name}{" "}
+                    {`(${new Date(project.data.date).getFullYear()})`}
+                  </h2>
+                  <p class="text-sm"> {project.data.description}</p>
+                </div>
+                <div class="text-sm">
+                  <Link
+                    href={`/projects/${project.data.id}`}
+                    color="foreground"
+                  >
+                    <IconInfoSquare />
+                  </Link>
+                  <Link href={project.data.github} color="foreground">
+                    <IconBrandGithubFilled />
+                  </Link>
                   {project.data.website && (
-                    <>
-                      <span>|</span>
-                      <Link href={project.data.website}>Website</Link>
-                    </>
+                    <Link href={project.data.website} color="foreground">
+                      <IconWorldWww />
+                    </Link>
                   )}
                 </div>
               </div>
             </div>
-
-            <div>
-              {project.data.website && project.data.website !== "None" ? (
-                <a href={project.data.website}>
-                  <img
-                    src={`/assets/${project.data.logo}`}
-                    alt={`${project.data.name} logo`}
-                    class="w-32 h-32 object-contain"
-                  />
-                </a>
-              ) : (
-                <img
-                  src={`/assets/${project.data.logo}`}
-                  alt={`${project.data.name} logo`}
-                  class="w-32 h-32 object-contain"
-                />
-              )}
-            </div>
-          </div>
+          </Card>
         ))
     }
   </div>

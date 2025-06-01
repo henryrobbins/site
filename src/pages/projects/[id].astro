@@ -18,17 +18,9 @@ const { Content } = await render(project);
 <Layout>
   <div>
     {
-      project.data.website && project.data.website !== "None" ? (
-        <a href={project.data.website}>
-          <img
-            src={`/assets/${project.data.logo}`}
-            alt={`${project.data.name} logo`}
-            class="w-32 h-32 object-contain"
-          />
-        </a>
-      ) : (
+      (
         <img
-          src={`/assets/${project.data.logo}`}
+          src={`/assets/${project.data.logo.color}`}
           alt={`${project.data.name} logo`}
           class="w-32 h-32 object-contain"
         />

@@ -2,11 +2,12 @@
 id: graph-builder
 name: Graph Builder
 date: 2016-09-01
-logo: images/logos/graph_builder_logo.png
+logo:
+    color: images/logos/graph_builder_logo_color.png
+    dark: images/logos/graph_builder_logo_dark.png
 sponsors: []
 description: A Java program for constructing and analyzing graphs
 github: https://github.com/henryrobbins/graph-builder
-website: None
 ---
 
 Graph Builder is a Java program for constructing [graphs][graph]. It

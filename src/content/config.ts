@@ -23,7 +23,7 @@ const projectCollection = defineCollection({
     id: z.string(),
     name: z.string(),
     date: z.date(),
-    logo: z.string(),
+    logo: z.object({ color: z.string(), dark: z.string() }),
     sponsors: z.array(z.string()).optional(),
     description: z.string(),
     github: z.string().optional(),

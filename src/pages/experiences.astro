@@ -1,7 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { Link } from "@heroui/react";
+import { Card, Link } from "@heroui/react";
+import { IconBrandGithubFilled, IconInfoSquare } from "@tabler/icons-react";
 
 const experiences = await getCollection("experiences");
 
@@ -18,37 +19,38 @@ function truncateText(text: string, maxLength = 250) {
   title="Experiences"
   description="A collection of my professional experiences."
 >
-  <div class="flex flex-col items-center justify-center">
+  <div class="flex flex-row flex-wrap items-center gap-6 justify-center">
     {
       experiences
         .sort(
           (a, b) =>
             new Date(b.data.end).getTime() - new Date(a.data.end).getTime()
         )
-        .map((experience) => (
-          <div class="max-w-4xl mx-auto p-6">
-            <p>
-              <strong>{experience.data.name}</strong>, {experience.data.company}
-              ,{" "}
-              <>
-                <em>{experience.data.role}</em>
-                <br />
-              </>
-              <>
-                <em>
-                  {experience.data.start.getFullYear()} -{" "}
-                  {experience.data.end.getFullYear()}
-                </em>
-                <br />
-              </>
-              <Link href={`/experiences/${experience.data.id}`}>About</Link>
-              <>
-                | <Link href={experience.data.github}>GitHub</Link>
-                <br />
-              </>
-              {truncateText(experience.body)}
-            </p>
-          </div>
+        .map((project) => (
+          <Card radius="sm" shadow="sm" className="w-64 h-72">
+            <div class="flex flex-col justify-between h-full w-full p-4">
+              <div class="flex flex-col gap-1">
+                <h2 class="text-lg font-semibold mb-2">{project.data.name}</h2>
+
+                <p class="text-sm">{project.data.role}</p>
+                <p class="text-sm">{project.data.company}</p>
+                <p class="text-sm">
+                  {`${new Date(project.data.start).toLocaleDateString("en-US", { month: "short", year: "numeric" })} - ${new Date(project.data.end).toLocaleDateString("en-US", { month: "short", year: "numeric" })}`}
+                </p>
+              </div>
+              <div class="text-sm">
+                <Link
+                  href={`/experiences/${project.data.id}`}
+                  color="foreground"
+                >
+                  <IconInfoSquare />
+                </Link>
+                <Link href={project.data.github_link} color="foreground">
+                  <IconBrandGithubFilled />
+                </Link>
+              </div>
+            </div>
+          </Card>
         ))
     }
   </div>

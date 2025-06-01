@@ -2,36 +2,77 @@
 import Layout from "../../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import profileImage from "/assets/images/profile.jpeg";
+import {
+  IconBrandGithubFilled,
+  IconMailFilled,
+  IconBrandLinkedinFilled,
+} from "@tabler/icons-react";
+import { Link } from "@heroui/react";
 ---
 
-<Layout>
-  <Image src={profileImage} alt="me" height={300} />
-  I am a Cornell Engineering student ('22) studying Operations Research and Computer
-  Science. In Summer 2021, I was a Data Science Intern on Uber's Matching and Shared
-  Rides team where I developed and implemented an algorithm for pre-scheduled rides.
-  Prior to that, I developed materials for the forthcoming book, Data Science and
-  Decision Making: An Elementary Introduction to Modeling and Optimization. In August
-  2020, I took a break from that work to aid Cornell in providing in person instruction
-  under the restrictions of COVID-19. My contributions included re-optimizing course
-  schedules and formulating a mathematical model to schedule and assign rooms for
-  exams. You can read more about the effort in [this short article](https://www.engineering.cornell.edu/spotlights/unsung-engineering-behind-cornells-fall-2020-schedule).
-  My broad research interests lie in studying applied combinatorial optimization
-  problems with computational components. My coursework has focused on the topics
-  of discrete optimization and algorithms. I also enjoy studying how these topics
-  can be used in imagemaking. Outside of my studies, I am a co-captain of the Cornell
-  Men's Squash Team and an Umphreak looking forward to the next show.
+<Layout title="Homepage" description="An overview of my work and interests">
+  <div class="flex flex-col items-center gap-8">
+    <Image
+      src={profileImage}
+      alt="me"
+      height={300}
+      class="rounded-[var(--heroui-radius-large)] shadow-lg"
+      quality={90}
+    />
+    <div class="flex flex-col items-center gap-8 text-sm">
+      <p>
+        I am a Cornell Engineering student ('22) studying Operations Research
+        and Computer Science. In Summer 2021, I was a Data Science Intern on
+        Uber's Matching and Shared Rides team where I developed and implemented
+        an algorithm for pre-scheduled rides. Prior to that, I developed
+        materials for the forthcoming book, Data Science and Decision Making: An
+        Elementary Introduction to Modeling and Optimization. In August 2020, I
+        took a break from that work to aid Cornell in providing in person
+        instruction under the restrictions of COVID-19. My contributions
+        included re-optimizing course schedules and formulating a mathematical
+        model to schedule and assign rooms for exams. You can read more about
+        the effort in <Link
+          href="https://www.engineering.cornell.edu/spotlights/unsung-engineering-behind-cornells-fall-2020-schedule"
+          className="text-sm">this short article</Link
+        >.
+      </p>
+      <p>
+        My broad research interests lie in studying applied combinatorial
+        optimization problems with computational components. My coursework has
+        focused on the topics of discrete optimization and algorithms. I also
+        enjoy studying how these topics can be used in imagemaking.
+      </p>
+      <p>
+        Outside of my studies, I am a co-captain of the Cornell Men's Squash
+        Team and an Umphreak looking forward to the next show.
+      </p>
+    </div>
 
-  <ul>
-    <li>
-      <a href="mailto:hw.robbins@gmail.com"
-        ><span>hw.robbins@gmail.com</span>
-      </a>
-    </li>
-    <li>
-      <a href="https://github.com/henryrobbins"> <span>henryrobbins</span></a>
+    <ul>
       <li>
-        <a href="https://www.linkedin.com/in/hwr26"> <span>hwr26</span></a>
+        <Link href={"mailto:hw.robbins@gmail.com"} color="foreground"
+          ><div class="flex flex-row items-center gap-2">
+            <IconMailFilled />
+            <span>hw.robbins@gmail.com</span>
+          </div></Link
+        >
       </li>
-    </li>
-  </ul>
+      <li>
+        <Link href={"https://github.com/henryrobbins"} color="foreground">
+          <div class="flex flex-row items-center gap-2">
+            <IconBrandGithubFilled />
+            <span>henryrobbins</span>
+          </div></Link
+        >
+      </li>
+      <li>
+        <Link href={"https://www.linkedin.com/in/hwr26"} color="foreground">
+          <div class="flex flex-row items-center gap-2">
+            <IconBrandLinkedinFilled />
+            <span>hwr26</span>
+          </div></Link
+        >
+      </li>
+    </ul>
+  </div>
 </Layout>

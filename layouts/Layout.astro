@@ -31,9 +31,11 @@ const currentPath = Astro.url.pathname;
     <title>{title}</title>
   </head>
   <body>
-    <header>
+    <header
+      class="sticky top-0 z-50 backdrop-blur-sm bg-[hsl(var(--heroui-content1))]/95"
+    >
       <div
-        class="w-full flex justify-between items-center py-3 px-4 bg-[hsl(var(--heroui-content1))] border-b border-[hsl(var(--heroui-default))]"
+        class="w-full flex justify-between items-center py-3 px-4 border-[hsl(var(--heroui-default))]"
       >
         <Link href="/" color="foreground">
           <h1
@@ -63,7 +65,8 @@ const currentPath = Astro.url.pathname;
         </nav>
       </div>
     </header>
-    <main class="font-mono max-w-4xl mx-auto p-6 min-h-screen">
+    <main class="font-mono max-w-4xl mx-auto min-h-screen">
+      <div class="my-8"></div>
       <slot />
     </main>
   </body>

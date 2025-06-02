@@ -1,6 +1,5 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, reference, z } from "astro:content";
 import { glob } from "astro/loaders";
-import { path } from "framer-motion/client";
 
 const experienceCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/experiences" }),
@@ -11,7 +10,7 @@ const experienceCollection = defineCollection({
     end: z.date(),
     role: z.string(),
     company: z.string(),
-    projects: z.array(z.string()).optional(),
+    projects: z.array(reference("projects")).optional(),
     github: z.string().optional(),
     github_link: z.string().optional(),
   }),

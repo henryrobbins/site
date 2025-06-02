@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection, render, getEntries } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
 import { Link } from "@heroui/react";
 
@@ -14,14 +14,7 @@ export async function getStaticPaths() {
 const { experience } = Astro.props;
 const { Content } = await render(experience);
 
-// Get associated projects if they exist
-let associatedProjects = [];
-if (experience.data.projects && experience.data.projects.length > 0) {
-  const allProjects = await getCollection("projects");
-  associatedProjects = allProjects.filter((project) =>
-    experience.data.projects.includes(project.data.name)
-  );
-}
+const associatedProjects = await getEntries(experience.data.projects);
 
 // Format dates
 const formatDate = (date) => {

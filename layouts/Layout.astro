@@ -22,7 +22,7 @@ const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="light font-mono">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
@@ -52,11 +52,9 @@ const currentPath = Astro.url.pathname;
                   <Link
                     href={link.href}
                     color="foreground"
-                    className={`${
-                      currentPath === link.href ? "font-bold" : ""
-                    }`}
+                    className={`${currentPath == link.href ? "font-semibold" : ""}`}
                   >
-                    {link.text}
+                    {currentPath == link.href ? `[ ${link.text} ]` : link.text}
                   </Link>
                 </li>
               ))
@@ -65,7 +63,7 @@ const currentPath = Astro.url.pathname;
         </nav>
       </div>
     </header>
-    <main class="font-mono max-w-4xl mx-auto min-h-screen">
+    <main class="max-w-4xl mx-auto min-h-screen">
       <div class="my-8"></div>
       <slot />
     </main>

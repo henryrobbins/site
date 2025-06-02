@@ -3,11 +3,42 @@ id: decluttering-exaptation-2022
 name: decluttering, exaptation
 year: 2022
 location: Tjaden Gallery, Cornell University. Ithaca, NY
-featured: ["memory", "composite", "tsp", "weierstrass", "partition"]
-images: /images/decluttering_exaptation
-thumbnail: me_taken_by_Nasha.jpeg
+featured:
+    - 2022-01-06-memory
+    - 2021-12-19-composite
+    - 2021-10-31-tsp
+    - 2021-10-17-weierstrass
+    - 2021-03-20-partition
+posters:
+    - images/decluttering_exaptation/poster.jpeg
+    - images/decluttering_exaptation/layout.jpeg
+work:
+    - images/decluttering_exaptation/E_wall.jpeg
+    - images/decluttering_exaptation/NE_corner_2.jpeg
+    - images/decluttering_exaptation/SE_corner.jpeg
+    - images/decluttering_exaptation/NE_corner.jpeg
+    - images/decluttering_exaptation/SW_corner.jpeg
+    - images/decluttering_exaptation/layout_on_wall.jpeg
+    - images/decluttering_exaptation/nook.jpeg
+    - images/decluttering_exaptation/me_taken_by_Nasha.jpeg
+    - images/decluttering_exaptation/work_1.jpeg
+    - images/decluttering_exaptation/works_2-4.jpeg
+    - images/decluttering_exaptation/works_5-7.jpeg
+    - images/decluttering_exaptation/works_8-13.jpeg
+    - images/decluttering_exaptation/work_14.jpeg
+    - images/decluttering_exaptation/work_15.jpeg
+    - images/decluttering_exaptation/work_16.jpeg
+    - images/decluttering_exaptation/works_17-18.jpeg
+    - images/decluttering_exaptation/works_19-20.jpeg
+    - images/decluttering_exaptation/works_21-22.jpeg
+    - images/decluttering_exaptation/works_25-26.jpeg
+    - images/decluttering_exaptation/work_23.jpeg
+    - images/decluttering_exaptation/work_24.jpeg
+    - images/decluttering_exaptation/rescale_pedestal.jpeg
+    - images/decluttering_exaptation/composite_pedestal.jpeg
+    - images/decluttering_exaptation/curves_pedestal.jpeg
+thumbnail: images/decluttering_exaptation/me_taken_by_Nasha.jpeg
 ---
-# decluttering, exaptation (2022)
 
 *"Featuring work created by Khaly Durst and Henry Robbins, "decluttering,
 exaptation" explores the limits of digital image-making through the creation
@@ -15,10 +46,6 @@ of new tools and workflows. With the use of
 [dmtools](https://dmtools.henryrobbins.com/en/latest/), a software developed
 by Henry Robbins, both artists work towards destructing the digital image
 through the use of their own workflows and code."*
-
-<img src="{{ page.images }}/poster.jpeg" width="250"/>
-<img src="{{ page.images }}/layout.jpeg" width="400"/>
-
 
 The exhibition features work created by both artists to explore the limits of
 digital image-making through the creation of new tools and the breaking of
@@ -48,45 +75,3 @@ continued to be developed in a collaborative effort by both artists as part of
 the "Image Toolmaking Lab" which is part of [AAP's](https://aap.cornell.edu)
 new program of research labs. The exhibit hopes to spread awareness of the
 possibilities this software offers as an artistic medium.
-
-## Featured Work
-
-{% for feature in page.featured %}
-{%- assign w = site.artworks | where:"title", feature | first -%}
-- {{ w.artist }}. *[{{ w.title }}]({{ w.url }})* ({{ w.date | date : "%Y" }})
-{% endfor %}
-
-## Gallery
-
-<img src="{{ page.images }}/E_wall.jpeg" width="500"/>
-<img src="{{ page.images }}/NE_corner_2.jpeg" width="500"/>
-<img src="{{ page.images }}/SE_corner.jpeg" width="500"/>
-<img src="{{ page.images }}/NE_corner.jpeg" width="500"/>
-<img src="{{ page.images }}/SW_corner.jpeg" width="500"/>
-<img src="{{ page.images }}/layout_on_wall.jpeg" width="500"/>
-<img src="{{ page.images }}/nook.jpeg" width="500"/>
-<img src="{{ page.images }}/me_taken_by_Nasha.jpeg" width="500"/>
-
-## Works
-
-<img src="{{ page.images }}/work_1.jpeg" width="250"/>
-<img src="{{ page.images }}/works_2-4.jpeg" width="250"/>
-<img src="{{ page.images }}/works_5-7.jpeg" width="250"/>
-<img src="{{ page.images }}/works_8-13.jpeg" width="250"/>
-
-<img src="{{ page.images }}/work_14.jpeg" width="250"/>
-<img src="{{ page.images }}/work_15.jpeg" width="250"/>
-<img src="{{ page.images }}/work_16.jpeg" width="250"/>
-
-<img src="{{ page.images }}/works_17-18.jpeg" width="250"/>
-<img src="{{ page.images }}/works_19-20.jpeg" width="250"/>
-
-<img src="{{ page.images }}/works_21-22.jpeg" width="250"/>
-<img src="{{ page.images }}/works_25-26.jpeg" width="250"/>
-
-<img src="{{ page.images }}/work_23.jpeg" width="250"/>
-<img src="{{ page.images }}/work_24.jpeg" width="250"/>
-
-<img src="{{ page.images }}/rescale_pedestal.jpeg" width="250"/>
-<img src="{{ page.images }}/composite_pedestal.jpeg" width="250"/>
-<img src="{{ page.images }}/curves_pedestal.jpeg" width="250"/>

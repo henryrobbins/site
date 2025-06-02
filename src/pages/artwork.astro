@@ -33,15 +33,11 @@ function getFirstImage(images) {
       exhibitions
         .sort((a, b) => b.data.year - a.data.year)
         .map((artwork) => (
-          <Link href={`/artwork/${artwork.data.id}`} className="text-white">
+          <Link href={`/exhibitions/${artwork.data.id}`} className="text-white">
             <Card radius="none" shadow="none" className="w-64 h-64">
               <div class="absolute inset-0 overflow-hidden">
                 <Image
-                  src={
-                    import(
-                      `/assets/${artwork.data.images}/${artwork.data.thumbnail}`
-                    )
-                  }
+                  src={import(`/assets/${artwork.data.thumbnail}`)}
                   alt={artwork.data.name}
                   class="w-full h-full object-cover"
                   quality={100}

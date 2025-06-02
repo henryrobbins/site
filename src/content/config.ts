@@ -37,8 +37,9 @@ export const exhibitionCollection = defineCollection({
     name: z.string(),
     year: z.number(),
     location: z.string(),
-    featured: z.array(z.string()).optional(),
-    images: z.string().optional(),
+    featured: z.array(reference("artwork")),
+    posters: z.array(z.string()),
+    work: z.array(z.string()),
     thumbnail: z.string(),
   }),
 });

@@ -1,6 +1,9 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
+import { Card, Link } from "@heroui/react";
+import { Image } from "astro:assets";
+import { getEntries } from "astro:content";
 
 export async function getStaticPaths() {
   const exhibitions = await getCollection("exhibitions");
@@ -12,8 +15,104 @@ export async function getStaticPaths() {
 
 const { exhibition } = Astro.props;
 const { Content } = await render(exhibition);
+
+const featuredWork = await getEntries(exhibition.data.featured);
+
+// Helper function to get first image from images object/array
+function getFirstImage(images) {
+  if (!images) return null;
+
+  // If images is an object with key-value pairs
+  if (typeof images === "object" && !Array.isArray(images)) {
+    const firstKey = Object.keys(images)[0];
+    return firstKey ? images[firstKey] : null;
+  }
+
+  // If images is an array
+  if (Array.isArray(images) && images.length > 0) {
+    return images[0];
+  }
+
+  return null;
+}
 ---
 
 <Layout title={exhibition.data.name} description={exhibition.data.description}>
-  <Content />
+  <div class="flex flex-col gap-6">
+    <h1 class="text-lg font-semibold text-center">
+      {exhibition.data.name}
+      {`(${exhibition.data.year})`}
+    </h1>
+
+    <Content />
+
+    <h2 class="text-lg font-semibold text-center">FEATURED WORK</h2>
+
+    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
+      {
+        featuredWork.map((artwork) => (
+          <Link href={`/artwork/${artwork.data.id}`} className="text-white">
+            <Card radius="none" shadow="none" className="w-64 h-64">
+              <div class="absolute inset-0 overflow-hidden">
+                {artwork.data.images && getFirstImage(artwork.data.images) && (
+                  <Image
+                    src={
+                      import(`/assets/${getFirstImage(artwork.data.images)}`)
+                    }
+                    alt={artwork.data.title}
+                    class="w-full h-full object-cover"
+                    quality={100}
+                    loading={"lazy"}
+                  />
+                )}
+              </div>
+
+              <div class="absolute bottom-0 left-0 right-0 p-4 text-white backdrop-blur-sm bg-black/50">
+                {artwork.data.title}{" "}
+                {`(${new Date(artwork.data.date).getFullYear()})`}
+              </div>
+            </Card>
+          </Link>
+        ))
+      }
+    </div>
+
+    <h2 class="text-lg font-semibold text-center pb-6">EXHIBITION POSTERS</h2>
+
+    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
+      {
+        exhibition.data.posters.map((image) => (
+          <Card radius="none" shadow="none">
+            <Image
+              src={import(`/assets/${image}`)}
+              alt={exhibition.data.name}
+              class="max-w-sm"
+              quality={100}
+              loading={"lazy"}
+            />
+          </Card>
+        ))
+      }
+    </div>
+
+    <h2 class="text-lg font-semibold text-center pb-6">IMAGES</h2>
+
+    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
+      {
+        exhibition.data.work.map((image) => (
+          <Card radius="none" shadow="none" className="w-64 h-64">
+            <div class="absolute inset-0 overflow-hidden">
+              <Image
+                src={import(`/assets/${image}`)}
+                alt={exhibition.data.name}
+                class="w-full h-full object-cover"
+                quality={100}
+                loading={"lazy"}
+              />
+            </div>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
 </Layout>

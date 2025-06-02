@@ -42,10 +42,15 @@ function truncateText(text: string, maxLength = 250) {
                 <Link
                   href={`/experiences/${project.data.id}`}
                   color="foreground"
+                  aria-label="About page"
                 >
                   <IconInfoSquare />
                 </Link>
-                <Link href={project.data.github_link} color="foreground">
+                <Link
+                  href={project.data.github_link}
+                  color="foreground"
+                  aria-label="GitHub Organization"
+                >
                   <IconBrandGithubFilled />
                 </Link>
               </div>

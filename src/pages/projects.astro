@@ -41,14 +41,23 @@ const projects = await getCollection("projects");
                   <Link
                     href={`/projects/${project.data.id}`}
                     color="foreground"
+                    aria-label="About page"
                   >
                     <IconInfoSquare />
                   </Link>
-                  <Link href={project.data.github} color="foreground">
+                  <Link
+                    href={project.data.github}
+                    color="foreground"
+                    aria-label="GitHub repository"
+                  >
                     <IconBrandGithubFilled />
                   </Link>
                   {project.data.website && (
-                    <Link href={project.data.website} color="foreground">
+                    <Link
+                      href={project.data.website}
+                      color="foreground"
+                      aria-label="Project website"
+                    >
                       <IconWorldWww />
                     </Link>
                   )}

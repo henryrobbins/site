@@ -1,5 +1,5 @@
 ---
-import { Link } from "@heroui/react";
+import Navbar from "@components/Navbar.tsx";
 import "./src/styles/global.css";
 
 export interface Props {
@@ -7,18 +7,9 @@ export interface Props {
   description?: string;
 }
 
-const { title, description = "My Astro Site" } = Astro.props;
-
-// Define your navigation links here
-const navLinks = [
-  { href: "/", text: "Home" },
-  { href: "/artwork", text: "Art" },
-  { href: "/projects", text: "Projects" },
-  { href: "/experiences", text: "Experience" },
-];
-
-// Get current path for active link styling
 const currentPath = Astro.url.pathname;
+
+const { title, description = "My Astro Site" } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,38 +22,7 @@ const currentPath = Astro.url.pathname;
     <title>{title}</title>
   </head>
   <body>
-    <header
-      class="sticky top-0 z-50 backdrop-blur-sm bg-[hsl(var(--heroui-content1))]/95"
-    >
-      <div
-        class="w-full flex justify-between items-center py-3 px-4 border-[hsl(var(--heroui-default))]"
-      >
-        <Link href="/" color="foreground">
-          <h1
-            class="text-xl font-bold text-[hsl(var(--heroui-content1-foreground))]"
-          >
-            Henry Robbins
-          </h1>
-        </Link>
-        <nav>
-          <ul class="flex flex-row gap-4">
-            {
-              navLinks.map((link) => (
-                <li>
-                  <Link
-                    href={link.href}
-                    color="foreground"
-                    className={`${currentPath == link.href ? "font-semibold" : ""}`}
-                  >
-                    {currentPath == link.href ? `[ ${link.text} ]` : link.text}
-                  </Link>
-                </li>
-              ))
-            }
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <Navbar currentPath={currentPath} client:visible />
     <main class="max-w-4xl mx-auto min-h-screen">
       <div class="my-8"></div>
       <slot />

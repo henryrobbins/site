@@ -25,7 +25,9 @@ const { title, description = "My Astro Site" } = Astro.props;
     <Navbar currentPath={currentPath} client:visible />
     <main class="max-w-4xl mx-auto min-h-screen">
       <div class="my-8"></div>
-      <slot />
+      <div class="px-4">
+        <slot />
+      </div>
     </main>
   </body>
 </html>

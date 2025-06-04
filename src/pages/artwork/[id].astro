@@ -22,8 +22,6 @@ const formatYear = (date: Date) => date.getFullYear();
 ---
 
 <Layout title={art.data.title} description={art.data.description}>
-
-  <Content/>
   <!-- Gallery label -->
   <div class="artwork-header">
     <b>{art.data.artist}</b><br />
@@ -33,8 +31,8 @@ const formatYear = (date: Date) => date.getFullYear();
   </div>
 
   <!-- Description -->
-  <div class="description">
-    <slot />
+  <div class="markdown-content">
+    <Content/>
   </div>
 
   <!-- Exhibition List -->

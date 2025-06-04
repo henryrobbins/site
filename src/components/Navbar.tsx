@@ -3,7 +3,11 @@ import {
   Link,
   NavbarBrand,
   NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuToggle,
 } from "@heroui/react";
+import React from "react";
 
 // Navigation tree
 const navLinks = [
@@ -14,12 +18,16 @@ const navLinks = [
 ];
 
 export default function Navbar({ currentPath }: { currentPath: string }) {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   return (
     <HeroUINavbar
       isBlurred={false}
       isBordered={true}
       maxWidth="full"
       height={"3rem"}
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarBrand>
         <div className="flex flex-row gap-2 items-center cursor-pointer">
@@ -42,6 +50,24 @@ export default function Navbar({ currentPath }: { currentPath: string }) {
           </Link>
         ))}
       </NavbarContent>
+      <NavbarContent className="sm:hidden" justify="end">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        />
+      </NavbarContent>
+      <NavbarMenu>
+        {navLinks.map((link) => (
+          <NavbarItem>
+            <Link
+              href={link.href}
+              color="foreground"
+              className={`${currentPath == link.href ? "font-semibold" : ""}`}
+            >
+              {currentPath == link.href ? `[ ${link.text} ]` : link.text}
+            </Link>
+          </NavbarItem>
+        ))}
+      </NavbarMenu>
     </HeroUINavbar>
   );
 }

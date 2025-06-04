@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { Card, Link } from "@heroui/react";
+
+interface Props {
+  artwork: CollectionEntry<"artwork">;
+}
+
+const { artwork } = Astro.props;
+
+// Helper function to get first image from images object/array
+function getFirstImage(images) {
+  if (!images) return null;
+
+  // If images is an object with key-value pairs
+  if (typeof images === "object" && !Array.isArray(images)) {
+    const firstKey = Object.keys(images)[0];
+    return firstKey ? images[firstKey] : null;
+  }
+
+  // If images is an array
+  if (Array.isArray(images) && images.length > 0) {
+    return images[0];
+  }
+
+  return null;
+}
+---
+
+<Link href={`/artwork/${artwork.data.id}`} className="text-white">
+  <Card radius="none" shadow="none" className="w-64 h-64">
+    <div class="absolute inset-0 overflow-hidden">
+      {
+        artwork.data.images && getFirstImage(artwork.data.images) && (
+          <Image
+            src={import(`/assets/${getFirstImage(artwork.data.images)}`)}
+            alt={artwork.data.title}
+            class="w-full h-full object-cover"
+            quality={100}
+            loading={"lazy"}
+          />
+        )
+      }
+    </div>
+
+    <div
+      class="absolute bottom-0 left-0 right-0 p-4 text-white backdrop-blur-sm bg-black/50"
+    >
+      {artwork.data.title}{" "}
+      {`(${new Date(artwork.data.date).getFullYear()})`}
+    </div>
+  </Card>
+</Link>

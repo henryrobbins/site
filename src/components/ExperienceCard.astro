@@ -1,0 +1,43 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Card, Link } from "@heroui/react";
+import { IconInfoSquare, IconBrandGithubFilled } from "@tabler/icons-react";
+
+interface Props {
+  experience: CollectionEntry<"experiences">;
+}
+
+const { experience } = Astro.props;
+---
+
+<Card radius="sm" shadow="sm" className="w-64 h-72">
+  <div class="flex flex-col justify-between h-full w-full p-4">
+    <div class="flex flex-col gap-1">
+      <h2 class="text-lg font-semibold mb-2">{experience.data.name}</h2>
+
+      <p class="text-sm">{experience.data.role}</p>
+      <p class="text-sm">{experience.data.company}</p>
+      <p class="text-sm">
+        {
+          `${new Date(experience.data.start).toLocaleDateString("en-US", { month: "short", year: "numeric" })} - ${new Date(experience.data.end).toLocaleDateString("en-US", { month: "short", year: "numeric" })}`
+        }
+      </p>
+    </div>
+    <div class="text-sm">
+      <Link
+        href={`/experiences/${experience.data.id}`}
+        color="foreground"
+        aria-label="About page"
+      >
+        <IconInfoSquare />
+      </Link>
+      <Link
+        href={experience.data.github_link}
+        color="foreground"
+        aria-label="GitHub Organization"
+      >
+        <IconBrandGithubFilled />
+      </Link>
+    </div>
+  </div>
+</Card>

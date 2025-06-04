@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { Card, Link } from "@heroui/react";
+
+interface Props {
+  exhibition: CollectionEntry<"exhibitions">;
+}
+
+const { exhibition } = Astro.props;
+---
+
+<Link href={`/exhibitions/${exhibition.data.id}`} className="text-white">
+  <Card radius="none" shadow="none" className="w-64 h-64">
+    <div class="absolute inset-0 overflow-hidden">
+      <Image
+        src={import(`/assets/${exhibition.data.thumbnail}`)}
+        alt={exhibition.data.name}
+        class="w-full h-full object-cover"
+        quality={100}
+        loading={"lazy"}
+      />
+    </div>
+
+    <div
+      class="absolute bottom-0 left-0 right-0 p-4 text-white backdrop-blur-sm bg-black/50"
+    >
+      {exhibition.data.name} ({exhibition.data.year})
+    </div>
+  </Card>
+</Link>

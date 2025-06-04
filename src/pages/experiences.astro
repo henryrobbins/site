@@ -1,18 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { Card, Link } from "@heroui/react";
-import { IconBrandGithubFilled, IconInfoSquare } from "@tabler/icons-react";
+import ExperienceCard from "@/components/ExperienceCard.astro";
 
 const experiences = await getCollection("experiences");
-
-function truncateText(text: string, maxLength = 250) {
-  if (!text) return "";
-  const stripped = text.replace(/<[^>]*>/g, ""); // Remove HTML tags
-  return stripped.length > maxLength
-    ? stripped.substring(0, maxLength) + "..."
-    : stripped;
-}
 ---
 
 <Layout
@@ -26,37 +17,7 @@ function truncateText(text: string, maxLength = 250) {
           (a, b) =>
             new Date(b.data.end).getTime() - new Date(a.data.end).getTime()
         )
-        .map((project) => (
-          <Card radius="sm" shadow="sm" className="w-64 h-72">
-            <div class="flex flex-col justify-between h-full w-full p-4">
-              <div class="flex flex-col gap-1">
-                <h2 class="text-lg font-semibold mb-2">{project.data.name}</h2>
-
-                <p class="text-sm">{project.data.role}</p>
-                <p class="text-sm">{project.data.company}</p>
-                <p class="text-sm">
-                  {`${new Date(project.data.start).toLocaleDateString("en-US", { month: "short", year: "numeric" })} - ${new Date(project.data.end).toLocaleDateString("en-US", { month: "short", year: "numeric" })}`}
-                </p>
-              </div>
-              <div class="text-sm">
-                <Link
-                  href={`/experiences/${project.data.id}`}
-                  color="foreground"
-                  aria-label="About page"
-                >
-                  <IconInfoSquare />
-                </Link>
-                <Link
-                  href={project.data.github_link}
-                  color="foreground"
-                  aria-label="GitHub Organization"
-                >
-                  <IconBrandGithubFilled />
-                </Link>
-              </div>
-            </div>
-          </Card>
-        ))
+        .map((experience) => <ExperienceCard experience={experience} />)
     }
   </div>
 </Layout>

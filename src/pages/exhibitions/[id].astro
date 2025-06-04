@@ -4,6 +4,7 @@ import Layout from "../../../layouts/Layout.astro";
 import { Card, Link } from "@heroui/react";
 import { Image } from "astro:assets";
 import { getEntries } from "astro:content";
+import ArtworkCard from "@/components/ArtworkCard.astro";
 
 export async function getStaticPaths() {
   const exhibitions = await getCollection("exhibitions");
@@ -54,26 +55,7 @@ function getFirstImage(images) {
       {
         featuredWork.map((artwork) => (
           <Link href={`/artwork/${artwork.data.id}`} className="text-white">
-            <Card radius="none" shadow="none" className="w-64 h-64">
-              <div class="absolute inset-0 overflow-hidden">
-                {artwork.data.images && getFirstImage(artwork.data.images) && (
-                  <Image
-                    src={
-                      import(`/assets/${getFirstImage(artwork.data.images)}`)
-                    }
-                    alt={artwork.data.title}
-                    class="w-full h-full object-cover"
-                    quality={100}
-                    loading={"lazy"}
-                  />
-                )}
-              </div>
-
-              <div class="absolute bottom-0 left-0 right-0 p-4 text-white backdrop-blur-sm bg-black/50">
-                {artwork.data.title}{" "}
-                {`(${new Date(artwork.data.date).getFullYear()})`}
-              </div>
-            </Card>
+            <ArtworkCard artwork={artwork} />
           </Link>
         ))
       }

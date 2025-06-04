@@ -2,6 +2,7 @@
 import { getCollection, render, getEntries } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
 import { Link } from "@heroui/react";
+import ProjectCard from "@/components/ProjectCard.astro";
 
 export async function getStaticPaths() {
   const experiences = await getCollection("experiences");
@@ -54,23 +55,11 @@ const formatDate = (date) => {
             ? "Associated Project:"
             : "Associated Projects:"}
         </strong>
-        <ul>
+        <div class="flex flex-row flex-wrap items-center gap-6 justify-center">
           {associatedProjects.map((project) => (
-            <li>
-              <strong>
-                <Link href={`/projects/${project.slug}`}>
-                  {project.data.name}
-                </Link>
-              </strong>
-              {project.data.description && (
-                <span>
-                  {" "}
-                  | <em>{project.data.description}</em>
-                </span>
-              )}
-            </li>
+            <ProjectCard project={project} />
           ))}
-        </ul>
+        </div>
       </div>
     )
   }

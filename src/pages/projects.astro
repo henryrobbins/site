@@ -1,12 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { Card, Link } from "@heroui/react";
-import {
-  IconBrandGithubFilled,
-  IconInfoSquare,
-  IconWorldWww,
-} from "@tabler/icons-react";
+import ProjectCard from "@/components/ProjectCard.astro";
 
 const projects = await getCollection("projects");
 ---
@@ -19,53 +14,7 @@ const projects = await getCollection("projects");
           (a, b) =>
             new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
         )
-        .map((project) => (
-          <Card radius="sm" shadow="sm" className="w-64 h-72">
-            <div class="flex flex-col gap-2 w-full h-full p-4">
-              <div class="flex items-center justify-center">
-                <img
-                  src={`/assets/${project.data.logo.color}`}
-                  alt={`${project.data.name} logo`}
-                  class="h-20 object-contain"
-                />
-              </div>
-              <div class="flex flex-col justify-between h-full">
-                <div>
-                  <h2 class="text-lg font-semibold mb-2">
-                    {project.data.name}{" "}
-                    {`(${new Date(project.data.date).getFullYear()})`}
-                  </h2>
-                  <p class="text-sm"> {project.data.description}</p>
-                </div>
-                <div class="text-sm">
-                  <Link
-                    href={`/projects/${project.data.id}`}
-                    color="foreground"
-                    aria-label="About page"
-                  >
-                    <IconInfoSquare />
-                  </Link>
-                  <Link
-                    href={project.data.github}
-                    color="foreground"
-                    aria-label="GitHub repository"
-                  >
-                    <IconBrandGithubFilled />
-                  </Link>
-                  {project.data.website && (
-                    <Link
-                      href={project.data.website}
-                      color="foreground"
-                      aria-label="Project website"
-                    >
-                      <IconWorldWww />
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </div>
-          </Card>
-        ))
+        .map((project) => <ProjectCard project={project} />)
     }
   </div>
 </Layout>

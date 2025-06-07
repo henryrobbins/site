@@ -1,6 +1,8 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection, getEntries, render } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
+import { Link } from "@heroui/react";
+import ExhibitionCard from "@/components/ExhibitionCard.astro";
 
 export async function getStaticPaths() {
   const artwork = await getCollection("artwork");
@@ -14,116 +16,100 @@ const { art } = Astro.props;
 const { Content } = await render(art);
 
 const exhibitions = await getCollection("exhibitions");
-const featuredExhibitions = exhibitions.filter((exhibition) =>
-  exhibition.data.featured?.includes(art.data.title)
+const featuredExhibitions = await getEntries(
+  exhibitions.filter((exhibition) =>
+    exhibition.data.featured.some((item) => item.id === art.id)
+  )
 );
 
 const formatYear = (date: Date) => date.getFullYear();
 ---
 
 <Layout title={art.data.title} description={art.data.description}>
-  <!-- Gallery label -->
-  <div class="artwork-header">
-    <b>{art.data.artist}</b><br />
-    <i>{art.data.title}</i> ({art.data.date})<br />
-    {art.data.medium}<br />
-    <a href={art.data.link}><i><u>source code</u></i></a><br /><br />
+  <div class="flex flex-col gap-6">
+    <!-- Description -->
+    <div class="markdown-content">
+      <div class="artwork-header">
+        {
+          art.data.artist !== "Henry Robbins" && (
+            <>
+              <b>{art.data.artist}</b>
+              <br />
+            </>
+          )
+        }
+        <i>{art.data.title}</i> ({formatYear(art.data.date)})<br />
+        {art.data.medium}<br />
+        <a href={art.data.link}><i><u>source code</u></i></a>
+      </div>
+      <Content />
+    </div>
+
+    <!-- Exhibition List -->
+    <h2 class="text-lg font-semibold text-center">EXHIBITIONS</h2>
+    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
+      {
+        featuredExhibitions.map((exhibition) => (
+          <div class="flex justify-center">
+            <Link href={`/exhibition/${exhibition.data.id}`}>
+              <ExhibitionCard exhibition={exhibition} />
+            </Link>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="text-lg font-semibold text-center">WORK</h2>
+    <div class="flex flex-col items-center">
+      <!-- Physical artworks -->
+      {
+        art.data.physical &&
+          Object.entries(art.data.physical).map(([name, details]) => (
+            <figure>
+              <img src={`/assets/${details.path}`} alt={name} />
+              <figcaption>
+                <i>{name}</i>, {details.dimension} ({formatYear(art.data.date)}
+                )<br />
+              </figcaption>
+            </figure>
+          ))
+      }
+
+      <!-- Images -->
+      {
+        art.data.images &&
+          Object.entries(art.data.images).map(([name, details]) => (
+            <figure>
+              <img src={`/assets/${details}`} alt={name} />
+              <figcaption>
+                <i>{name}</i> ({formatYear(art.data.date)})<br />
+              </figcaption>
+            </figure>
+          ))
+      }
+
+      <!-- Videos -->
+      {
+        art.data.videos &&
+          Object.entries(art.data.videos).map(([name, id]) => (
+            <figure>
+              <div class="video-container">
+                <iframe
+                  src={`https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`}
+                  frameborder="0"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowfullscreen
+                  title={name}
+                />
+              </div>
+              <figcaption>
+                <i>{name}</i> ({formatYear(art.data.date)})<br />
+              </figcaption>
+            </figure>
+          ))
+      }
+    </div>
   </div>
-
-  <!-- Description -->
-  <div class="markdown-content">
-    <Content/>
-  </div>
-
-  <!-- Exhibition List -->
-  {
-    featuredExhibitions.length > 1 && (
-      <div class="exhibitions">
-        <h2>Exhibition List</h2>
-        <ul>
-          {featuredExhibitions.map((exhibition) => (
-            <li>
-              <a href={`/exhibitions/${exhibition.slug}`}>
-                {exhibition.data.name}
-              </a>{" "}
-              ({exhibition.data.year})
-            </li>
-          ))}
-        </ul>
-      </div>
-    )
-  }
-
-  {
-    featuredExhibitions.length === 1 && (
-      <div class="single-exhibition">
-        <b>Exhibit</b>:
-        <a href={`/exhibitions/${featuredExhibitions[0].slug}`}>
-          {featuredExhibitions[0].data.name}
-        </a>{" "}
-        ({featuredExhibitions[0].data.year})
-      </div>
-    )
-  }
-
-  <!-- Physical artworks -->
-  {
-    art.data.physical && (
-      <div class="center">
-        {Object.entries(art.data.physical).map(([name, details]) => (
-          <figure>
-            <img src={`/assets/${details.path}`} alt={name} />
-            <figcaption>
-              <i>{name}</i>, {details.dimension} ({formatYear(art.data.date)}
-              )<br />
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    )
-  }
-
-
-  <!-- Images -->
-  {
-    art.data.images && (
-      <div class="center">
-        {Object.entries(art.data.images).map(([name, details]) => (
-          <span>{name}</span>
-          <figure>
-            <img src={`/assets/${details}`} alt={name} />
-            <figcaption>
-              <i>{name}</i> ({formatYear(art.data.date)})<br />
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    )
-  }
-
-  <!-- Videos -->
-  {
-    art.data.videos && (
-      <div class="center">
-        {Object.values(art.data.videos).map(([name, id]) => (
-          <figure>
-            <div class="video-container">
-              <iframe
-                src={`https://player.vimeo.com/video/${id}?badge=0&autopause=0&player_id=0&app_id=58479`}
-                frameborder="0"
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowfullscreen
-                title={name}
-              />
-            </div>
-            <figcaption>
-              <i>{name}</i> ({formatYear(art.data.date)})<br />
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    )
-  }
 </Layout>
 
 <style>

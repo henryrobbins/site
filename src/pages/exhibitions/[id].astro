@@ -1,0 +1,86 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import { Card, Link } from "@heroui/react";
+import { Image } from "astro:assets";
+import { getEntries } from "astro:content";
+import ArtworkCard from "@/components/ArtworkCard.astro";
+
+export async function getStaticPaths() {
+  const exhibitions = await getCollection("exhibitions");
+  return exhibitions.map((exhibition) => ({
+    params: { id: exhibition.data.id },
+    props: { exhibition },
+  }));
+}
+
+const { exhibition } = Astro.props;
+const { Content } = await render(exhibition);
+
+const featuredWork = await getEntries(exhibition.data.featured);
+---
+
+<Layout title={exhibition.data.name} description={exhibition.data.description}>
+  <div class="flex flex-col gap-6">
+    <h1 class="text-lg font-semibold text-center">
+      {exhibition.data.name}
+      {`(${exhibition.data.year})`}
+    </h1>
+
+    <div class="markdown-content">
+      <Content />
+    </div>
+
+    <h2 class="text-lg font-semibold text-center">FEATURED WORK</h2>
+
+    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
+      {
+        featuredWork.map((artwork) => (
+          <div class="flex justify-center">
+            <Link href={`/artwork/${artwork.data.id}`} className="text-white">
+              <ArtworkCard artwork={artwork} />
+            </Link>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="text-lg font-semibold text-center pb-6">EXHIBITION POSTERS</h2>
+
+    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
+      {
+        exhibition.data.posters.map((image) => (
+          <Card radius="none" shadow="none">
+            <Image
+              src={import(`/assets/${image}`)}
+              alt={exhibition.data.name}
+              class="max-w-sm"
+              quality={100}
+              loading={"lazy"}
+            />
+          </Card>
+        ))
+      }
+    </div>
+
+    <h2 class="text-lg font-semibold text-center pb-6">IMAGES</h2>
+
+    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
+      {
+        exhibition.data.work.map((image) => (
+          <Card radius="none" shadow="none" className="w-64 h-64">
+            <div class="absolute inset-0 overflow-hidden">
+              <Image
+                src={import(`/assets/${image}`)}
+                alt={exhibition.data.name}
+                class="w-full h-full object-cover"
+                quality={100}
+                loading={"lazy"}
+              />
+            </div>
+          </Card>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+
+const projects = await getCollection("projects");
+---
+
+<Layout title="Projects" description="A portfolio of my projects">
+  <div class="flex flex-row flex-wrap items-center gap-6 justify-center">
+    {
+      projects
+        .sort(
+          (a, b) =>
+            new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+        )
+        .map((project) => <ProjectCard project={project} />)
+    }
+  </div>
+</Layout>

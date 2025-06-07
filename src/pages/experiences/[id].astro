@@ -1,0 +1,72 @@
+---
+import { getCollection, render, getEntries } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import { Link } from "@heroui/react";
+import ProjectCard from "@/components/ProjectCard.astro";
+
+export async function getStaticPaths() {
+  const experiences = await getCollection("experiences");
+  return experiences.map((experience) => ({
+    params: { id: experience.data.id },
+    props: { experience },
+  }));
+}
+
+const { experience } = Astro.props;
+const { Content } = await render(experience);
+
+const associatedProjects = await getEntries(experience.data.projects);
+
+// Format dates
+const formatDate = (date) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+  });
+};
+---
+
+<Layout
+  title={experience.data.name}
+  description={`Details about ${experience.data.name}`}
+>
+  <!-- Title -->
+  <h1 class="text-2xl font-semibold">{experience.data.name}</h1>
+
+  <!-- Attributes -->
+  <p>
+    <strong>Dates</strong>: <em
+      >{formatDate(experience.data.start)} - {
+        formatDate(experience.data.end)
+      }</em
+    ><br />
+    <strong>GitHub</strong>:
+    <Link href={experience.data.github_link} isExternal>
+      {experience.data.github}
+    </Link><br />
+  </p>
+
+  <!-- Associated Project(s) -->
+  {
+    associatedProjects.length > 0 && (
+      <div>
+        <strong>
+          {associatedProjects.length === 1
+            ? "Associated Project:"
+            : "Associated Projects:"}
+        </strong>
+        <div class="flex flex-row flex-wrap items-center gap-6 justify-center my-6">
+          {associatedProjects.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  <!-- About/Content -->
+  <div class="markdown-content">
+    <Content />
+  </div>
+  <Content />
+</Layout>

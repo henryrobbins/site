@@ -1,0 +1,63 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Card, Link } from "@heroui/react";
+import {
+  IconInfoSquare,
+  IconBrandGithubFilled,
+  IconWorldWww,
+} from "@tabler/icons-react";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+---
+
+<Card radius="sm" shadow="sm" className="w-64 h-72">
+  <div class="flex flex-col gap-2 w-full h-full p-4">
+    <div class="flex items-center justify-center">
+      <img
+        src={`/assets/${project.data.logo.color}`}
+        alt={`${project.data.name} logo`}
+        class="h-20 object-contain"
+      />
+    </div>
+    <div class="flex flex-col justify-between h-full">
+      <div>
+        <h2 class="text-lg font-semibold mb-2">
+          {project.data.name}
+          {` (${new Date(project.data.date).getFullYear()})`}
+        </h2>
+        <p class="text-sm">{project.data.description}</p>
+      </div>
+      <div class="text-sm">
+        <Link
+          href={`/projects/${project.data.id}`}
+          color="foreground"
+          aria-label="About page"
+        >
+          <IconInfoSquare />
+        </Link>
+        <Link
+          href={project.data.github}
+          color="foreground"
+          aria-label="GitHub repository"
+        >
+          <IconBrandGithubFilled />
+        </Link>
+        {
+          project.data.website && (
+            <Link
+              href={project.data.website}
+              color="foreground"
+              aria-label="Project website"
+            >
+              <IconWorldWww />
+            </Link>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Card>

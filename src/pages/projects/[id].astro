@@ -1,0 +1,59 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import { Link } from "@heroui/react";
+import {
+  IconInfoSquare,
+  IconBrandGithubFilled,
+  IconWorldWww,
+} from "@tabler/icons-react";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { id: project.data.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout title={project.data.name} description={project.data.description}>
+  <div class="flex flex-col gap-4 items-center">
+    <div>
+      <img
+        src={`/assets/${project.data.logo.color}`}
+        alt={`${project.data.name} logo`}
+        class="h-24"
+      />
+    </div>
+    <i class="font-it text-center">
+      {project.data.description}
+    </i>
+    <div class="text-sm">
+      <Link
+        href={project.data.github}
+        color="foreground"
+        aria-label="GitHub repository"
+      >
+        <IconBrandGithubFilled />
+      </Link>
+      {
+        project.data.website && (
+          <Link
+            href={project.data.website}
+            color="foreground"
+            aria-label="Project website"
+          >
+            <IconWorldWww />
+          </Link>
+        )
+      }
+    </div>
+    <div class="markdown-content">
+      <Content />
+    </div>
+  </div>
+</Layout>

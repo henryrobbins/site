@@ -8,18 +8,32 @@ interface Props {
 }
 
 const { exhibition } = Astro.props;
+
+const allImages: Record<string, string> = import.meta.glob(
+  "/src/assets/images/**/*.{png,jpg,jpeg,webp,avif}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const thumbnailSrc = allImages[`/src/assets/${exhibition.data.thumbnail}`];
 ---
 
 <Link href={`/exhibitions/${exhibition.data.id}`} className="text-white">
   <Card radius="none" shadow="none" className="w-64 h-64">
     <div class="absolute inset-0 overflow-hidden">
-      <Image
-        src={import(`/assets/${exhibition.data.thumbnail}`)}
-        alt={exhibition.data.name}
-        class="w-full h-full object-cover"
-        quality={100}
-        loading={"lazy"}
-      />
+      {
+        thumbnailSrc && (
+          <Image
+            src={thumbnailSrc}
+            alt={exhibition.data.name}
+            class="w-full h-full object-cover"
+            quality={100}
+            loading={"lazy"}
+          />
+        )
+      }
     </div>
 
     <div

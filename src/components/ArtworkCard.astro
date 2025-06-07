@@ -9,32 +9,48 @@ interface Props {
 
 const { artwork } = Astro.props;
 
+const allImages: Record<string, string> = import.meta.glob(
+  "/src/assets/artwork/**/*.{png,jpg,jpeg,webp,avif}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
 // Helper function to get first image from images object/array
-function getFirstImage(images) {
+function getFirstImage(images): string | null {
   if (!images) return null;
 
   // If images is an object with key-value pairs
   if (typeof images === "object" && !Array.isArray(images)) {
     const firstKey = Object.keys(images)[0];
-    return firstKey ? images[firstKey] : null;
-  }
+    const value = firstKey ? images[firstKey] : null;
 
-  // If images is an array
-  if (Array.isArray(images) && images.length > 0) {
-    return images[0];
+    // Handle both string values and object values with path property
+    if (typeof value === "string") {
+      return value;
+    } else if (value && typeof value === "object" && value.path) {
+      return value.path;
+    }
+    return value;
   }
 
   return null;
 }
+
+const firstImage = getFirstImage(artwork.data.images);
+const firstImageSrc = firstImage
+  ? allImages[`/src/assets/${firstImage}`] || null
+  : null;
 ---
 
 <Link href={`/artwork/${artwork.data.id}`} className="text-white">
   <Card radius="none" shadow="none" className="w-64 h-64">
     <div class="absolute inset-0 overflow-hidden">
       {
-        artwork.data.images && getFirstImage(artwork.data.images) && (
+        artwork.data.images && firstImageSrc && (
           <Image
-            src={import(`/assets/${getFirstImage(artwork.data.images)}`)}
+            src={firstImageSrc}
             alt={artwork.data.title}
             class="w-full h-full object-cover"
             quality={100}

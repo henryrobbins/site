@@ -6,23 +6,41 @@ import {
   IconBrandGithubFilled,
   IconWorldWww,
 } from "@tabler/icons-react";
+import { Image } from "astro:assets";
 
 interface Props {
   project: CollectionEntry<"projects">;
 }
 
 const { project } = Astro.props;
+
+const allImages: Record<string, string> = import.meta.glob(
+  "/src/assets/images/logos/*.{png,jpg,jpeg,webp,avif}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const logoFilename = project.data.logo?.color;
+const logoSrc = logoFilename
+  ? allImages[`/src/assets/${logoFilename}`] || null
+  : null;
 ---
 
 <Card radius="sm" shadow="sm" className="w-64 h-72">
   <div class="flex flex-col gap-2 w-full h-full p-4">
-    <div class="flex items-center justify-center">
-      <img
-        src={`/assets/${project.data.logo.color}`}
-        alt={`${project.data.name} logo`}
-        class="h-20 object-contain"
-      />
-    </div>
+    {
+      logoSrc && (
+        <div class="flex items-center justify-center">
+          <Image
+            src={logoSrc}
+            alt={`${project.data.name} logo`}
+            class="h-20 object-contain"
+          />
+        </div>
+      )
+    }
     <div class="flex flex-col justify-between h-full">
       <div>
         <h2 class="text-lg font-semibold mb-2">

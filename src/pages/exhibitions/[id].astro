@@ -18,9 +18,19 @@ const { exhibition } = Astro.props;
 const { Content } = await render(exhibition);
 
 const featuredWork = await getEntries(exhibition.data.featured);
+
+const allImages: Record<string, string> = import.meta.glob(
+  "/src/assets/**/*.{png,jpg,jpeg,webp,avif}",
+  { eager: true, import: "default" }
+);
+
+function getImage(imagePath: string): string | null {
+  const fullPath = `/src/assets/${imagePath}`;
+  return allImages[fullPath] || null;
+}
 ---
 
-<Layout title={exhibition.data.name} description={exhibition.data.description}>
+<Layout title={exhibition.data.name} description={"TODO"}>
   <div class="flex flex-col gap-6">
     <h1 class="text-lg font-semibold text-center">
       {exhibition.data.name}
@@ -49,17 +59,20 @@ const featuredWork = await getEntries(exhibition.data.featured);
 
     <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
       {
-        exhibition.data.posters.map((image) => (
-          <Card radius="none" shadow="none">
-            <Image
-              src={import(`/assets/${image}`)}
-              alt={exhibition.data.name}
-              class="max-w-sm"
-              quality={100}
-              loading={"lazy"}
-            />
-          </Card>
-        ))
+        exhibition.data.posters.map((image) => {
+          const imageSrc = getImage(image);
+          return imageSrc ? (
+            <Card radius="none" shadow="none">
+              <Image
+                src={imageSrc}
+                alt={exhibition.data.name}
+                class="max-w-sm"
+                quality={100}
+                loading={"lazy"}
+              />
+            </Card>
+          ) : null;
+        })
       }
     </div>
 
@@ -67,19 +80,22 @@ const featuredWork = await getEntries(exhibition.data.featured);
 
     <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
       {
-        exhibition.data.work.map((image) => (
-          <Card radius="none" shadow="none" className="w-64 h-64">
-            <div class="absolute inset-0 overflow-hidden">
-              <Image
-                src={import(`/assets/${image}`)}
-                alt={exhibition.data.name}
-                class="w-full h-full object-cover"
-                quality={100}
-                loading={"lazy"}
-              />
-            </div>
-          </Card>
-        ))
+        exhibition.data.work.map((image) => {
+          const imageSrc = getImage(image);
+          return imageSrc ? (
+            <Card radius="none" shadow="none" className="w-64 h-64">
+              <div class="absolute inset-0 overflow-hidden">
+                <Image
+                  src={imageSrc}
+                  alt={exhibition.data.name}
+                  class="w-full h-full object-cover"
+                  quality={100}
+                  loading={"lazy"}
+                />
+              </div>
+            </Card>
+          ) : null;
+        })
       }
     </div>
   </div>

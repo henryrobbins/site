@@ -2,6 +2,7 @@
 import { getCollection, getEntries, render } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
 import { Link } from "@heroui/react";
+import { Image } from "astro:assets";
 import ExhibitionCard from "@/components/ExhibitionCard.astro";
 
 export async function getStaticPaths() {
@@ -21,11 +22,20 @@ const featuredExhibitions = await getEntries(
     exhibition.data.featured.some((item) => item.id === art.id)
   )
 );
-
 const formatYear = (date: Date) => date.getFullYear();
+
+const allImages: Record<string, string> = import.meta.glob(
+  "/src/assets/**/*.{png,jpg,jpeg,webp,avif}",
+  { eager: true, import: "default" }
+);
+
+function getImage(imagePath: string): string | null {
+  const fullPath = `/src/assets/${imagePath}`;
+  return allImages[fullPath] || null;
+}
 ---
 
-<Layout title={art.data.title} description={art.data.description}>
+<Layout title={art.data.title} description={"TODO"}>
   <div class="flex flex-col gap-6">
     <!-- Description -->
     <div class="markdown-content">
@@ -66,7 +76,7 @@ const formatYear = (date: Date) => date.getFullYear();
         art.data.physical &&
           Object.entries(art.data.physical).map(([name, details]) => (
             <figure>
-              <img src={`/assets/${details.path}`} alt={name} />
+              <Image src={getImage(details.path)} alt={name} />
               <figcaption>
                 <i>{name}</i>, {details.dimension} ({formatYear(art.data.date)}
                 )<br />
@@ -78,9 +88,9 @@ const formatYear = (date: Date) => date.getFullYear();
       <!-- Images -->
       {
         art.data.images &&
-          Object.entries(art.data.images).map(([name, details]) => (
+          Object.entries(art.data.images).map(([name, filename]) => (
             <figure>
-              <img src={`/assets/${details}`} alt={name} />
+              <Image src={getImage(filename)} alt={name} />
               <figcaption>
                 <i>{name}</i> ({formatYear(art.data.date)})<br />
               </figcaption>

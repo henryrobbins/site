@@ -7,6 +7,7 @@ import {
   IconBrandGithubFilled,
   IconWorldWww,
 } from "@tabler/icons-react";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projects");
@@ -18,15 +19,27 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+
+const allImages: Record<string, string> = import.meta.glob(
+  "/src/assets/images/logos/*.{png,jpg,jpeg,webp,avif}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+const logoFilename = project.data.logo?.color;
+const logoSrc = logoFilename
+  ? allImages[`/src/assets/${logoFilename}`] || null
+  : null;
 ---
 
 <Layout title={project.data.name} description={project.data.description}>
   <div class="flex flex-col gap-4 items-center">
     <div>
-      <img
-        src={`/assets/${project.data.logo.color}`}
+      <Image
+        src={logoSrc}
         alt={`${project.data.name} logo`}
-        class="h-24"
+        class="h-24 w-auto"
       />
     </div>
     <i class="font-it text-center">

@@ -20,6 +20,9 @@ const navLinks = [
 export default function Navbar({ currentPath }: { currentPath: string }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  const normalizedPath =
+    currentPath === "/" ? "/" : currentPath.replace(/\/$/, "");
+
   return (
     <HeroUINavbar
       isBlurred={false}
@@ -44,9 +47,9 @@ export default function Navbar({ currentPath }: { currentPath: string }) {
           <Link
             href={link.href}
             color="foreground"
-            className={`${currentPath == link.href ? "font-semibold" : ""}`}
+            className={`${normalizedPath == link.href ? "font-semibold" : ""}`}
           >
-            {currentPath == link.href ? `[ ${link.text} ]` : link.text}
+            {normalizedPath == link.href ? `[ ${link.text} ]` : link.text}
           </Link>
         ))}
       </NavbarContent>
@@ -61,9 +64,11 @@ export default function Navbar({ currentPath }: { currentPath: string }) {
             <Link
               href={link.href}
               color="foreground"
-              className={`${currentPath == link.href ? "font-semibold" : ""}`}
+              className={`${
+                normalizedPath == link.href ? "font-semibold" : ""
+              }`}
             >
-              {currentPath == link.href ? `[ ${link.text} ]` : link.text}
+              {normalizedPath == link.href ? `[ ${link.text} ]` : link.text}
             </Link>
           </NavbarItem>
         ))}

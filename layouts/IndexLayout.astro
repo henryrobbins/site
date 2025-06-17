@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import profileImage from "/src/assets/images/profile.jpeg";
+import {
+  IconBrandGithubFilled,
+  IconMailFilled,
+  IconBrandLinkedinFilled,
+} from "@tabler/icons-react";
+import { Link } from "@heroui/react";
+---
+
+<Layout title="Homepage" description="An overview of my work and interests">
+  <div class="flex flex-col items-center gap-8 max-w-xl mx-auto">
+    <Image
+      src={profileImage}
+      alt="me"
+      height={300}
+      class="rounded-[var(--heroui-radius-large)] shadow-lg"
+      quality={90}
+    />
+    <div class="markdown-content">
+      <slot />
+    </div>
+    <ul>
+      <li>
+        <Link href={"mailto:hw.robbins@gmail.com"} color="foreground"
+          ><div class="flex flex-row items-center gap-2">
+            <IconMailFilled />
+            <span>hw.robbins@gmail.com</span>
+          </div></Link
+        >
+      </li>
+      <li>
+        <Link href={"https://github.com/henryrobbins"} color="foreground">
+          <div class="flex flex-row items-center gap-2">
+            <IconBrandGithubFilled />
+            <span>henryrobbins</span>
+          </div></Link
+        >
+      </li>
+      <li>
+        <Link href={"https://www.linkedin.com/in/hwr26"} color="foreground">
+          <div class="flex flex-row items-center gap-2">
+            <IconBrandLinkedinFilled />
+            <span>hwr26</span>
+          </div></Link
+        >
+      </li>
+    </ul>
+  </div>
+</Layout>

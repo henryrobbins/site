@@ -4,6 +4,7 @@ const { heroui } = require("@heroui/react");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    "./layouts/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
     "./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}",
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],

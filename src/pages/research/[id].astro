@@ -1,0 +1,112 @@
+---
+import { getCollection, render, getEntries } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import { Link } from "@heroui/react";
+import ProjectCard from "@/components/ProjectCard.astro";
+
+export async function getStaticPaths() {
+  const research = await getCollection("research");
+  return research.map((entry) => ({
+    params: { id: entry.data.id },
+    props: { research: entry },
+  }));
+}
+
+const { research } = Astro.props;
+const { Content } = await render(research);
+
+const associatedProjects = await getEntries(research.data.projects ?? []);
+
+const formatDate = (date) => {
+  // Dates are parsed as UTC midnight; format in UTC so they don't shift back a day.
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+};
+---
+
+<Layout title={research.data.name} description={research.data.description}>
+  <!-- Title -->
+  <h1 class="text-2xl font-semibold">{research.data.title}</h1>
+
+  <!-- Attributes -->
+  <p>
+    <strong>Authors</strong>:{" "}
+    <em>
+      {
+        research.data.authors.map((author, i) => (
+          <Fragment>
+            {i > 0 && ", "}
+            {author.link ? (
+              <Link href={author.link} isExternal>
+                {author.name}
+              </Link>
+            ) : (
+              author.name
+            )}
+          </Fragment>
+        ))
+      }
+    </em><br />
+    <strong>Venue</strong>: <em>{research.data.venue}</em><br />
+    <strong>Date</strong>: <em>{formatDate(research.data.date)}</em><br />
+    {
+      research.data.paper && (
+        <Fragment>
+          <strong>Paper</strong>:{" "}
+          <Link href={research.data.paper} isExternal>
+            {research.data.paper}
+          </Link>
+          <br />
+        </Fragment>
+      )
+    }
+    {
+      research.data.github && (
+        <Fragment>
+          <strong>GitHub</strong>:{" "}
+          <Link href={research.data.github} isExternal>
+            {research.data.github}
+          </Link>
+          <br />
+        </Fragment>
+      )
+    }
+    {
+      research.data.website && (
+        <Fragment>
+          <strong>Website</strong>:{" "}
+          <Link href={research.data.website} isExternal>
+            {research.data.website}
+          </Link>
+          <br />
+        </Fragment>
+      )
+    }
+  </p>
+
+  <!-- Associated Project(s) -->
+  {
+    associatedProjects.length > 0 && (
+      <div>
+        <strong>
+          {associatedProjects.length === 1
+            ? "Associated Project:"
+            : "Associated Projects:"}
+        </strong>
+        <div class="flex flex-row flex-wrap items-center gap-6 justify-center my-6">
+          {associatedProjects.map((project) => (
+            <ProjectCard project={project} />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+  <!-- About/Content -->
+  <div class="markdown-content">
+    <Content />
+  </div>
+</Layout>

@@ -92,6 +92,16 @@
   @apply text-foreground;
 }
 
+/* With list-inside markers, a block-level <p> pushes the item text below the
+   marker; keep the leading paragraph of a list item on the marker's line. */
+.markdown-content li > p {
+  @apply mb-0;
+}
+
+.markdown-content li > p:first-child {
+  @apply inline;
+}
+
 .markdown-content li > ul,
 .markdown-content li > ol {
   @apply mt-2 mb-0 ml-4;

@@ -30,6 +30,26 @@ const projectCollection = defineCollection({
   }),
 });
 
+const researchCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/research" }),
+  schema: z.object({
+    id: z.string(),
+    name: z.string(),
+    title: z.string(),
+    date: z.date(),
+    authors: z.array(
+      z.object({ name: z.string(), link: z.string().optional() })
+    ),
+    venue: z.string(),
+    image: z.string().optional(),
+    description: z.string(),
+    paper: z.string().optional(),
+    github: z.string().optional(),
+    website: z.string().optional(),
+    projects: z.array(reference("projects")).optional(),
+  }),
+});
+
 export const exhibitionCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/exhibitions" }),
   schema: z.object({
@@ -70,6 +90,7 @@ export const artworkCollection = defineCollection({
 
 export const collections = {
   experiences: experienceCollection,
+  research: researchCollection,
   projects: projectCollection,
   exhibitions: exhibitionCollection,
   artwork: artworkCollection,

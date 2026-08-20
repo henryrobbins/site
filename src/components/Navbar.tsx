@@ -12,8 +12,9 @@ import React from "react";
 // Navigation tree
 const navLinks = [
   { href: "/", text: "Home" },
-  { href: "/artwork", text: "Art" },
+  { href: "/research", text: "Research" },
   { href: "/projects", text: "Projects" },
+  { href: "/artwork", text: "Art" },
   { href: "/experiences", text: "Experience" },
 ];
 

@@ -1,0 +1,100 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Card, Link } from "@heroui/react";
+import {
+  IconInfoSquare,
+  IconFileText,
+  IconBrandGithubFilled,
+  IconWorldWww,
+} from "@tabler/icons-react";
+import { Image } from "astro:assets";
+
+interface Props {
+  research: CollectionEntry<"research">;
+}
+
+const { research } = Astro.props;
+
+const allImages: Record<string, string> = import.meta.glob(
+  "/src/assets/images/**/*.{png,jpg,jpeg,webp,avif}",
+  {
+    eager: true,
+    import: "default",
+  }
+);
+
+const imageFilename = research.data.image;
+const imageSrc = imageFilename
+  ? allImages[`/src/assets/${imageFilename}`] || null
+  : null;
+---
+
+<Card radius="sm" shadow="sm" className="w-full max-w-2xl h-48">
+  <div class="flex flex-row w-full h-full">
+    {
+      imageSrc && (
+        <div class="w-56 h-full bg-white shrink-0 p-2">
+          <Image
+            src={imageSrc}
+            alt={`Figure from ${research.data.name}`}
+            class="w-full h-full object-contain"
+            quality={100}
+            loading={"lazy"}
+          />
+        </div>
+      )
+    }
+    <div class="flex flex-col justify-between flex-1 min-w-0 p-4">
+      <div>
+        <h2 class="text-lg font-semibold mb-2">
+          {research.data.name}
+          {` (${new Date(research.data.date).getUTCFullYear()})`}
+        </h2>
+        <p class="text-sm">{research.data.description}</p>
+        <p class="text-sm italic mt-2">{research.data.venue}</p>
+      </div>
+      <div class="text-sm">
+        <Link
+          href={`/research/${research.data.id}`}
+          color="foreground"
+          aria-label="About page"
+        >
+          <IconInfoSquare />
+        </Link>
+        {
+          research.data.paper && (
+            <Link
+              href={research.data.paper}
+              color="foreground"
+              aria-label="Paper"
+            >
+              <IconFileText />
+            </Link>
+          )
+        }
+        {
+          research.data.github && (
+            <Link
+              href={research.data.github}
+              color="foreground"
+              aria-label="GitHub repository"
+            >
+              <IconBrandGithubFilled />
+            </Link>
+          )
+        }
+        {
+          research.data.website && (
+            <Link
+              href={research.data.website}
+              color="foreground"
+              aria-label="Project website"
+            >
+              <IconWorldWww />
+            </Link>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</Card>

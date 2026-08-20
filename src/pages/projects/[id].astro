@@ -46,13 +46,17 @@ const logoSrc = logoFilename
       {project.data.description}
     </i>
     <div class="text-sm">
-      <Link
-        href={project.data.github}
-        color="foreground"
-        aria-label="GitHub repository"
-      >
-        <IconBrandGithubFilled />
-      </Link>
+      {
+        project.data.github && (
+          <Link
+            href={project.data.github}
+            color="foreground"
+            aria-label="GitHub repository"
+          >
+            <IconBrandGithubFilled />
+          </Link>
+        )
+      }
       {
         project.data.website && (
           <Link

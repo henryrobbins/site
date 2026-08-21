@@ -28,6 +28,7 @@ const projectCollection = defineCollection({
       description: z.string(),
       github: z.string().optional(),
       website: z.string().optional(),
+      selected: z.boolean().default(false),
     }),
 });
 
@@ -49,6 +50,7 @@ const researchCollection = defineCollection({
       github: z.string().optional(),
       website: z.string().optional(),
       projects: z.array(reference("projects")).optional(),
+      selected: z.boolean().default(false),
     }),
 });
 
@@ -59,7 +61,8 @@ export const exhibitionCollection = defineCollection({
       id: z.string(),
       name: z.string(),
       year: z.number(),
-      location: z.string(),
+      venue: z.string(),
+      city: z.string(),
       featured: z.array(reference("artwork")),
       posters: z.array(image()),
       work: z.array(image()),
@@ -77,6 +80,7 @@ export const artworkCollection = defineCollection({
       date: z.date(),
       medium: z.string(),
       link: z.string().optional(),
+      thumbnail: image().optional(),
       physical: z
         .record(
           z.string(),
@@ -89,6 +93,7 @@ export const artworkCollection = defineCollection({
         .nullable(),
       images: z.record(z.string(), image()).optional().nullable(),
       videos: z.record(z.string(), z.number()).optional().nullable(),
+      selected: z.boolean().default(false),
     }),
 });
 

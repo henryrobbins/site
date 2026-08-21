@@ -1,32 +1,109 @@
 ---
-import Navbar from "@components/Navbar.tsx";
+import ContactLinks from "@components/ContactLinks.astro";
 import "@/styles/global.css";
 
 export interface Props {
   title: string;
   description?: string;
+  /** Nav item to mark as current. */
+  active?: "home" | "projects" | "research" | "art" | "experience";
+  /** Name of the entry being viewed, indented under the current nav item. */
+  sub?: string;
 }
 
-const currentPath = Astro.url.pathname;
+const {
+  title,
+  description = "The work of Henry Robbins.",
+  active,
+  sub,
+} = Astro.props;
 
-const { title, description = "My Astro Site" } = Astro.props;
+const navLinks = [
+  { key: "home", href: "/", label: "home" },
+  { key: "projects", href: "/projects", label: "projects" },
+  { key: "research", href: "/research", label: "research" },
+  { key: "art", href: "/artwork", label: "art" },
+  { key: "experience", href: "/experiences", label: "experience" },
+];
+
+const ROLE = "PhD student, Stanford";
 ---
 
 <!doctype html>
-<html lang="en" class="light font-mono">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@300;400;500;600&display=swap"
+    />
     <title>{title}</title>
   </head>
   <body>
-    <Navbar currentPath={currentPath} client:visible />
-    <main class="max-w-4xl mx-auto min-h-screen">
-      <div class="px-4 py-8">
-        <slot />
+    <div class="shell">
+      <div class="rail">
+        <div class="rail-head">
+          <div class="rail-name">
+            {
+              active === "home" ? (
+                "Henry Robbins"
+              ) : (
+                <a href="/">Henry Robbins</a>
+              )
+            }
+          </div>
+          <div class="rail-role">{ROLE}</div>
+        </div>
+
+        <nav class="nav">
+          {
+            navLinks.map(({ key, href, label }) => (
+              <>
+                <a
+                  href={href}
+                  class:list={["nav-item", key === active && "is-active"]}
+                >
+                  <span>{label}</span>
+                </a>
+                {sub && key === active && (
+                  <div class="nav-sub">
+                    <span>{sub}</span>
+                  </div>
+                )}
+              </>
+            ))
+          }
+        </nav>
+
+        <ContactLinks />
       </div>
-    </main>
+
+      <main class="content">
+        <slot />
+      </main>
+    </div>
+
+    <script>
+      // Touch devices have no hover, so color follows scroll position instead:
+      // an image is shown in color while it straddles the viewport's midline.
+      // The CSS only acts on `.in-focus` under `@media (hover: none)`.
+      const images = document.querySelectorAll(".grey");
+      if (images.length) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              entry.target.classList.toggle("in-focus", entry.isIntersecting);
+            }
+          },
+          { rootMargin: "-50% 0px -50% 0px" },
+        );
+        images.forEach((image) => observer.observe(image));
+      }
+    </script>
   </body>
 </html>

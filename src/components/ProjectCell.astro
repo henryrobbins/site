@@ -1,0 +1,126 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+import LinkGroup from "@components/LinkGroup.astro";
+import { projectLinks } from "@/utils/links";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { name, date, description } = project.data;
+
+const links = projectLinks(project.data);
+
+const { Content } = await render(project);
+const hasBody = Boolean(project.body?.trim());
+---
+
+<div class="cell">
+  <div class="cell-body">
+    <div class="cell-head">
+      <div class="cell-year">{date.getUTCFullYear()}</div>
+      <div class="cell-title">{name}</div>
+    </div>
+    <div class="cell-desc">{description}</div>
+    {
+      hasBody && (
+        <div class="cell-more">
+          <div class="cell-more-clip">
+            <div class="cell-more-body prose">
+              <Content />
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+  <div class="cell-foot">
+    <LinkGroup links={links} />
+    {
+      hasBody && (
+        <button class="cell-toggle" type="button" aria-expanded="false">
+          <span class="toggle-closed">more</span>
+          <span class="toggle-open">less</span>
+          <span class="toggle-mark" aria-hidden="true">
+            +
+          </span>
+        </button>
+      )
+    }
+  </div>
+</div>
+
+<script>
+  // Opening a cell doubles its footprint in the grid, so only one is open at
+  // a time — several open cells reflow the sheet past the point of following.
+  const toggles = document.querySelectorAll<HTMLButtonElement>(".cell-toggle");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+  // Above this width the cell spans two tracks, and that span reverts the
+  // instant it closes. Sliding the text out would leave it shrinking inside
+  // a cell that has already snapped back, so the collapse is cut there.
+  const spans = window.matchMedia("(min-width: 900px)");
+  const slides = () => !reduced.matches && !spans.matches;
+
+  const parts = (toggle: HTMLButtonElement) => {
+    const cell = toggle.closest<HTMLElement>(".cell");
+    return {
+      cell,
+      panel: cell?.querySelector<HTMLElement>(".cell-more"),
+      clip: cell?.querySelector<HTMLElement>(".cell-more-clip"),
+    };
+  };
+
+  const open = (toggle: HTMLButtonElement) => {
+    const { cell, panel, clip } = parts(toggle);
+    if (!cell || !panel || !clip) return;
+    toggle.setAttribute("aria-expanded", "true");
+    // The class widens the cell, so the content is measured only afterwards.
+    cell.classList.add("is-open");
+    if (reduced.matches) {
+      panel.style.height = "auto";
+      return;
+    }
+
+    panel.style.height = `${clip.getBoundingClientRect().height}px`;
+    panel.addEventListener("transitionend", function settle(event) {
+      if (event.propertyName !== "height") return;
+      panel.removeEventListener("transitionend", settle);
+      // Released so the panel still fits if the column is later resized.
+      if (cell.classList.contains("is-open")) panel.style.height = "auto";
+    });
+  };
+
+  const close = (toggle: HTMLButtonElement) => {
+    const { cell, panel, clip } = parts(toggle);
+    if (!cell?.classList.contains("is-open") || !panel || !clip) return;
+    toggle.setAttribute("aria-expanded", "false");
+    if (slides()) {
+      // `auto` cannot be transitioned from, so the height is pinned to a
+      // length and flushed before the collapse is asked for.
+      panel.style.height = `${clip.getBoundingClientRect().height}px`;
+      void panel.offsetHeight;
+      panel.style.height = "0px";
+    } else {
+      // Suppressed rather than skipped: a cell closed mid-open still holds a
+      // length, which would otherwise animate.
+      panel.style.transition = "none";
+      panel.style.height = "0px";
+      void panel.offsetHeight;
+      panel.style.transition = "";
+    }
+    cell.classList.remove("is-open");
+  };
+
+  for (const toggle of toggles) {
+    toggle.addEventListener("click", () => {
+      if (toggle.getAttribute("aria-expanded") === "true") {
+        close(toggle);
+        return;
+      }
+      toggles.forEach(close);
+      open(toggle);
+    });
+  }
+</script>

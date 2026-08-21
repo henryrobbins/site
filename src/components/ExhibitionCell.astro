@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import { responsiveWidths } from "@/utils/images";
+
+interface Props {
+  exhibition: CollectionEntry<"exhibitions">;
+  /** Desaturate the thumbnail until it is hovered (or scrolled to, on touch). */
+  grey?: boolean;
+}
+
+const { exhibition, grey = false } = Astro.props;
+const { id, name, year, city, thumbnail } = exhibition.data;
+---
+
+<a class="exhibition-cell" href={`/exhibitions/${id}`}>
+  <Image
+    src={thumbnail}
+    alt={name}
+    class:list={["exhibition-img", grey && "grey"]}
+    {...responsiveWidths(thumbnail, [390, 780])}
+    sizes="(max-width: 899px) 100vw, 288px"
+    quality={90}
+    loading="lazy"
+  />
+  <div class="exhibition-cap">
+    <div class="name">{name}</div>
+    <div class="where">{year} · {city}</div>
+  </div>
+</a>

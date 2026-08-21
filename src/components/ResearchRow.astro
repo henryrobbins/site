@@ -1,0 +1,118 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { render } from "astro:content";
+import { Image } from "astro:assets";
+import LinkGroup from "@components/LinkGroup.astro";
+import { researchLinks } from "@/utils/links";
+import { responsiveWidths } from "@/utils/images";
+
+interface Props {
+  research: CollectionEntry<"research">;
+}
+
+const { research } = Astro.props;
+const { name, title, date, authors, venue, description, image } = research.data;
+
+const links = researchLinks(research.data);
+
+const { Content } = await render(research);
+const hasAbstract = Boolean(research.body?.trim());
+---
+
+<div class="research-row">
+  <div>
+    <div class="cell-year">{date.getUTCFullYear()} · {venue}</div>
+    <div class="research-title">{title}</div>
+    <div class="research-authors">
+      {
+        authors.map((author, i) => (
+          <span>
+            {i > 0 && ", "}
+            {author.link ? <a href={author.link}>{author.name}</a> : author.name}
+          </span>
+        ))
+      }
+    </div>
+    <div class="research-desc">{description}</div>
+    <div class="research-foot">
+      <LinkGroup links={links} />
+      {
+        hasAbstract && (
+          <button class="cell-toggle" type="button" aria-expanded="false">
+            <span class="toggle-closed">more</span>
+            <span class="toggle-open">less</span>
+            <span class="toggle-mark" aria-hidden="true">
+              +
+            </span>
+          </button>
+        )
+      }
+    </div>
+    {
+      hasAbstract && (
+        <div class="research-more">
+          <div class="research-more-clip">
+            <div class="research-abstract prose">
+              <Content />
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+  {
+    image && (
+      <div class="research-fig">
+        <Image
+          src={image}
+          alt={`Figure from ${name}`}
+          {...responsiveWidths(image, [280, 560, 840])}
+          sizes="(max-width: 899px) calc(100vw - 40px), 280px"
+          quality={90}
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+</div>
+
+<script>
+  // The abstract slides open on a measured `height`, which is released to
+  // `auto` once the transition lands so a later resize still fits.
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  for (const toggle of document.querySelectorAll<HTMLButtonElement>(
+    ".research-row .cell-toggle",
+  )) {
+    const row = toggle.closest<HTMLElement>(".research-row");
+    const panel = row?.querySelector<HTMLElement>(".research-more");
+    const clip = row?.querySelector<HTMLElement>(".research-more-clip");
+    if (!panel || !clip) continue;
+
+    toggle.addEventListener("click", () => {
+      const open = toggle.getAttribute("aria-expanded") !== "true";
+      toggle.setAttribute("aria-expanded", String(open));
+
+      if (reduced.matches) {
+        panel.style.height = open ? "auto" : "0px";
+        return;
+      }
+
+      // `auto` cannot be transitioned from, so a panel left open is pinned
+      // to a length and flushed before the collapse is asked for.
+      panel.style.height = `${clip.getBoundingClientRect().height}px`;
+      if (open) {
+        panel.addEventListener("transitionend", function settle(event) {
+          if (event.propertyName !== "height") return;
+          panel.removeEventListener("transitionend", settle);
+          if (toggle.getAttribute("aria-expanded") === "true") {
+            panel.style.height = "auto";
+          }
+        });
+      } else {
+        void panel.offsetHeight;
+        panel.style.height = "0px";
+      }
+    });
+  }
+</script>

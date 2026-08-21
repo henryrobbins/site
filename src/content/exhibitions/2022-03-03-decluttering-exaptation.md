@@ -2,7 +2,8 @@
 id: decluttering-exaptation-2022
 name: decluttering, exaptation
 year: 2022
-location: Tjaden Gallery, Cornell University. Ithaca, NY
+venue: Tjaden Gallery, Cornell University
+city: Ithaca, NY
 featured:
     - 2022-01-06-memory
     - 2021-12-19-composite

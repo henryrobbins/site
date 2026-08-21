@@ -1,5 +1,6 @@
 ---
 id: formulation-bench
+selected: true
 name: FormulationBench
 date: 2026-08-21
 logo:

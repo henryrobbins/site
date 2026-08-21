@@ -2,7 +2,8 @@
 id: art-groove
 name: Art Groove
 year: 2022
-location: Bowery Art Room. New York, NY
+venue: Bowery Art Room
+city: New York, NY
 featured: ["2022-08-13-weave"]
 posters:
     - ../../assets/images/art_groove/flyer_artists.jpeg

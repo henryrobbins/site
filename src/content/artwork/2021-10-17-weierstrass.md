@@ -1,10 +1,12 @@
 ---
 id: weierstrass
+selected: true
 artist: Henry Robbins
 title: weierstrass
 date: 2021-10-17
 medium: PNG and MPEG-4
 link: https://github.com/henryrobbins/artwork/tree/master/weierstrass
+thumbnail: ../../assets/artwork/weierstrass/circuit_1_weierstrass_20.jpeg
 physical:
 images:
   circuit_1_weierstrass_20.png: ../../assets/artwork/weierstrass/circuit_1_weierstrass_20.jpeg

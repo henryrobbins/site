@@ -1,5 +1,6 @@
 ---
 id: showcount
+selected: true
 name: showcount
 date: 2026-03-18
 logo:

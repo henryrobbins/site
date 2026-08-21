@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  experience: CollectionEntry<"experiences">;
+}
+
+const { experience } = Astro.props;
+const { id, name, role, company, start, end } = experience.data;
+
+const month = (date: Date) =>
+  date.toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+---
+
+<a class="exp-row" href={`/experiences/${id}`}>
+  <div class="exp-body">
+    <div class="exp-title">
+      {name}
+      <span class="exp-arrow" aria-hidden="true">→</span>
+    </div>
+    <div class="exp-role">{role} · {company}</div>
+  </div>
+  <div class="exp-dates">{month(start)} – {month(end)}</div>
+</a>

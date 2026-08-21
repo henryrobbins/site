@@ -1,24 +1,22 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import ExperienceCard from "@/components/ExperienceCard.astro";
+import ExperienceRow from "@components/ExperienceRow.astro";
+import SectionLabel from "@components/SectionLabel.astro";
 
-const experiences = await getCollection("experiences");
+const experiences = (await getCollection("experiences")).sort(
+  (a, b) =>
+    b.data.end.getTime() - a.data.end.getTime() || b.id.localeCompare(a.id),
+);
 ---
 
 <Layout
-  title="Experiences"
-  description="A collection of my professional experiences."
+  title="Experience"
+  description="Professional experience of Henry Robbins."
+  active="experience"
 >
-  <div class="flex flex-row flex-wrap items-center gap-6 justify-center">
-    {
-      experiences
-        .sort(
-          (a, b) =>
-            new Date(b.data.end).getTime() - new Date(a.data.end).getTime() ||
-            b.id.localeCompare(a.id)
-        )
-        .map((experience) => <ExperienceCard experience={experience} />)
-    }
-  </div>
+  <SectionLabel label="Experience" />
+  {
+    experiences.map((experience) => <ExperienceRow experience={experience} />)
+  }
 </Layout>

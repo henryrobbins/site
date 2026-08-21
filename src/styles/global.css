@@ -781,13 +781,10 @@ a {
   border-bottom: 1px solid var(--line);
 }
 
-/* A plate: art inset from all four edges, above a hairline-ruled caption row. */
-.plate {
-  border-bottom: 1px solid var(--hair);
-}
-
+/* A plate: art inset from all four edges, over a hairline-ruled caption row
+   that spans the art's width. */
 .plate-frame {
-  padding: 48px;
+  padding: 48px 48px 8px;
 }
 
 .plate-img {
@@ -796,7 +793,8 @@ a {
 }
 
 .plate-cap {
-  padding: 10px var(--pad) 12px;
+  margin: 0 48px;
+  padding: 10px 0 24px;
   border-top: 1px solid var(--hair);
   display: flex;
   justify-content: space-between;
@@ -1018,6 +1016,10 @@ a {
   }
 
   .plate-frame {
-    padding: 20px;
+    padding: 20px 20px 8px;
+  }
+
+  .plate-cap {
+    margin: 0 20px;
   }
 }

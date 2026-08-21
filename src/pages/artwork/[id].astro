@@ -25,9 +25,10 @@ const exhibitions = (await getCollection("exhibitions")).filter((exhibition) =>
 
 const year = date.getUTCFullYear();
 
-// A plate spans the full content column: 864px at the widest breakpoint.
-const PLATE_WIDTHS = [864, 1296];
-const PLATE_SIZES = "(max-width: 899px) 100vw, 864px";
+// A plate is the content column inset by the frame's padding: 768px at the
+// widest breakpoint.
+const PLATE_WIDTHS = [768, 1536];
+const PLATE_SIZES = "(max-width: 899px) calc(100vw - 40px), 768px";
 ---
 
 <Layout title={title} description={`${title} (${year}) — ${medium}`} active="art">
@@ -68,15 +69,17 @@ const PLATE_SIZES = "(max-width: 899px) 100vw, 864px";
     physical &&
       Object.entries(physical).map(([name, work]) => (
         <figure class="plate">
-          <Image
-            src={work.path}
-            alt={name}
-            class="plate-img"
-            {...responsiveWidths(work.path, PLATE_WIDTHS)}
-            sizes={PLATE_SIZES}
-            quality={90}
-            loading="lazy"
-          />
+          <div class="plate-frame">
+            <Image
+              src={work.path}
+              alt={name}
+              class="plate-img"
+              {...responsiveWidths(work.path, PLATE_WIDTHS)}
+              sizes={PLATE_SIZES}
+              quality={90}
+              loading="lazy"
+            />
+          </div>
           <figcaption class="plate-cap">
             <span>{name}</span>
             <span class="meta">
@@ -91,15 +94,17 @@ const PLATE_SIZES = "(max-width: 899px) 100vw, 864px";
     images &&
       Object.entries(images).map(([name, src]) => (
         <figure class="plate">
-          <Image
-            src={src}
-            alt={name}
-            class="plate-img"
-            {...responsiveWidths(src, PLATE_WIDTHS)}
-            sizes={PLATE_SIZES}
-            quality={90}
-            loading="lazy"
-          />
+          <div class="plate-frame">
+            <Image
+              src={src}
+              alt={name}
+              class="plate-img"
+              {...responsiveWidths(src, PLATE_WIDTHS)}
+              sizes={PLATE_SIZES}
+              quality={90}
+              loading="lazy"
+            />
+          </div>
           <figcaption class="plate-cap">
             <span>{name}</span>
             <span class="meta">{year}</span>
@@ -112,13 +117,15 @@ const PLATE_SIZES = "(max-width: 899px) 100vw, 864px";
     videos &&
       Object.entries(videos).map(([name, vimeoId]) => (
         <figure class="plate">
-          <div class="video-frame">
-            <iframe
-              src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479`}
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowfullscreen
-              title={name}
-            />
+          <div class="plate-frame">
+            <div class="video-frame">
+              <iframe
+                src={`https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479`}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowfullscreen
+                title={name}
+              />
+            </div>
           </div>
           <figcaption class="plate-cap">
             <span>{name}</span>

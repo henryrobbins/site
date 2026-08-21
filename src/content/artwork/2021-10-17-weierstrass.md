@@ -1,5 +1,6 @@
 ---
 id: weierstrass
+selected: true
 artist: Henry Robbins
 title: weierstrass
 date: 2021-10-17

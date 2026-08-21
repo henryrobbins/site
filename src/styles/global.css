@@ -31,6 +31,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
 }
 
 body {
@@ -84,6 +85,9 @@ a {
 
 .content {
   min-width: 0;
+  /* The last rule of a page can be scrolled up to the middle of the
+     viewport rather than stopping at the bottom edge. */
+  padding-bottom: 50vh;
 }
 
 /* ------------------------------------------------------------- nav rail -- */
@@ -183,8 +187,12 @@ a {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   /* Collapse the top rule onto the rule the preceding block already drew,
-     so a section boundary never renders as two stacked lines. */
+     so a section boundary never renders as two stacked lines. Grid items
+     paint in the inline phase, above in-flow block borders, so the bar has
+     to be lifted out of flow to stay on top of the cell it overlaps. */
   margin-top: -1px;
+  position: relative;
+  z-index: 1;
 }
 
 .label-bar.is-wide {
@@ -414,16 +422,11 @@ a {
 /* Research. */
 .research-row {
   display: grid;
-  grid-template-columns: 1fr 220px;
+  grid-template-columns: 1fr 280px;
   gap: 28px;
   align-items: start;
   padding: 24px var(--pad-wide);
   border-bottom: 1px solid var(--hair);
-}
-
-.research-fig {
-  border: 1px solid var(--hair);
-  padding: 10px;
 }
 
 .research-fig img {
@@ -609,9 +612,13 @@ a {
   border-bottom: 1px solid var(--line);
 }
 
-/* A full-width plate: image above a hairline-ruled caption row. */
+/* A plate: art inset from all four edges, above a hairline-ruled caption row. */
 .plate {
   border-bottom: 1px solid var(--hair);
+}
+
+.plate-frame {
+  padding: 48px;
 }
 
 .plate-img {
@@ -889,5 +896,9 @@ a {
 
   .detail-body {
     padding: 22px 20px 24px;
+  }
+
+  .plate-frame {
+    padding: 20px;
   }
 }

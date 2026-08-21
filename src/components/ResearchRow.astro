@@ -47,8 +47,8 @@ const links = researchLinks(research.data);
         <Image
           src={image}
           alt={`Figure from ${name}`}
-          {...responsiveWidths(image, [200, 400])}
-          sizes="200px"
+          {...responsiveWidths(image, [280, 560, 840])}
+          sizes="(max-width: 899px) calc(100vw - 40px), 280px"
           quality={90}
           loading="lazy"
         />

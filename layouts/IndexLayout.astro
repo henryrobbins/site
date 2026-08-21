@@ -43,18 +43,18 @@ const images = (await selected("artwork")).sort(byDate);
 ---
 
 <Layout title="Henry Robbins" description="An overview of my work and interests" active="home">
-  <div class="bio prose">
+  <div class="bio">
     <Image
       src={profileImage}
       alt="Henry Robbins"
       class="bio-photo"
       {...responsiveWidths(profileImage, [264, 528])}
-      sizes="176px"
+      sizes="(max-width: 899px) 176px, 200px"
       quality={90}
       loading="eager"
       fetchpriority="high"
     />
-    <slot />
+    <div class="bio-text prose"><slot /></div>
   </div>
 
   <ContactLinks class="contact-inline" />
@@ -71,39 +71,45 @@ const images = (await selected("artwork")).sort(byDate);
     action={{ href: "/artwork", label: "all art", mobileLabel: "all" }}
     wide
   />
-  <div class="art-grid is-three">
-    {images.map((entry) => <ArtCell artwork={entry} box={288} />)}
+  <div class="art-grid">
+    {images.map((entry) => <ArtCell artwork={entry} box={216} />)}
   </div>
 </Layout>
 
 <style>
+  /* The photo and the text are columns: the text is set beside the photo
+     rather than wrapping beneath it. */
   .bio {
+    display: flex;
+    align-items: flex-start;
+    gap: 26px;
     padding: 44px var(--pad-wide) 40px;
     border-bottom: 1px solid var(--line);
   }
 
-  /* The photo sits in the text itself, set flush with the left margin. */
   .bio-photo {
-    float: left;
-    width: 176px;
+    flex: none;
+    width: 200px;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     filter: grayscale(1) contrast(1.05);
-    margin: 6px 22px 14px 0;
   }
 
-  .bio > .bio-photo + :global(*) {
-    margin-top: 0;
+  .bio-text {
+    min-width: 0;
   }
 
   @media (max-width: 899px) {
     .bio {
-      padding: 22px 20px 24px;
+      flex-direction: column;
+      gap: 20px;
+      padding: 24px 20px 26px;
+      border-bottom: 0;
     }
 
     .bio-photo {
-      width: 132px;
-      margin: 4px 16px 12px 0;
+      width: 176px;
+      align-self: center;
     }
   }
 </style>

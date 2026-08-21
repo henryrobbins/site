@@ -3,14 +3,12 @@ interface Props {
   label: string;
   /** Optional right-aligned link, e.g. `all projects` beside SELECTED WORK. */
   action?: { href: string; label: string; mobileLabel?: string };
-  /** Align with prose padding rather than the narrower grid padding. */
-  wide?: boolean;
 }
 
-const { label, action, wide = false } = Astro.props;
+const { label, action } = Astro.props;
 ---
 
-<div class:list={["label-bar", wide && "is-wide"]}>
+<div class="label-bar">
   <span>{label}</span>
   {
     action && (

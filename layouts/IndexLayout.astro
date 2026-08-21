@@ -62,14 +62,12 @@ const images = (await selected("artwork")).sort(byDate);
   <SectionLabel
     label="Selected work"
     action={{ href: "/projects", label: "all projects", mobileLabel: "all" }}
-    wide
   />
   {work.map((entry) => <WorkRow {...entry} />)}
 
   <SectionLabel
     label="Selected images"
     action={{ href: "/artwork", label: "all art", mobileLabel: "all" }}
-    wide
   />
   <div class="art-grid">
     {images.map((entry) => <ArtCell artwork={entry} box={216} />)}

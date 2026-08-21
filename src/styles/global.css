@@ -17,8 +17,9 @@
   --sans: "Public Sans", system-ui, -apple-system, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Horizontal padding of the content column. Prose and index rows use the
-     wider value; label bars and grid-backed sections use the narrower one. */
+  /* Horizontal padding of the content column. Prose uses the wider value;
+     label bars and the listing rows and grids beneath them share the
+     narrower one, so a section keeps a single left edge. */
   --pad-wide: 44px;
   --pad: 24px;
 }
@@ -194,12 +195,6 @@ a {
   position: relative;
   z-index: 1;
 }
-
-.label-bar.is-wide {
-  padding-left: var(--pad-wide);
-  padding-right: var(--pad-wide);
-}
-
 
 .label-short {
   display: none;
@@ -390,7 +385,7 @@ a {
   display: grid;
   grid-template-columns: 56px 1fr 112px;
   align-items: baseline;
-  padding: 14px var(--pad-wide);
+  padding: 14px var(--pad);
   border-bottom: 1px solid var(--hair);
 }
 
@@ -425,7 +420,7 @@ a {
   grid-template-columns: 1fr 280px;
   gap: 28px;
   align-items: start;
-  padding: 24px var(--pad-wide);
+  padding: 24px var(--pad);
   border-bottom: 1px solid var(--hair);
 }
 
@@ -473,7 +468,7 @@ a {
   display: grid;
   grid-template-columns: 1fr 168px;
   align-items: baseline;
-  padding: 18px var(--pad-wide);
+  padding: 18px var(--pad);
   border-bottom: 1px solid var(--hair);
 }
 

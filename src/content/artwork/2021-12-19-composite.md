@@ -1,5 +1,6 @@
 ---
 id: composite
+selected: true
 artist: Henry Robbins
 title: composite
 date: 2021-12-19

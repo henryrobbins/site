@@ -7,9 +7,11 @@ interface Props {
   artwork: CollectionEntry<"artwork">;
   /** Width of the square cell at the widest breakpoint, in CSS pixels. */
   box: number;
+  /** Desaturate the thumbnail until it is hovered (or scrolled to, on touch). */
+  grey?: boolean;
 }
 
-const { artwork, box } = Astro.props;
+const { artwork, box, grey = false } = Astro.props;
 const { thumbnail, title, date } = artwork.data;
 ---
 
@@ -19,7 +21,7 @@ const { thumbnail, title, date } = artwork.data;
       <Image
         src={thumbnail}
         alt={title}
-        class="art-img grey"
+        class:list={["art-img", grey && "grey"]}
         {...coverWidths(thumbnail, box)}
         quality={90}
         loading="lazy"

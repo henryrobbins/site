@@ -1,8 +1,5 @@
 ---
-import { Image } from "astro:assets";
-import profileImage from "@/assets/images/profile.jpeg";
 import ContactLinks from "@components/ContactLinks.astro";
-import { responsiveWidths } from "@/utils/images";
 import "@/styles/global.css";
 
 export interface Props {
@@ -10,15 +7,12 @@ export interface Props {
   description?: string;
   /** Nav item to mark as current. */
   active?: "home" | "projects" | "research" | "art" | "experience";
-  /** The profile photo appears in the rail on the index only. */
-  profile?: boolean;
 }
 
 const {
   title,
   description = "The work of Henry Robbins.",
   active,
-  profile = false,
 } = Astro.props;
 
 const navLinks = [
@@ -56,21 +50,6 @@ const ROLE = "PhD student, Management Science & Engineering, Stanford";
           </div>
           <div class="rail-role">{ROLE}</div>
         </div>
-
-        {
-          profile && (
-            <Image
-              src={profileImage}
-              alt="Henry Robbins"
-              class="rail-photo"
-              {...responsiveWidths(profileImage, [264, 528])}
-              sizes="264px"
-              quality={90}
-              loading="eager"
-              fetchpriority="high"
-            />
-          )
-        }
 
         <nav class="nav">
           {

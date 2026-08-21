@@ -7,54 +7,52 @@ import ArtCell from "@components/ArtCell.astro";
 import ContactLinks from "@components/ContactLinks.astro";
 import SectionLabel from "@components/SectionLabel.astro";
 import WorkRow from "@components/WorkRow.astro";
-import { selectedArtwork, selectedWork } from "@/selected";
 import { primaryHref, projectLinks, researchLinks } from "@/utils/links";
 import { responsiveWidths } from "@/utils/images";
 
-const projects = await getCollection("projects");
-const research = await getCollection("research");
-const artwork = await getCollection("artwork");
+// The index is a curated view: entries opt in with `selected: true` in their
+// front matter, and are shown newest first.
+const byDate = <T extends { data: { date: Date } }>(a: T, b: T) =>
+  b.data.date.getTime() - a.data.date.getTime();
 
-const work = selectedWork.map(({ collection, id }) => {
-  const entries = collection === "projects" ? projects : research;
-  const entry = entries.find((e) => e.id === id);
-  if (!entry) throw new Error(`selectedWork references unknown entry: ${id}`);
-  return {
+const selected = (collection: "projects" | "research" | "artwork") =>
+  getCollection(collection, ({ data }) => data.selected);
+
+const work = [
+  ...(await selected("projects")).map((entry) => ({
+    entry,
+    links: projectLinks(entry.data),
+  })),
+  ...(await selected("research")).map((entry) => ({
+    entry,
+    // The link column is one line wide. Projects fit `github · site`; for a
+    // paper the one link worth keeping is the paper itself.
+    links: researchLinks(entry.data).slice(0, 1),
+  })),
+]
+  .sort((a, b) => byDate(a.entry, b.entry))
+  .map(({ entry, links }) => ({
     year: entry.data.date.getUTCFullYear(),
     name: entry.data.name,
     description: entry.data.description,
     href: primaryHref(entry.data),
-    // The link column is one line wide. Projects fit `github · site`; for a
-    // paper the one link worth keeping is the paper itself.
-    links:
-      collection === "projects"
-        ? projectLinks(entry.data)
-        : researchLinks(entry.data).slice(0, 1),
-  };
-});
+    links,
+  }));
 
-const images = selectedArtwork.map((id) => {
-  const entry = artwork.find((a) => a.id === id);
-  if (!entry) throw new Error(`selectedArtwork references unknown entry: ${id}`);
-  return entry;
-});
+const images = (await selected("artwork")).sort(byDate);
 ---
 
-<Layout
-  title="Henry Robbins"
-  description="An overview of my work and interests"
-  active="home"
-  profile
->
+<Layout title="Henry Robbins" description="An overview of my work and interests" active="home">
   <div class="bio prose">
     <Image
       src={profileImage}
       alt="Henry Robbins"
       class="bio-photo"
       {...responsiveWidths(profileImage, [264, 528])}
-      sizes="264px"
+      sizes="176px"
       quality={90}
       loading="eager"
+      fetchpriority="high"
     />
     <slot />
   </div>
@@ -64,7 +62,6 @@ const images = selectedArtwork.map((id) => {
   <SectionLabel
     label="Selected work"
     action={{ href: "/projects", label: "all projects", mobileLabel: "all" }}
-    rule="hair"
     wide
   />
   {work.map((entry) => <WorkRow {...entry} />)}
@@ -72,8 +69,6 @@ const images = selectedArtwork.map((id) => {
   <SectionLabel
     label="Selected images"
     action={{ href: "/artwork", label: "all art", mobileLabel: "all" }}
-    rule="line"
-    top
     wide
   />
   <div class="art-grid is-three">
@@ -87,10 +82,14 @@ const images = selectedArtwork.map((id) => {
     border-bottom: 1px solid var(--line);
   }
 
-  /* The rail carries the photo on desktop; on mobile it sits in the bio, with
-     the opening paragraph set beside it. */
+  /* The photo sits in the text itself, set flush with the left margin. */
   .bio-photo {
-    display: none;
+    float: left;
+    width: 176px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+    margin: 6px 22px 14px 0;
   }
 
   .bio > .bio-photo + :global(*) {
@@ -103,12 +102,7 @@ const images = selectedArtwork.map((id) => {
     }
 
     .bio-photo {
-      display: block;
-      float: left;
       width: 132px;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      filter: grayscale(1) contrast(1.05);
       margin: 4px 16px 12px 0;
     }
   }

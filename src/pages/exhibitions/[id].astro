@@ -62,7 +62,6 @@ const featured = await getEntries(exhibition.data.featured);
               <Image
                 src={src}
                 alt={`${name} poster`}
-                class="grey"
                 {...responsiveWidths(src, [400, 800])}
                 sizes="400px"
                 quality={90}
@@ -85,7 +84,7 @@ const featured = await getEntries(exhibition.data.featured);
               <Image
                 src={src}
                 alt={`${name} installation`}
-                class="art-img grey"
+                class="art-img"
                 {...coverWidths(src, 288)}
                 quality={90}
                 loading="lazy"

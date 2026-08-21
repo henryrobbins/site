@@ -28,6 +28,7 @@ const projectCollection = defineCollection({
       description: z.string(),
       github: z.string().optional(),
       website: z.string().optional(),
+      selected: z.boolean().default(false),
     }),
 });
 
@@ -49,6 +50,7 @@ const researchCollection = defineCollection({
       github: z.string().optional(),
       website: z.string().optional(),
       projects: z.array(reference("projects")).optional(),
+      selected: z.boolean().default(false),
     }),
 });
 
@@ -91,6 +93,7 @@ export const artworkCollection = defineCollection({
         .nullable(),
       images: z.record(z.string(), image()).optional().nullable(),
       videos: z.record(z.string(), z.number()).optional().nullable(),
+      selected: z.boolean().default(false),
     }),
 });
 

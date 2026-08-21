@@ -18,7 +18,7 @@ const links = researchLinks(research.data);
 
 <div class="research-row">
   <div>
-    <div class="cell-year">{date.getUTCFullYear()} · {name}</div>
+    <div class="cell-year">{date.getUTCFullYear()} · {venue}</div>
     {
       href ? (
         <a class="research-title" href={href}>
@@ -38,7 +38,6 @@ const links = researchLinks(research.data);
         ))
       }
     </div>
-    <div class="research-venue">{venue}</div>
     <div class="research-desc">{description}</div>
     <LinkGroup links={links} class="research-links" />
   </div>
@@ -48,7 +47,6 @@ const links = researchLinks(research.data);
         <Image
           src={image}
           alt={`Figure from ${name}`}
-          class="grey"
           {...responsiveWidths(image, [200, 400])}
           sizes="200px"
           quality={90}

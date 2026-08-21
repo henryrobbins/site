@@ -94,6 +94,12 @@ a {
   display: flex;
   flex-direction: column;
   gap: 28px;
+  /* The rail holds the viewport: the name and nav stay at the top, the
+     contact block at the bottom, however long the content column runs. */
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .rail-name {
@@ -110,13 +116,6 @@ a {
   color: var(--muted);
   margin-top: 8px;
   line-height: 1.55;
-}
-
-.rail-photo {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.05);
 }
 
 .nav {
@@ -181,6 +180,11 @@ a {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  /* Collapse the top rule onto the rule the preceding block already drew,
+     so a section boundary never renders as two stacked lines. */
+  margin-top: -1px;
 }
 
 .label-bar.is-wide {
@@ -188,17 +192,6 @@ a {
   padding-right: var(--pad-wide);
 }
 
-.label-bar.rule-line {
-  border-bottom: 1px solid var(--line);
-}
-
-.label-bar.rule-hair {
-  border-bottom: 1px solid var(--hair);
-}
-
-.label-bar.rule-top {
-  border-top: 1px solid var(--line);
-}
 
 .label-short {
   display: none;
@@ -321,7 +314,6 @@ a {
 .exhibition-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-bottom: 1px solid var(--line);
 }
 
 .exhibition-cell {
@@ -355,9 +347,9 @@ a {
 /* ------------------------------------------------------------- greyscale -- */
 
 /*
- * Every image on the site is desaturated. On pointer devices an image returns
- * to color on hover; on touch devices color follows scroll position instead,
- * driven by the observer in Layout.astro.
+ * Images are shown in color. A component that opts into `.grey` is desaturated
+ * instead, returning to color on hover; on touch devices, where there is no
+ * hover, color follows scroll position, driven by the observer in Layout.astro.
  */
 .grey {
   filter: grayscale(1);
@@ -446,8 +438,7 @@ a {
   margin-top: 4px;
 }
 
-.research-authors,
-.research-venue {
+.research-authors {
   font-family: var(--mono);
   font-size: 12px;
   color: var(--muted);
@@ -674,6 +665,9 @@ a {
     border-right: 0;
     padding: 0;
     display: block;
+    position: static;
+    height: auto;
+    overflow: visible;
   }
 
   .rail-head {
@@ -687,7 +681,6 @@ a {
     line-height: 1.5;
   }
 
-  .rail-photo,
   .rail .contact {
     display: none;
   }

@@ -5,9 +5,11 @@ import { responsiveWidths } from "@/utils/images";
 
 interface Props {
   exhibition: CollectionEntry<"exhibitions">;
+  /** Desaturate the thumbnail until it is hovered (or scrolled to, on touch). */
+  grey?: boolean;
 }
 
-const { exhibition } = Astro.props;
+const { exhibition, grey = false } = Astro.props;
 const { id, name, year, city, thumbnail } = exhibition.data;
 ---
 
@@ -15,7 +17,7 @@ const { id, name, year, city, thumbnail } = exhibition.data;
   <Image
     src={thumbnail}
     alt={name}
-    class="exhibition-img grey"
+    class:list={["exhibition-img", grey && "grey"]}
     {...responsiveWidths(thumbnail, [390, 780])}
     sizes="(max-width: 899px) 100vw, 288px"
     quality={90}

@@ -33,12 +33,3 @@ export function researchLinks(data: {
     ["site", data.website],
   ]);
 }
-
-/** Where a title links when the entry has no detail page of its own. */
-export function primaryHref(data: {
-  website?: string;
-  github?: string;
-  paper?: string;
-}): string | undefined {
-  return data.website ?? data.github ?? data.paper;
-}

@@ -5,9 +5,9 @@ import profileImage from "@/assets/images/profile.jpeg";
 import Layout from "./Layout.astro";
 import ArtCell from "@components/ArtCell.astro";
 import ContactLinks from "@components/ContactLinks.astro";
+import ProjectCell from "@components/ProjectCell.astro";
+import ResearchRow from "@components/ResearchRow.astro";
 import SectionLabel from "@components/SectionLabel.astro";
-import WorkRow from "@components/WorkRow.astro";
-import { primaryHref, projectLinks, researchLinks } from "@/utils/links";
 import { responsiveWidths } from "@/utils/images";
 
 // The index is a curated view: entries opt in with `selected: true` in their
@@ -15,31 +15,12 @@ import { responsiveWidths } from "@/utils/images";
 const byDate = <T extends { data: { date: Date } }>(a: T, b: T) =>
   b.data.date.getTime() - a.data.date.getTime();
 
-const selected = (collection: "projects" | "research" | "artwork") =>
-  getCollection(collection, ({ data }) => data.selected);
+const selected = async (collection: "projects" | "research" | "artwork") =>
+  (await getCollection(collection, ({ data }) => data.selected)).sort(byDate);
 
-const work = [
-  ...(await selected("projects")).map((entry) => ({
-    entry,
-    links: projectLinks(entry.data),
-  })),
-  ...(await selected("research")).map((entry) => ({
-    entry,
-    // The link column is one line wide. Projects fit `github · site`; for a
-    // paper the one link worth keeping is the paper itself.
-    links: researchLinks(entry.data).slice(0, 1),
-  })),
-]
-  .sort((a, b) => byDate(a.entry, b.entry))
-  .map(({ entry, links }) => ({
-    year: entry.data.date.getUTCFullYear(),
-    name: entry.data.name,
-    description: entry.data.description,
-    href: primaryHref(entry.data),
-    links,
-  }));
-
-const images = (await selected("artwork")).sort(byDate);
+const research = await selected("research");
+const projects = await selected("projects");
+const images = await selected("artwork");
 ---
 
 <Layout title="Henry Robbins" description="An overview of my work and interests" active="home">
@@ -59,16 +40,13 @@ const images = (await selected("artwork")).sort(byDate);
 
   <ContactLinks class="contact-inline" />
 
-  <SectionLabel
-    label="Selected work"
-    action={{ href: "/projects", label: "all projects", mobileLabel: "all" }}
-  />
-  {work.map((entry) => <WorkRow {...entry} />)}
+  <SectionLabel label="Selected work" />
+  {research.map((entry) => <ResearchRow research={entry} />)}
 
-  <SectionLabel
-    label="Selected images"
-    action={{ href: "/artwork", label: "all art", mobileLabel: "all" }}
-  />
+  <div class="cell-grid">
+    {projects.map((project) => <ProjectCell project={project} />)}
+  </div>
+
   <div class="art-grid">
     {images.map((entry) => <ArtCell artwork={entry} box={216} />)}
   </div>

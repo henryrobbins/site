@@ -221,10 +221,6 @@ a {
 
 .label-bar {
   padding: 13px var(--pad);
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.16em;
@@ -239,18 +235,6 @@ a {
   margin-top: -1px;
   position: relative;
   z-index: 1;
-}
-
-.label-short {
-  display: none;
-}
-
-.label-bar a {
-  font-size: 12.5px;
-  letter-spacing: normal;
-  text-transform: none;
-  border-bottom: 1px solid var(--hair);
-  white-space: nowrap;
 }
 
 /* ---------------------------------------------------------------- links -- */
@@ -541,46 +525,6 @@ a {
 
 /* ----------------------------------------------------------------- rows -- */
 
-.row-year {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--muted);
-}
-
-/* Selected work, on the index. */
-.work-row {
-  display: grid;
-  grid-template-columns: 56px 1fr 112px;
-  align-items: baseline;
-  padding: 14px var(--pad);
-  border-bottom: 1px solid var(--hair);
-}
-
-.work-body {
-  padding-right: 24px;
-  font-size: 16px;
-  font-weight: 300;
-}
-
-.work-title {
-  border-bottom: 1px solid var(--link);
-}
-
-.work-desc {
-  color: var(--muted);
-}
-
-.work-desc::before {
-  content: " \2014 ";
-}
-
-.work-links {
-  font-size: 13px;
-  justify-content: flex-end;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-}
-
 /* Research. */
 .research-row {
   display: grid;
@@ -588,6 +532,9 @@ a {
   gap: 28px;
   align-items: start;
   padding: 24px var(--pad);
+  /* Closed on the right like the cells: the rail draws the left edge and the
+     bar or row above draws the top, so this is the one side left open. */
+  border-right: 1px solid var(--hair);
   border-bottom: 1px solid var(--hair);
 }
 
@@ -954,18 +901,6 @@ a {
     font-size: 11.5px;
   }
 
-  .label-bar a {
-    font-size: 12px;
-  }
-
-  .label-full {
-    display: none;
-  }
-
-  .label-short {
-    display: inline;
-  }
-
   .cell-grid,
   .exhibition-grid {
     display: block;
@@ -1015,50 +950,11 @@ a {
     margin-top: 0;
   }
 
-  /* `display: contents` lifts the body's children into the row's grid so the
-     title and year can share a baseline row with the rest stacked below. */
-  .work-row {
-    grid-template-columns: 1fr auto;
-    row-gap: 6px;
-    padding: 14px 20px;
-  }
-
-  .work-body {
-    display: contents;
-  }
-
-  .work-title {
-    grid-area: 1 / 1;
-    font-weight: 500;
-    border-bottom: 0;
-  }
-
-  .row-year {
-    grid-area: 1 / 2;
-    font-size: 12px;
-  }
-
-  .work-desc {
-    grid-area: 2 / 1 / auto / -1;
-    font-size: 14px;
-    line-height: 1.5;
-  }
-
-  .work-desc::before {
-    content: none;
-  }
-
-  .work-links {
-    grid-area: 3 / 1 / auto / -1;
-    justify-content: flex-start;
-    font-size: 12px;
-    margin-top: 2px;
-  }
-
   .research-row {
     grid-template-columns: 1fr;
     gap: 14px;
     padding: 18px 20px;
+    border-right: 0;
   }
 
   .research-fig {

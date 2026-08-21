@@ -1,21 +1,9 @@
 ---
 interface Props {
   label: string;
-  /** Optional right-aligned link, e.g. `all projects` beside SELECTED WORK. */
-  action?: { href: string; label: string; mobileLabel?: string };
 }
 
-const { label, action } = Astro.props;
+const { label } = Astro.props;
 ---
 
-<div class="label-bar">
-  <span>{label}</span>
-  {
-    action && (
-      <a href={action.href}>
-        <span class="label-full">{action.label}</span>
-        <span class="label-short">{action.mobileLabel ?? action.label}</span>
-      </a>
-    )
-  }
-</div>
+<div class="label-bar">{label}</div>

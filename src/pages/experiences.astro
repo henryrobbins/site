@@ -15,7 +15,8 @@ const experiences = await getCollection("experiences");
       experiences
         .sort(
           (a, b) =>
-            new Date(b.data.end).getTime() - new Date(a.data.end).getTime()
+            new Date(b.data.end).getTime() - new Date(a.data.end).getTime() ||
+            b.id.localeCompare(a.id)
         )
         .map((experience) => <ExperienceCard experience={experience} />)
     }

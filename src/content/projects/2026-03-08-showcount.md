@@ -12,7 +12,7 @@ website: https://showcount.com
 
 I really like live music. I've been tracking the shows I attend on a [personal website](https://love-music-will-travel.henryrobbins.com) for several years. Recently, I created [showcount.com](https://showcount.com), a website for tracking and sharing concert attendance. It has all the bells and whistles as my prior website, but anyone can make an account and share their list with friends.
 
-I'm aware there are many other concert and setlist tracking websites ([Phantasy Tour][1], [Concert Archives][2], [Songfish][3], [Setlist.fm][4]). I built showcount because I wanted full creative control and full access / ownership of my data. I also didn't want to manually upload my shows to one of the other platforms -- showcount has a built-in AI import option that parses arbitrary data formats.
+I'm aware there are many other concert and setlist tracking websites ([Phantasy Tour][1], [Concert Archives][2], [Songfish][3], [Setlist.fm][4]). I built showcount because I wanted full creative control and full access / ownership of my data. I also didn't want to manually upload my shows to one of the other platforms --- showcount has a built-in AI import option that parses arbitrary data formats.
 
 This was also my first experiment with vibe-coding and harness-engineering (see my [HN Post][5]).
 

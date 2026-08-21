@@ -1,17 +1,15 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { render } from "astro:content";
-import { Image } from "astro:assets";
 import LinkGroup from "@components/LinkGroup.astro";
 import { projectLinks } from "@/utils/links";
-import { responsiveWidths } from "@/utils/images";
 
 interface Props {
   project: CollectionEntry<"projects">;
 }
 
 const { project } = Astro.props;
-const { name, date, description, logo } = project.data;
+const { name, date, description } = project.data;
 
 const links = projectLinks(project.data);
 
@@ -31,18 +29,6 @@ const hasBody = Boolean(project.body?.trim());
         <div class="cell-more">
           <div class="cell-more-clip">
             <div class="cell-more-body prose">
-              {/* Loaded up front: the image sits in a collapsed box, so it
-                  is never in the viewport and a lazy fetch would not start
-                  until the cell was already open. */}
-              <Image
-                src={logo.color}
-                alt={`${name} logo`}
-                class="cell-logo"
-                {...responsiveWidths(logo.color, [160, 320])}
-                sizes="160px"
-                quality={90}
-                loading="eager"
-              />
               <Content />
             </div>
           </div>

@@ -282,29 +282,6 @@ a {
   grid-row: span 2;
 }
 
-/* The wordmarks vary from 1.7:1 to 6:1, so the logo is boxed and contained
-   rather than sized on one axis. It is lifted out of the revealed block into
-   the cell's top-right corner. */
-.cell-more .cell-logo {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: auto;
-  height: 32px;
-  max-width: 160px;
-  object-fit: contain;
-  object-position: right center;
-  opacity: 0;
-}
-
-.cell.is-open .cell-more .cell-logo {
-  opacity: 1;
-}
-
-.cell.is-open .cell-head {
-  padding-right: 176px;
-}
-
 .cell-body {
   flex: 1;
 }
@@ -947,19 +924,6 @@ a {
 
   .cell-title {
     margin-top: 0;
-  }
-
-  /* In flow, the logo is clipped along with the rest of the description. */
-  .cell-more .cell-logo {
-    position: static;
-    height: 30px;
-    max-width: 150px;
-    object-position: left center;
-    opacity: 1;
-  }
-
-  .cell.is-open .cell-head {
-    padding-right: 0;
   }
 
   .cell-desc {

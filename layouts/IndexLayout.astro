@@ -71,8 +71,12 @@ const images = await selected("artwork");
     filter: grayscale(1) contrast(1.05);
   }
 
+  /* Set a step below the shared prose size, to sit closer to the 14 to 15px
+     type used by the rows, cells, and captions further down the page. */
   .bio-text {
     min-width: 0;
+    font-size: 15.5px;
+    line-height: 1.7;
   }
 
   @media (max-width: 899px) {
@@ -86,6 +90,10 @@ const images = await selected("artwork");
     .bio-photo {
       width: 176px;
       align-self: center;
+    }
+
+    .bio-text {
+      font-size: 15px;
     }
   }
 </style>

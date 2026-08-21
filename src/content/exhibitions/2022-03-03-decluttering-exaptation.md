@@ -40,12 +40,12 @@ work:
 thumbnail: ../../assets/images/decluttering_exaptation/me_taken_by_Nasha.jpeg
 ---
 
-*“Featuring work created by Khaly Durst and Henry Robbins, “decluttering,
-exaptation” explores the limits of digital image-making through the creation
+*"Featuring work created by Khaly Durst and Henry Robbins, "decluttering,
+exaptation" explores the limits of digital image-making through the creation
 of new tools and workflows. With the use of
 [dmtools](https://dmtools.henryrobbins.com/en/latest/), a software developed
 by Henry Robbins, both artists work towards destructing the digital image
-through the use of their own workflows and code.”*
+through the use of their own workflows and code."*
 
 The exhibition features work created by both artists to explore the limits of
 digital image-making through the creation of new tools and the breaking of

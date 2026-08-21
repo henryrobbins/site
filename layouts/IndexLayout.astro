@@ -78,10 +78,10 @@ const images = (await selected("artwork")).sort(byDate);
 
 <style>
   /* The photo and the text are columns: the text is set beside the photo
-     rather than wrapping beneath it. */
+     rather than wrapping beneath it, and centered against it. */
   .bio {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 26px;
     padding: 44px var(--pad-wide) 40px;
     border-bottom: 1px solid var(--line);

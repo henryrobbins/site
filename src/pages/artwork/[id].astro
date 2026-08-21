@@ -51,18 +51,22 @@ const FIGURE_SIZES = "(max-width: 864px) 75vw, 648px";
     </div>
 
     <!-- Exhibition List -->
-    <h2 class="text-lg font-semibold text-center">EXHIBITIONS</h2>
-    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
-      {
-        featuredExhibitions.map((exhibition) => (
-          <div class="flex justify-center">
-            <Link href={`/exhibition/${exhibition.data.id}`}>
-              <ExhibitionCard exhibition={exhibition} />
-            </Link>
+    {
+      featuredExhibitions.length > 0 && (
+        <>
+          <h2 class="text-lg font-semibold text-center">EXHIBITIONS</h2>
+          <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
+            {featuredExhibitions.map((exhibition) => (
+              <div class="flex justify-center">
+                <Link href={`/exhibition/${exhibition.data.id}`}>
+                  <ExhibitionCard exhibition={exhibition} />
+                </Link>
+              </div>
+            ))}
           </div>
-        ))
-      }
-    </div>
+        </>
+      )
+    }
 
     <h2 class="text-lg font-semibold text-center">WORK</h2>
     <div class="flex flex-col items-center">

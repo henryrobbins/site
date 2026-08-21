@@ -74,6 +74,20 @@ a {
   text-decoration: none;
 }
 
+/*
+ * Links thicken under the cursor. `-webkit-text-stroke` is used rather than
+ * `font-weight` because it leaves glyph advance widths alone: a link set in
+ * the middle of a paragraph would otherwise reflow the line under the cursor.
+ */
+@media (hover: hover) {
+  a:hover,
+  .cell-toggle:hover {
+    /* Set in `em` so the 12px mono labels are not stroked as heavily as the
+       16.5px prose. Roughly the weight of a 300 to 700 jump. */
+    -webkit-text-stroke: 0.045em currentColor;
+  }
+}
+
 /* ---------------------------------------------------------------- shell -- */
 
 .shell {
@@ -143,6 +157,37 @@ a {
 
 .nav-item.is-active > span {
   border-bottom: 1px solid currentColor;
+}
+
+/* The sub-item hangs off its nav item like a tree branch, so the rule that
+   would otherwise separate the two is dropped. */
+.nav-item.is-active:has(+ .nav-sub) {
+  border-bottom: 0;
+}
+
+.nav-sub {
+  padding: 2px 0 10px;
+  border-bottom: 1px solid var(--hair);
+  color: var(--muted);
+  font-size: 12.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nav-sub::before {
+  content: "└─ ";
+}
+
+/* The sub-item is the page actually being viewed, so it carries the current
+   marker; its nav item only names the section it sits under. */
+.nav-sub > span {
+  color: var(--ink);
+  border-bottom: 1px solid currentColor;
+}
+
+.nav-item.is-active:has(+ .nav-sub) > span {
+  border-bottom: 0;
 }
 
 .contact {
@@ -230,9 +275,13 @@ a {
 .cell-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  /* An open cell spans two tracks; dense packing backfills the gap it would
+     otherwise leave behind. With every cell closed this is a no-op. */
+  grid-auto-flow: dense;
 }
 
 .cell {
+  position: relative;
   border-right: 1px solid var(--hair);
   border-bottom: 1px solid var(--hair);
   padding: 20px;
@@ -242,8 +291,106 @@ a {
   min-height: 150px;
 }
 
+.cell.is-open {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* The wordmarks vary from 1.7:1 to 6:1, so the logo is boxed and contained
+   rather than sized on one axis. It is lifted out of the revealed block into
+   the cell's top-right corner. */
+.cell-more .cell-logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: auto;
+  height: 32px;
+  max-width: 160px;
+  object-fit: contain;
+  object-position: right center;
+  opacity: 0;
+}
+
+.cell.is-open .cell-more .cell-logo {
+  opacity: 1;
+}
+
+.cell.is-open .cell-head {
+  padding-right: 176px;
+}
+
 .cell-body {
   flex: 1;
+}
+
+/*
+ * The description slides open on `height`, which the script sets to a
+ * measured length and then releases to `auto`. Interpolating a `0fr`/`1fr`
+ * grid track needs no script but is stepped rather than smooth on mobile
+ * Safari, which is what this panel is mostly read on.
+ */
+.cell-more {
+  height: 0;
+  overflow: hidden;
+  transition: height 260ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Establishes a block formatting context, so the body's top margin is held
+   inside the box being measured rather than collapsing out of it. */
+.cell-more-clip {
+  overflow: hidden;
+}
+
+.cell-more-body.prose {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--hair);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.cell-more-body.prose > * + * {
+  margin-top: 10px;
+}
+
+.cell-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cell-toggle {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 12px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.cell-toggle .toggle-open,
+.cell-toggle[aria-expanded="true"] .toggle-closed {
+  display: none;
+}
+
+.cell-toggle[aria-expanded="true"] .toggle-open {
+  display: inline;
+}
+
+.toggle-mark {
+  display: inline-block;
+  font-size: 13px;
+  transition: transform 160ms ease;
+}
+
+.cell-toggle[aria-expanded="true"] .toggle-mark {
+  transform: rotate(45deg);
 }
 
 .cell-year {
@@ -280,8 +427,27 @@ a {
 
 .art-cell {
   display: block;
+  position: relative;
   border-right: 1px solid var(--hair);
   border-bottom: 1px solid var(--hair);
+}
+
+/* A hovered cell grows out of the sheet. It needs an opaque ground and a
+   lift, or it reads as overlapping its neighbours' rules rather than
+   sitting above them. Only cells that are links grow: the grid geometry is
+   also used for installation shots, which lead nowhere. */
+@media (hover: hover) {
+  a.art-cell,
+  a.exhibition-cell {
+    transition: transform 160ms ease;
+  }
+
+  a.art-cell:hover,
+  a.exhibition-cell:hover {
+    transform: scale(1.03);
+    background: var(--bg);
+    z-index: 2;
+  }
 }
 
 .art-img {
@@ -321,6 +487,7 @@ a {
 
 .exhibition-cell {
   display: block;
+  position: relative;
   border-right: 1px solid var(--hair);
 }
 
@@ -459,8 +626,38 @@ a {
   margin-top: 8px;
 }
 
-.research-links {
+.research-foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
   margin-top: 12px;
+}
+
+/* Mirrors the project cells: the abstract slides open on a measured height,
+   released to `auto` by the script once the transition lands. */
+.research-more {
+  height: 0;
+  overflow: hidden;
+  transition: height 260ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Establishes a block formatting context, so the abstract's top margin is
+   held inside the box being measured rather than collapsing out of it. */
+.research-more-clip {
+  overflow: hidden;
+}
+
+.research-abstract.prose {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--hair);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.research-abstract.prose > * + * {
+  margin-top: 10px;
 }
 
 /* Experience. */
@@ -484,6 +681,19 @@ a {
   font-weight: 500;
 }
 
+/* The whole row is the link, so the arrow carries the affordance: it is
+   always drawn, and slides under the cursor. */
+.exp-arrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  margin-left: 8px;
+  display: inline-block;
+  transition:
+    transform 160ms ease,
+    color 160ms ease;
+}
+
 .exp-role {
   font-size: 14px;
   font-weight: 300;
@@ -491,8 +701,32 @@ a {
   margin-top: 4px;
 }
 
-.exp-links {
-  margin-top: 8px;
+@media (hover: hover) {
+  /* The global rule would stroke every word in the row; only the title and
+     the arrow answer the cursor. */
+  a.exp-row:hover {
+    -webkit-text-stroke: 0;
+  }
+
+  a.exp-row:hover .exp-title {
+    -webkit-text-stroke: 0.045em currentColor;
+  }
+
+  a.exp-row:hover .exp-arrow {
+    color: var(--ink);
+    transform: translateX(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell-more,
+  .research-more,
+  a.art-cell,
+  a.exhibition-cell,
+  .exp-arrow,
+  .toggle-mark {
+    transition: none;
+  }
 }
 
 /* ---------------------------------------------------------------- prose -- */
@@ -706,6 +940,11 @@ a {
     padding-bottom: 2px;
   }
 
+  /* The nav is a single row on mobile; there is no column to indent into. */
+  .nav-sub {
+    display: none;
+  }
+
   .contact-inline {
     display: flex;
   }
@@ -757,6 +996,19 @@ a {
 
   .cell-title {
     margin-top: 0;
+  }
+
+  /* In flow, the logo is clipped along with the rest of the description. */
+  .cell-more .cell-logo {
+    position: static;
+    height: 30px;
+    max-width: 150px;
+    object-position: left center;
+    opacity: 1;
+  }
+
+  .cell.is-open .cell-head {
+    padding-right: 0;
   }
 
   .cell-desc {
@@ -837,10 +1089,6 @@ a {
     margin-top: 0;
   }
 
-  .exp-links {
-    grid-area: 3 / 1 / auto / -1;
-    margin-top: 4px;
-  }
 
   .art-grid,
   .art-grid.is-three {

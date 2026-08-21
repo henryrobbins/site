@@ -7,12 +7,15 @@ export interface Props {
   description?: string;
   /** Nav item to mark as current. */
   active?: "home" | "projects" | "research" | "art" | "experience";
+  /** Name of the entry being viewed, indented under the current nav item. */
+  sub?: string;
 }
 
 const {
   title,
   description = "The work of Henry Robbins.",
   active,
+  sub,
 } = Astro.props;
 
 const navLinks = [
@@ -54,12 +57,19 @@ const ROLE = "PhD student, Management Science & Engineering, Stanford";
         <nav class="nav">
           {
             navLinks.map(({ key, href, label }) => (
-              <a
-                href={href}
-                class:list={["nav-item", key === active && "is-active"]}
-              >
-                <span>{label}</span>
-              </a>
+              <>
+                <a
+                  href={href}
+                  class:list={["nav-item", key === active && "is-active"]}
+                >
+                  <span>{label}</span>
+                </a>
+                {sub && key === active && (
+                  <div class="nav-sub">
+                    <span>{sub}</span>
+                  </div>
+                )}
+              </>
             ))
           }
         </nav>

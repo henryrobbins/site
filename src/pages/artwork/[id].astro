@@ -31,7 +31,12 @@ const PLATE_WIDTHS = [768, 1536];
 const PLATE_SIZES = "(max-width: 899px) calc(100vw - 40px), 768px";
 ---
 
-<Layout title={title} description={`${title} (${year}) — ${medium}`} active="art">
+<Layout
+  title={title}
+  description={`${title} (${year}) — ${medium}`}
+  active="art"
+  sub={title}
+>
   <div class="detail-head">
     <div class="detail-kicker">Artwork</div>
     <h1 class="detail-title">{title}</h1>

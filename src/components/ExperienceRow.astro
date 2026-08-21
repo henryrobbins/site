@@ -1,14 +1,12 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import LinkGroup from "@components/LinkGroup.astro";
 
 interface Props {
   experience: CollectionEntry<"experiences">;
 }
 
 const { experience } = Astro.props;
-const { id, name, role, company, start, end, github, github_link } =
-  experience.data;
+const { id, name, role, company, start, end } = experience.data;
 
 const month = (date: Date) =>
   date.toLocaleDateString("en-US", {
@@ -16,15 +14,15 @@ const month = (date: Date) =>
     year: "numeric",
     timeZone: "UTC",
   });
-
-const links = github_link ? [{ href: github_link, label: github ?? "github" }] : [];
 ---
 
-<div class="exp-row">
+<a class="exp-row" href={`/experiences/${id}`}>
   <div class="exp-body">
-    <a class="exp-title" href={`/experiences/${id}`}>{name}</a>
+    <div class="exp-title">
+      {name}
+      <span class="exp-arrow" aria-hidden="true">→</span>
+    </div>
     <div class="exp-role">{role} · {company}</div>
-    {links.length > 0 && <LinkGroup links={links} class="exp-links" />}
   </div>
   <div class="exp-dates">{month(start)} – {month(end)}</div>
-</div>
+</a>

@@ -21,7 +21,12 @@ const { Content } = await render(exhibition);
 const featured = await getEntries(exhibition.data.featured);
 ---
 
-<Layout title={name} description={`${name} — ${venue}, ${city}`} active="art">
+<Layout
+  title={name}
+  description={`${name} — ${venue}, ${city}`}
+  active="art"
+  sub={name}
+>
   <div class="detail-head">
     <div class="detail-kicker">Exhibition</div>
     <h1 class="detail-title">{name}</h1>

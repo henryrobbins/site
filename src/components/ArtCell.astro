@@ -13,9 +13,9 @@ const { artwork, box } = Astro.props;
 const { thumbnail, title, date } = artwork.data;
 ---
 
-{
-  thumbnail && (
-    <a class="art-cell" href={`/artwork/${artwork.data.id}`}>
+<a class="art-cell" href={`/artwork/${artwork.data.id}`}>
+  {
+    thumbnail ? (
       <Image
         src={thumbnail}
         alt={title}
@@ -24,10 +24,14 @@ const { thumbnail, title, date } = artwork.data;
         quality={90}
         loading="lazy"
       />
-      <div class="art-cap">
-        <span class="title">{title}</span>
-        <span class="year">{date.getUTCFullYear()}</span>
-      </div>
-    </a>
-  )
-}
+    ) : (
+      /* Pieces that exist only as video have no representative still yet; the
+         cell holds its place in the sheet with an empty square. */
+      <div class="art-img" />
+    )
+  }
+  <div class="art-cap">
+    <span class="title">{title}</span>
+    <span class="year">{date.getUTCFullYear()}</span>
+  </div>
+</a>

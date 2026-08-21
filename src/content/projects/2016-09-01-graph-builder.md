@@ -6,7 +6,7 @@ logo:
     color: ../../assets/images/logos/graph_builder_logo_color.png
     dark: ../../assets/images/logos/graph_builder_logo_dark.png
 sponsors: []
-description: Constructing and analyzing graphs
+description: A Java program for constructing and analyzing graphs
 github: https://github.com/henryrobbins/graph-builder
 ---
 

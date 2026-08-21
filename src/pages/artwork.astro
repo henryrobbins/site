@@ -9,14 +9,10 @@ const exhibitions = (await getCollection("exhibitions")).sort(
   (a, b) => b.data.year - a.data.year || b.id.localeCompare(a.id),
 );
 
-// The contact sheet shows one representative image per artwork, so pieces that
-// exist only as video are left out.
-const artwork = (await getCollection("artwork"))
-  .filter((entry) => entry.data.thumbnail)
-  .sort(
-    (a, b) =>
-      b.data.date.getTime() - a.data.date.getTime() || b.id.localeCompare(a.id),
-  );
+const artwork = (await getCollection("artwork")).sort(
+  (a, b) =>
+    b.data.date.getTime() - a.data.date.getTime() || b.id.localeCompare(a.id),
+);
 ---
 
 <Layout

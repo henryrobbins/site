@@ -1,10 +1,9 @@
 ---
-import { getCollection, render } from "astro:content";
-import Layout from "../../../layouts/Layout.astro";
-import { Card, Link } from "@heroui/react";
+import { getCollection, getEntries, render } from "astro:content";
 import { Image } from "astro:assets";
-import { getEntries } from "astro:content";
-import ArtworkCard from "@/components/ArtworkCard.astro";
+import Layout from "../../../layouts/Layout.astro";
+import ArtCell from "@components/ArtCell.astro";
+import SectionLabel from "@components/SectionLabel.astro";
 import { coverWidths, responsiveWidths } from "@/utils/images";
 
 export async function getStaticPaths() {
@@ -16,75 +15,116 @@ export async function getStaticPaths() {
 }
 
 const { exhibition } = Astro.props;
+const { name, year, venue, city, posters, work } = exhibition.data;
 const { Content } = await render(exhibition);
 
-const featuredWork = await getEntries(exhibition.data.featured);
+const featured = await getEntries(exhibition.data.featured);
 ---
 
-<Layout title={exhibition.data.name} description={"TODO"}>
-  <div class="flex flex-col gap-6">
-    <h1 class="text-lg font-semibold text-center">
-      {exhibition.data.name}{" "}
-      {`(${exhibition.data.year})`}
-    </h1>
-
-    <div class="markdown-content">
-      <Content />
-    </div>
-
-    <h2 class="text-lg font-semibold text-center">FEATURED WORK</h2>
-
-    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
-      {
-        featuredWork.map((artwork) => (
-          <div class="flex justify-center">
-            <Link href={`/artwork/${artwork.data.id}`} className="text-white">
-              <ArtworkCard artwork={artwork} />
-            </Link>
-          </div>
-        ))
-      }
-    </div>
-
-    <h2 class="text-lg font-semibold text-center pb-6">EXHIBITION POSTERS</h2>
-
-    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
-      {
-        exhibition.data.posters.map((imageSrc) => (
-            <Card radius="none" shadow="none">
-              <Image
-                src={imageSrc}
-                alt={exhibition.data.name}
-                class="max-w-sm"
-                {...responsiveWidths(imageSrc, [384, 768])}
-                sizes="(max-width: 420px) 100vw, 384px"
-                quality={90}
-                loading={"lazy"}
-              />
-            </Card>
-          ))
-      }
-    </div>
-
-    <h2 class="text-lg font-semibold text-center pb-6">IMAGES</h2>
-
-    <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
-      {
-        exhibition.data.work.map((imageSrc) => (
-            <Card radius="none" shadow="none" className="w-64 h-64">
-              <div class="absolute inset-0 overflow-hidden">
-                <Image
-                  src={imageSrc}
-                  alt={exhibition.data.name}
-                  class="w-full h-full object-cover"
-                  {...coverWidths(imageSrc, 256)}
-                  quality={90}
-                  loading={"lazy"}
-                />
-              </div>
-            </Card>
-          ))
-      }
+<Layout title={name} description={`${name} — ${venue}, ${city}`} active="art">
+  <div class="detail-head">
+    <div class="detail-kicker">Exhibition</div>
+    <h1 class="detail-title">{name}</h1>
+    <div class="detail-meta">
+      {year}<br />
+      {venue} · {city}
     </div>
   </div>
+
+  {
+    exhibition.body?.trim() && (
+      <div class="detail-body prose">
+        <Content />
+      </div>
+    )
+  }
+
+  {
+    featured.length > 0 && (
+      <>
+        <SectionLabel label="Featured work" />
+        <div class="art-grid is-three">
+          {featured.map((artwork) => (
+            <ArtCell artwork={artwork} box={288} />
+          ))}
+        </div>
+      </>
+    )
+  }
+
+  {
+    posters.length > 0 && (
+      <>
+        <SectionLabel label="Posters" />
+        <div class="poster-grid">
+          {posters.map((src) => (
+            <div class="poster">
+              <Image
+                src={src}
+                alt={`${name} poster`}
+                class="grey"
+                {...responsiveWidths(src, [400, 800])}
+                sizes="400px"
+                quality={90}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </>
+    )
+  }
+
+  {
+    work.length > 0 && (
+      <>
+        <SectionLabel label="Images" />
+        <div class="art-grid is-three">
+          {work.map((src) => (
+            <div class="art-cell">
+              <Image
+                src={src}
+                alt={`${name} installation`}
+                class="art-img grey"
+                {...coverWidths(src, 288)}
+                quality={90}
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </>
+    )
+  }
 </Layout>
+
+<style>
+  .poster-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .poster {
+    border-right: 1px solid var(--hair);
+    border-bottom: 1px solid var(--hair);
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .poster :global(img) {
+    width: auto;
+    max-width: 100%;
+    max-height: 520px;
+  }
+
+  @media (max-width: 899px) {
+    .poster-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .poster {
+      border-right: 0;
+    }
+  }
+</style>

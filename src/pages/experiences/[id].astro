@@ -1,8 +1,9 @@
 ---
-import { getCollection, render, getEntries } from "astro:content";
+import { getCollection, getEntries, render } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
-import { Link } from "@heroui/react";
-import ProjectCard from "@/components/ProjectCard.astro";
+import LinkGroup from "@components/LinkGroup.astro";
+import ProjectCell from "@components/ProjectCell.astro";
+import SectionLabel from "@components/SectionLabel.astro";
 
 export async function getStaticPaths() {
   const experiences = await getCollection("experiences");
@@ -13,60 +14,57 @@ export async function getStaticPaths() {
 }
 
 const { experience } = Astro.props;
+const { name, role, company, start, end, github, github_link } =
+  experience.data;
 const { Content } = await render(experience);
 
-const associatedProjects = await getEntries(experience.data.projects);
+const projects = await getEntries(experience.data.projects ?? []);
 
-// Format dates
-const formatDate = (date) => {
-  return new Date(date).toLocaleDateString("en-US", {
+const month = (date: Date) =>
+  date.toLocaleDateString("en-US", {
     month: "short",
     year: "numeric",
+    timeZone: "UTC",
   });
-};
 ---
 
 <Layout
-  title={experience.data.name}
-  description={`Details about ${experience.data.name}`}
+  title={name}
+  description={`${role}, ${company}`}
+  active="experience"
 >
-  <!-- Title -->
-  <h1 class="text-2xl font-semibold">{experience.data.name}</h1>
+  <div class="detail-head">
+    <div class="detail-kicker">Experience</div>
+    <h1 class="detail-title">{name}</h1>
+    <div class="detail-meta">
+      {role} · {company}<br />
+      {month(start)} – {month(end)}
+    </div>
+    {
+      github_link && (
+        <LinkGroup links={[{ href: github_link, label: github ?? "github" }]} />
+      )
+    }
+  </div>
 
-  <!-- Attributes -->
-  <p>
-    <strong>Dates</strong>: <em
-      >{formatDate(experience.data.start)} - {
-        formatDate(experience.data.end)
-      }</em
-    ><br />
-    <strong>GitHub</strong>:
-    <Link href={experience.data.github_link} isExternal>
-      {experience.data.github}
-    </Link><br />
-  </p>
-
-  <!-- Associated Project(s) -->
   {
-    associatedProjects.length > 0 && (
-      <div>
-        <strong>
-          {associatedProjects.length === 1
-            ? "Associated Project:"
-            : "Associated Projects:"}
-        </strong>
-        <div class="flex flex-row flex-wrap items-center gap-6 justify-center my-6">
-          {associatedProjects.map((project) => (
-            <ProjectCard project={project} />
-          ))}
-        </div>
+    experience.body?.trim() && (
+      <div class="detail-body prose">
+        <Content />
       </div>
     )
   }
 
-  <!-- About/Content -->
-  <div class="markdown-content">
-    <Content />
-  </div>
-  <Content />
+  {
+    projects.length > 0 && (
+      <>
+        <SectionLabel label="Projects" />
+        <div class="cell-grid">
+          {projects.map((project) => (
+            <ProjectCell project={project} />
+          ))}
+        </div>
+      </>
+    )
+  }
 </Layout>

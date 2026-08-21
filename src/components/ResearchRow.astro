@@ -1,0 +1,60 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import LinkGroup from "@components/LinkGroup.astro";
+import { researchLinks, primaryHref } from "@/utils/links";
+import { responsiveWidths } from "@/utils/images";
+
+interface Props {
+  research: CollectionEntry<"research">;
+}
+
+const { research } = Astro.props;
+const { name, title, date, authors, venue, description, image } = research.data;
+
+const href = primaryHref(research.data);
+const links = researchLinks(research.data);
+---
+
+<div class="research-row">
+  <div>
+    <div class="cell-year">{date.getUTCFullYear()} · {name}</div>
+    {
+      href ? (
+        <a class="research-title" href={href}>
+          {title}
+        </a>
+      ) : (
+        <div class="research-title">{title}</div>
+      )
+    }
+    <div class="research-authors">
+      {
+        authors.map((author, i) => (
+          <span>
+            {i > 0 && ", "}
+            {author.link ? <a href={author.link}>{author.name}</a> : author.name}
+          </span>
+        ))
+      }
+    </div>
+    <div class="research-venue">{venue}</div>
+    <div class="research-desc">{description}</div>
+    <LinkGroup links={links} class="research-links" />
+  </div>
+  {
+    image && (
+      <div class="research-fig">
+        <Image
+          src={image}
+          alt={`Figure from ${name}`}
+          class="grey"
+          {...responsiveWidths(image, [200, 400])}
+          sizes="200px"
+          quality={90}
+          loading="lazy"
+        />
+      </div>
+    )
+  }
+</div>

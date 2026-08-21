@@ -1,21 +1,22 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
+import ProjectCell from "@components/ProjectCell.astro";
+import SectionLabel from "@components/SectionLabel.astro";
 
-const projects = await getCollection("projects");
+const projects = (await getCollection("projects")).sort(
+  (a, b) =>
+    b.data.date.getTime() - a.data.date.getTime() || b.id.localeCompare(a.id),
+);
 ---
 
-<Layout title="Projects" description="A portfolio of my projects">
-  <div class="flex flex-row flex-wrap items-center gap-6 justify-center">
-    {
-      projects
-        .sort(
-          (a, b) =>
-            new Date(b.data.date).getTime() - new Date(a.data.date).getTime() ||
-            b.id.localeCompare(a.id)
-        )
-        .map((project) => <ProjectCard project={project} />)
-    }
+<Layout
+  title="Projects"
+  description="Open-source projects by Henry Robbins."
+  active="projects"
+>
+  <SectionLabel label="Projects" />
+  <div class="cell-grid">
+    {projects.map((project) => <ProjectCell project={project} />)}
   </div>
 </Layout>

@@ -59,7 +59,8 @@ export const exhibitionCollection = defineCollection({
       id: z.string(),
       name: z.string(),
       year: z.number(),
-      location: z.string(),
+      venue: z.string(),
+      city: z.string(),
       featured: z.array(reference("artwork")),
       posters: z.array(image()),
       work: z.array(image()),
@@ -77,6 +78,7 @@ export const artworkCollection = defineCollection({
       date: z.date(),
       medium: z.string(),
       link: z.string().optional(),
+      thumbnail: image().optional(),
       physical: z
         .record(
           z.string(),

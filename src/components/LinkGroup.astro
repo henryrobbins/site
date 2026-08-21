@@ -1,0 +1,23 @@
+---
+interface Props {
+  links: { href: string; label: string }[];
+  class?: string;
+}
+
+const { links, class: className } = Astro.props;
+
+// Labels are joined by a muted center dot kept off the line ends by
+// non-breaking spaces: `about · github · site`.
+const SEP = "\u00A0·\u00A0";
+---
+
+<div class:list={["link-group", className]}>
+  {
+    links.map(({ href, label }, i) => (
+      <span>
+        {i > 0 && <span class="sep">{SEP}</span>}
+        <a href={href}>{label}</a>
+      </span>
+    ))
+  }
+</div>

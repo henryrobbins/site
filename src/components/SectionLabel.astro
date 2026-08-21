@@ -1,0 +1,34 @@
+---
+interface Props {
+  label: string;
+  /** Optional right-aligned link, e.g. `all projects` beside SELECTED WORK. */
+  action?: { href: string; label: string; mobileLabel?: string };
+  /** Rule below the bar. Sections closed by a `--line` rule use "line". */
+  rule?: "line" | "hair";
+  /** Also rule the top edge with `--line`. */
+  top?: boolean;
+  /** Align with prose padding rather than the narrower grid padding. */
+  wide?: boolean;
+}
+
+const { label, action, rule = "line", top = false, wide = false } = Astro.props;
+---
+
+<div
+  class:list={[
+    "label-bar",
+    `rule-${rule}`,
+    top && "rule-top",
+    wide && "is-wide",
+  ]}
+>
+  <span>{label}</span>
+  {
+    action && (
+      <a href={action.href}>
+        <span class="label-full">{action.label}</span>
+        <span class="label-short">{action.mobileLabel ?? action.label}</span>
+      </a>
+    )
+  }
+</div>

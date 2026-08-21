@@ -5,6 +5,7 @@ title: color_matrix
 date: 2021-02-24
 medium: Netpbm (P3)
 link: https://github.com/henryrobbins/artwork/tree/master/color_matrix
+thumbnail: ../../assets/artwork/color_matrix/color_matrix.jpeg
 physical:
 images:
   color_matrix.ppm: ../../assets/artwork/color_matrix/color_matrix.jpeg

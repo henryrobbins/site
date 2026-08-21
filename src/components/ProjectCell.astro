@@ -1,0 +1,34 @@
+---
+import type { CollectionEntry } from "astro:content";
+import LinkGroup from "@components/LinkGroup.astro";
+import { projectLinks, primaryHref } from "@/utils/links";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { name, date, description } = project.data;
+
+const href = primaryHref(project.data);
+const links = projectLinks(project.data);
+---
+
+<div class="cell">
+  <div class="cell-body">
+    <div class="cell-head">
+      <div class="cell-year">{date.getUTCFullYear()}</div>
+      {
+        href ? (
+          <a class="cell-title" href={href}>
+            {name}
+          </a>
+        ) : (
+          <div class="cell-title">{name}</div>
+        )
+      }
+    </div>
+    <div class="cell-desc">{description}</div>
+  </div>
+  <LinkGroup links={links} />
+</div>

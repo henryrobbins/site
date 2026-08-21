@@ -1,0 +1,30 @@
+---
+import LinkGroup from "@components/LinkGroup.astro";
+
+interface Props {
+  year: number;
+  name: string;
+  description: string;
+  href?: string;
+  links: { href: string; label: string }[];
+}
+
+const { year, name, description, href, links } = Astro.props;
+---
+
+<div class="work-row">
+  <div class="row-year">{year}</div>
+  <div class="work-body">
+    {
+      href ? (
+        <a class="work-title" href={href}>
+          {name}
+        </a>
+      ) : (
+        <span class="work-title">{name}</span>
+      )
+    }
+    <span class="work-desc">{description}</span>
+  </div>
+  <LinkGroup links={links} class="work-links" />
+</div>

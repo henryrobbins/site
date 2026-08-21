@@ -5,6 +5,7 @@ title: composite
 date: 2021-12-19
 medium: PNG
 link: https://github.com/henryrobbins/artwork/tree/master/composite
+thumbnail: ../../assets/artwork/composite/erosion_peeling_clip_composite.jpeg
 physical:
 images:
   erosion_peeling_clip_composite.png: ../../assets/artwork/composite/erosion_peeling_clip_composite.jpeg

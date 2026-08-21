@@ -5,6 +5,7 @@ title: mother_of_all_demos
 date: 2021-02-24
 medium: Netpbm (P1)
 link: https://github.com/henryrobbins/artwork/tree/master/mother_of_all_demos
+thumbnail: ../../assets/artwork/mother_of_all_demos/mother_of_all_demos.jpeg
 physical:
 images:
   mother_of_all_demos.pbm: ../../assets/artwork/mother_of_all_demos/mother_of_all_demos.jpeg

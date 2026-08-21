@@ -6,7 +6,7 @@ logo:
     color: ../../assets/images/logos/showcount_logo_color.png
     dark: ../../assets/images/logos/showcount_logo_dark.png
 sponsors: []
-description: A website for tracking and sharing the concerts you attend
+description: Tracking and sharing the concerts you attend
 website: https://showcount.com
 ---
 

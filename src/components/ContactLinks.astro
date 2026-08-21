@@ -1,0 +1,17 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const contacts = [
+  { href: "mailto:hw.robbins@gmail.com", label: "hw.robbins@gmail.com" },
+  { href: "https://github.com/henryrobbins", label: "github/henryrobbins" },
+  { href: "https://www.linkedin.com/in/hwr26", label: "linkedin/hwr26" },
+];
+---
+
+<div class:list={["contact", className]}>
+  {contacts.map(({ href, label }) => <a href={href}>{label}</a>)}
+</div>

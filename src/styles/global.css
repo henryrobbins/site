@@ -1,250 +1,900 @@
-@import "tailwindcss";
-@plugin "../../heroui.plugin.cjs";
+/*
+ * Design system for the site: monochrome, hairline-ruled, typographically
+ * driven. No border radius, no shadows, no accent color anywhere.
+ *
+ * Two kinds of rule: `--line` separates major sections and the nav rail,
+ * `--hair` separates rows and grid cells. Never both on the same edge.
+ */
 
-@source "../../layouts/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}";
-@source "../../src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}";
-@source "../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
+:root {
+  --bg: #ffffff;
+  --ink: #111111;
+  --line: #111111;
+  --hair: #dcdcda;
+  --muted: #6b6b68;
+  --link: #cfcfcc;
 
-@custom-variant dark (&:where(.dark, .dark *));
+  --sans: "Public Sans", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-@theme {
-  --font-mono: Inconsolata, ui-monospace, SFMono-Regular, Monaco, Consolas,
-    "Liberation Mono", "Courier New", monospace;
+  /* Horizontal padding of the content column. Prose and index rows use the
+     wider value; label bars and grid-backed sections use the narrower one. */
+  --pad-wide: 44px;
+  --pad: 24px;
 }
 
-@layer base {
-  .font-mono {
-    font-weight: 500;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+dl,
+dd,
+blockquote {
+  margin: 0;
+}
+
+img,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+/* Astro emits width/height attributes on every <Image>. Those are
+   presentational hints, so without this the height is definite and the
+   `aspect-ratio` crops below are ignored. */
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------- shell -- */
+
+.shell {
+  width: min(1128px, 100%);
+  margin: 0 auto;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 264px 1fr;
+}
+
+.content {
+  min-width: 0;
+}
+
+/* ------------------------------------------------------------- nav rail -- */
+
+.rail {
+  border-right: 1px solid var(--line);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.rail-name {
+  font-family: var(--mono);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.rail-role {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.55;
+}
+
+.rail-photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--mono);
+  font-size: 14px;
+  border-top: 1px solid var(--hair);
+}
+
+.nav-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hair);
+  color: var(--muted);
+}
+
+.nav-item.is-active {
+  color: var(--ink);
+}
+
+.nav-item.is-active > span {
+  border-bottom: 1px solid currentColor;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.contact a {
+  align-self: flex-start;
+  border-bottom: 1px solid var(--hair);
+}
+
+.rail .contact {
+  margin-top: auto;
+}
+
+/* The contact block lives in the rail on desktop; on mobile the index moves
+   it inline, above the selected work. */
+.contact-inline {
+  display: none;
+  padding: 16px 20px 18px;
+  border-bottom: 1px solid var(--line);
+  gap: 10px;
+}
+
+/* ------------------------------------------------------------ label bar -- */
+
+.label-bar {
+  padding: 13px var(--pad);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.label-bar.is-wide {
+  padding-left: var(--pad-wide);
+  padding-right: var(--pad-wide);
+}
+
+.label-bar.rule-line {
+  border-bottom: 1px solid var(--line);
+}
+
+.label-bar.rule-hair {
+  border-bottom: 1px solid var(--hair);
+}
+
+.label-bar.rule-top {
+  border-top: 1px solid var(--line);
+}
+
+.label-short {
+  display: none;
+}
+
+.label-bar a {
+  font-size: 12.5px;
+  letter-spacing: normal;
+  text-transform: none;
+  border-bottom: 1px solid var(--hair);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- links -- */
+
+.link-group {
+  font-family: var(--mono);
+  font-size: 12px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.link-group .sep {
+  color: var(--muted);
+}
+
+.link-group a {
+  border-bottom: 1px solid var(--link);
+}
+
+/* ---------------------------------------------------------------- cells -- */
+
+.cell-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cell {
+  border-right: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 150px;
+}
+
+.cell-body {
+  flex: 1;
+}
+
+.cell-year {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.cell-title {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+.cell-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 6px;
+}
+
+/* ------------------------------------------------------------- art grid -- */
+
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.art-grid.is-three {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.art-cell {
+  display: block;
+  border-right: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+}
+
+.art-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.art-cap {
+  padding: 8px 12px 10px;
+  border-top: 1px solid var(--hair);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--mono);
+}
+
+.art-cap .title {
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.art-cap .year {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ----------------------------------------------------------- exhibition -- */
+
+.exhibition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid var(--line);
+}
+
+.exhibition-cell {
+  display: block;
+  border-right: 1px solid var(--hair);
+}
+
+.exhibition-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.exhibition-cap {
+  padding: 10px 14px 12px;
+  border-top: 1px solid var(--hair);
+}
+
+.exhibition-cap .name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.exhibition-cap .where {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+/* ------------------------------------------------------------- greyscale -- */
+
+/*
+ * Every image on the site is desaturated. On pointer devices an image returns
+ * to color on hover; on touch devices color follows scroll position instead,
+ * driven by the observer in Layout.astro.
+ */
+.grey {
+  filter: grayscale(1);
+  transition: filter 150ms ease;
+}
+
+@media (hover: hover) {
+  a:hover .grey,
+  .grey:hover {
+    filter: none;
   }
 }
 
-/* Global CSS for Markdown content to match HeroUI styling */
-
-/* Apply to a wrapper class to scope the styles */
-.markdown-content {
-  @apply text-foreground;
+@media (hover: none) {
+  .grey.in-focus {
+    filter: none;
+  }
 }
 
-/* Headings */
-.markdown-content h1 {
-  @apply text-4xl font-bold text-foreground mb-6 mt-8 first:mt-0;
+/* ----------------------------------------------------------------- rows -- */
+
+.row-year {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
 }
 
-.markdown-content h2 {
-  @apply text-3xl font-semibold text-foreground mb-5 mt-7;
+/* Selected work, on the index. */
+.work-row {
+  display: grid;
+  grid-template-columns: 56px 1fr 112px;
+  align-items: baseline;
+  padding: 14px var(--pad-wide);
+  border-bottom: 1px solid var(--hair);
 }
 
-.markdown-content h3 {
-  @apply text-2xl font-semibold text-foreground mb-4 mt-6;
+.work-body {
+  padding-right: 24px;
+  font-size: 16px;
+  font-weight: 300;
 }
 
-.markdown-content h4 {
-  @apply text-xl font-medium text-foreground mb-3 mt-5;
+.work-title {
+  border-bottom: 1px solid var(--link);
 }
 
-.markdown-content h5 {
-  @apply text-lg font-medium text-foreground mb-3 mt-4;
+.work-desc {
+  color: var(--muted);
 }
 
-.markdown-content h6 {
-  @apply text-base font-medium text-foreground mb-2 mt-4;
+.work-desc::before {
+  content: " \2014 ";
 }
 
-/* Paragraphs */
-.markdown-content p {
-  @apply text-foreground mb-4 leading-relaxed;
+.work-links {
+  font-size: 13px;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
-/* Links */
-.markdown-content a {
-  @apply text-primary hover:opacity-hover transition-colors duration-200;
+/* Research. */
+.research-row {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  gap: 28px;
+  align-items: start;
+  padding: 24px var(--pad-wide);
+  border-bottom: 1px solid var(--hair);
 }
 
-.markdown-content a:visited {
-  @apply text-primary-600;
+.research-fig {
+  border: 1px solid var(--hair);
+  padding: 10px;
 }
 
-/* Text formatting */
-.markdown-content strong {
-  @apply font-semibold text-foreground;
+.research-fig img {
+  width: 100%;
+  height: auto;
 }
 
-.markdown-content em {
-  @apply italic text-foreground;
+.research-title {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 4px;
 }
 
-.markdown-content mark {
-  @apply bg-warning-100 text-warning-900 px-1 rounded;
+.research-authors,
+.research-venue {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
 }
 
-.markdown-content del {
-  @apply line-through text-foreground-500;
+.research-authors {
+  margin-top: 6px;
 }
 
-.markdown-content ins {
-  @apply underline text-success-600;
+.research-authors a {
+  border-bottom: 1px solid var(--link);
 }
 
-.markdown-content small {
-  @apply text-sm text-foreground-600;
+.research-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 8px;
 }
 
-/* Lists */
-.markdown-content ul {
-  @apply list-disc list-inside mb-4 text-foreground space-y-1;
+.research-links {
+  margin-top: 12px;
 }
 
-.markdown-content ol {
-  @apply list-decimal list-inside mb-4 text-foreground space-y-1;
+/* Experience. */
+.exp-row {
+  display: grid;
+  grid-template-columns: 1fr 168px;
+  align-items: baseline;
+  padding: 18px var(--pad-wide);
+  border-bottom: 1px solid var(--hair);
 }
 
-.markdown-content li {
-  @apply text-foreground;
+.exp-dates {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--muted);
+  text-align: right;
 }
 
-/* With list-inside markers, a block-level <p> pushes the item text below the
-   marker; keep the leading paragraph of a list item on the marker's line. */
-.markdown-content li > p {
-  @apply mb-0;
+.exp-title {
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.markdown-content li > p:first-child {
-  @apply inline;
+.exp-role {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--muted);
+  margin-top: 4px;
 }
 
-.markdown-content li > ul,
-.markdown-content li > ol {
-  @apply mt-2 mb-0 ml-4;
+.exp-links {
+  margin-top: 8px;
 }
 
-/* Definition lists */
-.markdown-content dl {
-  @apply mb-4;
+/* ---------------------------------------------------------------- prose -- */
+
+.prose {
+  font-size: 16.5px;
+  font-weight: 300;
+  line-height: 1.72;
 }
 
-.markdown-content dt {
-  @apply font-semibold text-foreground mb-1;
+.prose > * + * {
+  margin-top: 18px;
 }
 
-.markdown-content dd {
-  @apply text-foreground ml-4 mb-2;
+.prose a {
+  border-bottom: 1px solid var(--link);
 }
 
-/* Blockquotes */
-.markdown-content blockquote {
-  @apply border-l-4 border-primary-300 pl-4 py-2 mb-4 italic text-foreground-700 bg-default-50 rounded-r-lg;
+.prose h2,
+.prose h3 {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 32px;
 }
 
-.markdown-content blockquote p {
-  @apply mb-2 last:mb-0;
+.prose ul,
+.prose ol {
+  padding-left: 20px;
 }
 
-.markdown-content blockquote cite {
-  @apply not-italic font-medium text-foreground-600 text-sm;
+.prose li + li {
+  margin-top: 6px;
 }
 
-/* Code */
-.markdown-content code {
-  @apply bg-default-100 text-foreground px-1.5 py-0.5 rounded text-sm font-mono border border-default-200;
+.prose blockquote {
+  padding-left: 20px;
+  border-left: 1px solid var(--hair);
+  color: var(--muted);
 }
 
-.markdown-content pre {
-  @apply bg-default-100 text-foreground p-4 rounded-lg overflow-x-auto mb-4 border border-default-200;
+.prose code {
+  font-family: var(--mono);
+  font-size: 0.9em;
 }
 
-.markdown-content pre code {
-  @apply bg-transparent border-none p-0 text-sm;
+.prose pre {
+  font-family: var(--mono);
+  font-size: 13px;
+  overflow-x: auto;
+  padding: 16px;
+  border: 1px solid var(--hair);
 }
 
-/* Tables */
-.markdown-content table {
-  @apply w-full border-collapse mb-4 text-foreground;
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--hair);
+  margin: 32px 0;
 }
 
-.markdown-content thead {
-  @apply bg-default-100;
+.prose img {
+  width: 100%;
+  height: auto;
 }
 
-.markdown-content th {
-  @apply border border-default-300 px-4 py-2 text-left font-semibold text-foreground;
+.prose sup {
+  font-size: 11px;
+  vertical-align: super;
+  line-height: 0;
 }
 
-.markdown-content td {
-  @apply border border-default-300 px-4 py-2 text-foreground;
+/* --------------------------------------------------------------- detail -- */
+
+.detail-head {
+  padding: 40px var(--pad-wide) 32px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.markdown-content tbody tr:nth-child(even) {
-  @apply bg-default-50;
+.detail-kicker {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-.markdown-content tbody tr:hover {
-  @apply bg-default-100;
+.detail-title {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
 }
 
-/* Horizontal rule */
-.markdown-content hr {
-  @apply border-0 border-t border-default-300 my-8;
+.detail-meta {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.7;
 }
 
-/* Images */
-.markdown-content img {
-  @apply max-w-full h-auto rounded-lg shadow-sm mb-4;
+.detail-meta a {
+  border-bottom: 1px solid var(--link);
 }
 
-.markdown-content figure {
-  @apply mb-4;
+.detail-body {
+  padding: 36px var(--pad-wide) 40px;
+  border-bottom: 1px solid var(--line);
 }
 
-.markdown-content figcaption {
-  @apply text-sm text-foreground-600 text-center mt-2 italic;
+/* A full-width plate: image above a hairline-ruled caption row. */
+.plate {
+  border-bottom: 1px solid var(--hair);
 }
 
-/* Keyboard keys */
-.markdown-content kbd {
-  @apply bg-default-200 text-foreground px-2 py-1 rounded text-sm font-mono border border-default-300 shadow-sm;
+.plate-img {
+  width: 100%;
+  height: auto;
 }
 
-/* Abbreviations */
-.markdown-content abbr {
-  @apply cursor-help border-b border-dotted border-foreground-400;
+.plate-cap {
+  padding: 10px var(--pad) 12px;
+  border-top: 1px solid var(--hair);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 12px;
 }
 
-/* Subscript and superscript */
-.markdown-content sub,
-.markdown-content sup {
-  @apply text-xs relative;
+.plate-cap .meta {
+  color: var(--muted);
+  white-space: nowrap;
 }
 
-.markdown-content sub {
-  @apply -bottom-0.5;
+.video-frame {
+  position: relative;
+  padding-top: 56.25%;
 }
 
-.markdown-content sup {
-  @apply -top-0.5;
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
-/* Task lists (GitHub-style) */
-.markdown-content input[type="checkbox"] {
-  @apply mr-2 accent-primary;
-}
+/* --------------------------------------------------------------- mobile -- */
 
-.markdown-content li:has(input[type="checkbox"]) {
-  @apply list-none;
-}
+@media (max-width: 899px) {
+  :root {
+    --pad-wide: 20px;
+    --pad: 20px;
+  }
 
-/* Details/Summary (collapsible content) */
-.markdown-content details {
-  @apply border border-default-200 rounded-lg mb-4 overflow-hidden;
-}
+  .shell {
+    display: block;
+    min-height: 0;
+  }
 
-.markdown-content summary {
-  @apply bg-default-100 px-4 py-2 cursor-pointer font-medium text-foreground hover:bg-default-200 transition-colors;
-}
+  .rail {
+    border-right: 0;
+    padding: 0;
+    display: block;
+  }
 
-.markdown-content details[open] summary {
-  @apply border-b border-default-200;
-}
+  .rail-head {
+    padding: 20px 20px 14px;
+    border-bottom: 1px solid var(--line);
+  }
 
-.markdown-content details > *:not(summary) {
-  @apply px-4 py-2;
+  .rail-role {
+    font-size: 12px;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  .rail-photo,
+  .rail .contact {
+    display: none;
+  }
+
+  .nav {
+    flex-direction: row;
+    gap: 18px;
+    padding: 0 20px;
+    font-size: 13px;
+    border-top: 0;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .nav-item {
+    padding: 14px 0;
+    border-bottom: 0;
+  }
+
+  .nav-item.is-active > span {
+    padding-bottom: 2px;
+  }
+
+  .contact-inline {
+    display: flex;
+  }
+
+  .label-bar {
+    padding: 12px 20px;
+    font-size: 11.5px;
+  }
+
+  .label-bar a {
+    font-size: 12px;
+  }
+
+  .label-full {
+    display: none;
+  }
+
+  .label-short {
+    display: inline;
+  }
+
+  .cell-grid,
+  .exhibition-grid {
+    display: block;
+  }
+
+  .cell {
+    border-right: 0;
+    padding: 16px 20px;
+    gap: 8px;
+    min-height: 0;
+  }
+
+  /* Title left, year right on one baseline row. `row-reverse` puts the year,
+     which comes first in the source, at the right edge. */
+  .cell-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .cell-head {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .cell-title {
+    margin-top: 0;
+  }
+
+  .cell-desc {
+    margin-top: 0;
+  }
+
+  /* `display: contents` lifts the body's children into the row's grid so the
+     title and year can share a baseline row with the rest stacked below. */
+  .work-row {
+    grid-template-columns: 1fr auto;
+    row-gap: 6px;
+    padding: 14px 20px;
+  }
+
+  .work-body {
+    display: contents;
+  }
+
+  .work-title {
+    grid-area: 1 / 1;
+    font-weight: 500;
+    border-bottom: 0;
+  }
+
+  .row-year {
+    grid-area: 1 / 2;
+    font-size: 12px;
+  }
+
+  .work-desc {
+    grid-area: 2 / 1 / auto / -1;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .work-desc::before {
+    content: none;
+  }
+
+  .work-links {
+    grid-area: 3 / 1 / auto / -1;
+    justify-content: flex-start;
+    font-size: 12px;
+    margin-top: 2px;
+  }
+
+  .research-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px 20px;
+  }
+
+  .research-fig {
+    grid-row: 1;
+  }
+
+  .exp-row {
+    grid-template-columns: 1fr auto;
+    row-gap: 4px;
+    padding: 16px 20px;
+  }
+
+  .exp-body {
+    display: contents;
+  }
+
+  .exp-title {
+    grid-area: 1 / 1;
+  }
+
+  .exp-dates {
+    grid-area: 1 / 2;
+    font-size: 12px;
+  }
+
+  .exp-role {
+    grid-area: 2 / 1 / auto / -1;
+    margin-top: 0;
+  }
+
+  .exp-links {
+    grid-area: 3 / 1 / auto / -1;
+    margin-top: 4px;
+  }
+
+  .art-grid,
+  .art-grid.is-three {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .art-cap {
+    padding: 8px 10px 10px;
+  }
+
+  .art-cap .title {
+    font-size: 11.5px;
+  }
+
+  .exhibition-cell {
+    border-right: 0;
+    border-bottom: 1px solid var(--hair);
+  }
+
+  .exhibition-img {
+    aspect-ratio: 16 / 9;
+  }
+
+  .exhibition-cap {
+    padding: 12px 20px 14px;
+  }
+
+  .exhibition-cap .name {
+    font-size: 15px;
+  }
+
+  .prose {
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .prose > * + * {
+    margin-top: 16px;
+  }
+
+  .detail-head {
+    padding: 22px 20px 20px;
+  }
+
+  .detail-title {
+    font-size: 19px;
+  }
+
+  .detail-body {
+    padding: 22px 20px 24px;
+  }
 }

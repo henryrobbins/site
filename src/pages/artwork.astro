@@ -1,35 +1,40 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import ExhibitionCard from "@/components/ExhibitionCard.astro";
-import ArtworkCard from "@/components/ArtworkCard.astro";
+import ArtCell from "@components/ArtCell.astro";
+import ExhibitionCell from "@components/ExhibitionCell.astro";
+import SectionLabel from "@components/SectionLabel.astro";
 
-const artwork = await getCollection("artwork");
-const exhibitions = await getCollection("exhibitions");
+const exhibitions = (await getCollection("exhibitions")).sort(
+  (a, b) => b.data.year - a.data.year || b.id.localeCompare(a.id),
+);
+
+// The contact sheet shows one representative image per artwork, so pieces that
+// exist only as video are left out.
+const artwork = (await getCollection("artwork"))
+  .filter((entry) => entry.data.thumbnail)
+  .sort(
+    (a, b) =>
+      b.data.date.getTime() - a.data.date.getTime() || b.id.localeCompare(a.id),
+  );
 ---
 
-<Layout title="Artwork" description="A collection of my artwork.">
-  <h2 class="text-lg font-semibold text-center pb-6">EXHIBITIONS</h2>
-  <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
+<Layout
+  title="Art"
+  description="Exhibitions and artwork by Henry Robbins."
+  active="art"
+>
+  <SectionLabel label="Exhibitions" />
+  <div class="exhibition-grid">
     {
-      exhibitions
-        .sort((a, b) => b.data.year - a.data.year || b.id.localeCompare(a.id))
-        .map((artwork) => <ExhibitionCard exhibition={artwork} />)
+      exhibitions.map((exhibition) => (
+        <ExhibitionCell exhibition={exhibition} />
+      ))
     }
   </div>
 
-  <div class="my-8"></div>
-
-  <h2 class="text-lg text-center font-semibold pb-6">WORK</h2>
-  <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
-    {
-      artwork
-        .sort(
-          (a, b) =>
-            new Date(b.data.date).getTime() - new Date(a.data.date).getTime() ||
-            b.id.localeCompare(a.id)
-        )
-        .map((artwork) => <ArtworkCard artwork={artwork} />)
-    }
+  <SectionLabel label="Work" />
+  <div class="art-grid">
+    {artwork.map((entry) => <ArtCell artwork={entry} box={216} />)}
   </div>
 </Layout>

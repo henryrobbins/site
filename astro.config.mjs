@@ -7,6 +7,9 @@ export default defineConfig({
   site: 'https://henryrobbins.com',
   vite: {
     plugins: [tailwind()],
+    server: {
+      allowedHosts: ['.ngrok-free.app'],
+    },
     resolve: {
       alias: {
         '@': '/src',

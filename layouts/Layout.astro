@@ -26,7 +26,7 @@ const navLinks = [
   { key: "experience", href: "/experiences", label: "experience" },
 ];
 
-const ROLE = "PhD student, Management Science & Engineering, Stanford";
+const ROLE = "PhD student, Stanford";
 ---
 
 <!doctype html>
@@ -49,7 +49,13 @@ const ROLE = "PhD student, Management Science & Engineering, Stanford";
       <div class="rail">
         <div class="rail-head">
           <div class="rail-name">
-            {active === "home" ? "Henry Robbins" : <a href="/">Henry Robbins</a>}
+            {
+              active === "home" ? (
+                "Henry Robbins"
+              ) : (
+                <a href="/">Henry Robbins</a>
+              )
+            }
           </div>
           <div class="rail-role">{ROLE}</div>
         </div>

@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwind from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 

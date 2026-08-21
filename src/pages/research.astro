@@ -12,7 +12,8 @@ const research = await getCollection("research");
       research
         .sort(
           (a, b) =>
-            new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+            new Date(b.data.date).getTime() - new Date(a.data.date).getTime() ||
+            b.id.localeCompare(a.id)
         )
         .map((entry) => <ResearchCard research={entry} />)
     }

@@ -5,6 +5,7 @@ import { Card, Link } from "@heroui/react";
 import { Image } from "astro:assets";
 import { getEntries } from "astro:content";
 import ArtworkCard from "@/components/ArtworkCard.astro";
+import { coverWidths, responsiveWidths } from "@/utils/images";
 
 export async function getStaticPaths() {
   const exhibitions = await getCollection("exhibitions");
@@ -18,16 +19,6 @@ const { exhibition } = Astro.props;
 const { Content } = await render(exhibition);
 
 const featuredWork = await getEntries(exhibition.data.featured);
-
-const allImages: Record<string, string> = import.meta.glob(
-  "/src/assets/**/*.{png,jpg,jpeg,webp,avif}",
-  { eager: true, import: "default" }
-);
-
-function getImage(imagePath: string): string | null {
-  const fullPath = `/src/assets/${imagePath}`;
-  return allImages[fullPath] || null;
-}
 ---
 
 <Layout title={exhibition.data.name} description={"TODO"}>
@@ -59,20 +50,19 @@ function getImage(imagePath: string): string | null {
 
     <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
       {
-        exhibition.data.posters.map((image) => {
-          const imageSrc = getImage(image);
-          return imageSrc ? (
+        exhibition.data.posters.map((imageSrc) => (
             <Card radius="none" shadow="none">
               <Image
                 src={imageSrc}
                 alt={exhibition.data.name}
                 class="max-w-sm"
-                quality={100}
+                {...responsiveWidths(imageSrc, [384, 768])}
+                sizes="(max-width: 420px) 100vw, 384px"
+                quality={90}
                 loading={"lazy"}
               />
             </Card>
-          ) : null;
-        })
+          ))
       }
     </div>
 
@@ -80,22 +70,20 @@ function getImage(imagePath: string): string | null {
 
     <div class="flex flex-row flex-wrap gap-6 items-center justify-center">
       {
-        exhibition.data.work.map((image) => {
-          const imageSrc = getImage(image);
-          return imageSrc ? (
+        exhibition.data.work.map((imageSrc) => (
             <Card radius="none" shadow="none" className="w-64 h-64">
               <div class="absolute inset-0 overflow-hidden">
                 <Image
                   src={imageSrc}
                   alt={exhibition.data.name}
                   class="w-full h-full object-cover"
-                  quality={100}
+                  {...coverWidths(imageSrc, 256)}
+                  quality={90}
                   loading={"lazy"}
                 />
               </div>
             </Card>
-          ) : null;
-        })
+          ))
       }
     </div>
   </div>

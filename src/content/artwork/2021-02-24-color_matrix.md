@@ -7,7 +7,7 @@ medium: Netpbm (P3)
 link: https://github.com/henryrobbins/artwork/tree/master/color_matrix
 physical:
 images:
-  color_matrix.ppm: artwork/color_matrix/color_matrix.jpeg
+  color_matrix.ppm: ../../assets/artwork/color_matrix/color_matrix.jpeg
 videos:
 ---
 The rows and columns of the matrix are the colors white, red, green, blue, and

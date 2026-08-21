@@ -3,8 +3,8 @@ id: graph-builder
 name: Graph Builder
 date: 2016-09-01
 logo:
-    color: images/logos/graph_builder_logo_color.png
-    dark: images/logos/graph_builder_logo_dark.png
+    color: ../../assets/images/logos/graph_builder_logo_color.png
+    dark: ../../assets/images/logos/graph_builder_logo_dark.png
 sponsors: []
 description: A Java program for constructing and analyzing graphs
 github: https://github.com/henryrobbins/graph-builder

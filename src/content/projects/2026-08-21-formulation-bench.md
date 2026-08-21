@@ -3,8 +3,8 @@ id: formulation-bench
 name: FormulationBench
 date: 2026-08-21
 logo:
-    color: images/logos/formulation_bench_logo_color.png
-    dark: images/logos/formulation_bench_logo_dark.png
+    color: ../../assets/images/logos/formulation_bench_logo_color.png
+    dark: ../../assets/images/logos/formulation_bench_logo_dark.png
 sponsors: []
 description: A dataset of MILP formulations and Lean reformulation proofs
 github: https://github.com/henryrobbins/formulation-bench

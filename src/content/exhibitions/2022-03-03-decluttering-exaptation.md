@@ -10,34 +10,34 @@ featured:
     - 2021-10-17-weierstrass
     - 2021-03-20-partition
 posters:
-    - images/decluttering_exaptation/poster.jpeg
-    - images/decluttering_exaptation/layout.jpeg
+    - ../../assets/images/decluttering_exaptation/poster.jpeg
+    - ../../assets/images/decluttering_exaptation/layout.jpeg
 work:
-    - images/decluttering_exaptation/E_wall.jpeg
-    - images/decluttering_exaptation/NE_corner_2.jpeg
-    - images/decluttering_exaptation/SE_corner.jpeg
-    - images/decluttering_exaptation/NE_corner.jpeg
-    - images/decluttering_exaptation/SW_corner.jpeg
-    - images/decluttering_exaptation/layout_on_wall.jpeg
-    - images/decluttering_exaptation/nook.jpeg
-    - images/decluttering_exaptation/me_taken_by_Nasha.jpeg
-    - images/decluttering_exaptation/work_1.jpeg
-    - images/decluttering_exaptation/works_2-4.jpeg
-    - images/decluttering_exaptation/works_5-7.jpeg
-    - images/decluttering_exaptation/works_8-13.jpeg
-    - images/decluttering_exaptation/work_14.jpeg
-    - images/decluttering_exaptation/work_15.jpeg
-    - images/decluttering_exaptation/work_16.jpeg
-    - images/decluttering_exaptation/works_17-18.jpeg
-    - images/decluttering_exaptation/works_19-20.jpeg
-    - images/decluttering_exaptation/works_21-22.jpeg
-    - images/decluttering_exaptation/works_25-26.jpeg
-    - images/decluttering_exaptation/work_23.jpeg
-    - images/decluttering_exaptation/work_24.jpeg
-    - images/decluttering_exaptation/rescale_pedestal.jpeg
-    - images/decluttering_exaptation/composite_pedestal.jpeg
-    - images/decluttering_exaptation/curves_pedestal.jpeg
-thumbnail: images/decluttering_exaptation/me_taken_by_Nasha.jpeg
+    - ../../assets/images/decluttering_exaptation/E_wall.jpeg
+    - ../../assets/images/decluttering_exaptation/NE_corner_2.jpeg
+    - ../../assets/images/decluttering_exaptation/SE_corner.jpeg
+    - ../../assets/images/decluttering_exaptation/NE_corner.jpeg
+    - ../../assets/images/decluttering_exaptation/SW_corner.jpeg
+    - ../../assets/images/decluttering_exaptation/layout_on_wall.jpeg
+    - ../../assets/images/decluttering_exaptation/nook.jpeg
+    - ../../assets/images/decluttering_exaptation/me_taken_by_Nasha.jpeg
+    - ../../assets/images/decluttering_exaptation/work_1.jpeg
+    - ../../assets/images/decluttering_exaptation/works_2-4.jpeg
+    - ../../assets/images/decluttering_exaptation/works_5-7.jpeg
+    - ../../assets/images/decluttering_exaptation/works_8-13.jpeg
+    - ../../assets/images/decluttering_exaptation/work_14.jpeg
+    - ../../assets/images/decluttering_exaptation/work_15.jpeg
+    - ../../assets/images/decluttering_exaptation/work_16.jpeg
+    - ../../assets/images/decluttering_exaptation/works_17-18.jpeg
+    - ../../assets/images/decluttering_exaptation/works_19-20.jpeg
+    - ../../assets/images/decluttering_exaptation/works_21-22.jpeg
+    - ../../assets/images/decluttering_exaptation/works_25-26.jpeg
+    - ../../assets/images/decluttering_exaptation/work_23.jpeg
+    - ../../assets/images/decluttering_exaptation/work_24.jpeg
+    - ../../assets/images/decluttering_exaptation/rescale_pedestal.jpeg
+    - ../../assets/images/decluttering_exaptation/composite_pedestal.jpeg
+    - ../../assets/images/decluttering_exaptation/curves_pedestal.jpeg
+thumbnail: ../../assets/images/decluttering_exaptation/me_taken_by_Nasha.jpeg
 ---
 
 *"Featuring work created by Khaly Durst and Henry Robbins, "decluttering,

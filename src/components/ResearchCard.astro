@@ -8,6 +8,7 @@ import {
   IconWorldWww,
 } from "@tabler/icons-react";
 import { Image } from "astro:assets";
+import { responsiveWidths } from "@/utils/images";
 
 interface Props {
   research: CollectionEntry<"research">;
@@ -15,18 +16,7 @@ interface Props {
 
 const { research } = Astro.props;
 
-const allImages: Record<string, string> = import.meta.glob(
-  "/src/assets/images/**/*.{png,jpg,jpeg,webp,avif}",
-  {
-    eager: true,
-    import: "default",
-  }
-);
-
-const imageFilename = research.data.image;
-const imageSrc = imageFilename
-  ? allImages[`/src/assets/${imageFilename}`] || null
-  : null;
+const imageSrc = research.data.image;
 ---
 
 <Card radius="sm" shadow="sm" className="w-full max-w-2xl h-48">
@@ -38,7 +28,9 @@ const imageSrc = imageFilename
             src={imageSrc}
             alt={`Figure from ${research.data.name}`}
             class="w-full h-full object-contain"
-            quality={100}
+            {...responsiveWidths(imageSrc, [224, 448])}
+            sizes="224px"
+            quality={90}
             loading={"lazy"}
           />
         </div>

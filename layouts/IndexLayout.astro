@@ -16,8 +16,11 @@ import { Link } from "@heroui/react";
       src={profileImage}
       alt="me"
       height={300}
+      densities={[1, 2]}
       class="rounded-[var(--heroui-radius-large)] shadow-lg"
       quality={90}
+      loading="eager"
+      fetchpriority="high"
     />
     <div class="markdown-content">
       <slot />

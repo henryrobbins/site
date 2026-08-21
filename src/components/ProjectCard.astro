@@ -14,18 +14,7 @@ interface Props {
 
 const { project } = Astro.props;
 
-const allImages: Record<string, string> = import.meta.glob(
-  "/src/assets/images/logos/*.{png,jpg,jpeg,webp,avif}",
-  {
-    eager: true,
-    import: "default",
-  }
-);
-
-const logoFilename = project.data.logo?.color;
-const logoSrc = logoFilename
-  ? allImages[`/src/assets/${logoFilename}`] || null
-  : null;
+const logoSrc = project.data.logo?.color;
 ---
 
 <Card radius="sm" shadow="sm" className="w-64 h-72">
@@ -37,6 +26,9 @@ const logoSrc = logoFilename
             src={logoSrc}
             alt={`${project.data.name} logo`}
             class="h-20 object-contain"
+            height={80}
+            densities={[1, 2]}
+            quality={95}
           />
         </div>
       )

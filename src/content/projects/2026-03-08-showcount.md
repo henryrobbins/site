@@ -3,8 +3,8 @@ id: showcount
 name: showcount
 date: 2026-03-18
 logo:
-    color: images/logos/showcount_logo_color.png
-    dark: images/logos/showcount_logo_dark.png
+    color: ../../assets/images/logos/showcount_logo_color.png
+    dark: ../../assets/images/logos/showcount_logo_dark.png
 sponsors: []
 description: A website for tracking and sharing the concerts you attend
 website: https://showcount.com

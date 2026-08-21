@@ -7,17 +7,17 @@ medium: Netpbm (P2)
 link: https://github.com/henryrobbins/artwork/tree/master/partition
 physical:
 images:
-  beebe_day_partition_8.pgm: artwork/partition/beebe_day_partition_8.jpeg
-  creek_partition_8.pgm: artwork/partition/creek_partition_8.jpeg
-  fallen_tree_partition_8.pgm: artwork/partition/fallen_tree_partition_8.jpeg
-  island_partition_8.pgm: artwork/partition/island_partition_8.jpeg
-  old_man_partition_8.pgm: artwork/partition/old_man_partition_8.jpeg
-  risley_partition_8.pgm: artwork/partition/risley_partition_8.jpeg
-  road_day_partition_8.pgm: artwork/partition/road_day_partition_8.jpeg
-  sky_partition_8.pgm: artwork/partition/sky_partition_8.jpeg
-  tree_partition_8.pgm: artwork/partition/tree_partition_8.jpeg
-  wading_partition_8.pgm: artwork/partition/wading_partition_8.jpeg
-  waterfall_partition_8.pgm: artwork/partition/waterfall_partition_8.jpeg
+  beebe_day_partition_8.pgm: ../../assets/artwork/partition/beebe_day_partition_8.jpeg
+  creek_partition_8.pgm: ../../assets/artwork/partition/creek_partition_8.jpeg
+  fallen_tree_partition_8.pgm: ../../assets/artwork/partition/fallen_tree_partition_8.jpeg
+  island_partition_8.pgm: ../../assets/artwork/partition/island_partition_8.jpeg
+  old_man_partition_8.pgm: ../../assets/artwork/partition/old_man_partition_8.jpeg
+  risley_partition_8.pgm: ../../assets/artwork/partition/risley_partition_8.jpeg
+  road_day_partition_8.pgm: ../../assets/artwork/partition/road_day_partition_8.jpeg
+  sky_partition_8.pgm: ../../assets/artwork/partition/sky_partition_8.jpeg
+  tree_partition_8.pgm: ../../assets/artwork/partition/tree_partition_8.jpeg
+  wading_partition_8.pgm: ../../assets/artwork/partition/wading_partition_8.jpeg
+  waterfall_partition_8.pgm: ../../assets/artwork/partition/waterfall_partition_8.jpeg
 videos:
 ---
 The images waterfall (2021-03-20), risley (2021-03-21), creek (2021-03-21),

@@ -7,7 +7,7 @@ medium: ASCII and PNG
 link: https://github.com/henryrobbins/artwork/tree/master/steal_your_face
 physical:
 images:
-  steal_your_face.png: artwork/steal_your_face/steal_your_face.jpeg
+  steal_your_face.png: ../../assets/artwork/steal_your_face/steal_your_face.jpeg
 videos:
 ---
 This work uses a particular style of [ASCII

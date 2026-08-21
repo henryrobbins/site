@@ -7,7 +7,7 @@ medium: Netpbm (P1)
 link: https://github.com/henryrobbins/artwork/tree/master/mother_of_all_demos
 physical:
 images:
-  mother_of_all_demos.pbm: artwork/mother_of_all_demos/mother_of_all_demos.jpeg
+  mother_of_all_demos.pbm: ../../assets/artwork/mother_of_all_demos/mother_of_all_demos.jpeg
 videos:
 ---
 This work is based off of the [Highlights of the 1968 "Mother of All

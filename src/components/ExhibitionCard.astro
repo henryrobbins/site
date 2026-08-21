@@ -2,22 +2,14 @@
 import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 import { Card, Link } from "@heroui/react";
+import { coverWidths } from "@/utils/images";
 
 interface Props {
   exhibition: CollectionEntry<"exhibitions">;
 }
 
 const { exhibition } = Astro.props;
-
-const allImages: Record<string, string> = import.meta.glob(
-  "/src/assets/images/**/*.{png,jpg,jpeg,webp,avif}",
-  {
-    eager: true,
-    import: "default",
-  }
-);
-
-const thumbnailSrc = allImages[`/src/assets/${exhibition.data.thumbnail}`];
+const thumbnailSrc = exhibition.data.thumbnail;
 ---
 
 <Link href={`/exhibitions/${exhibition.data.id}`} className="text-white">
@@ -29,7 +21,8 @@ const thumbnailSrc = allImages[`/src/assets/${exhibition.data.thumbnail}`];
             src={thumbnailSrc}
             alt={exhibition.data.name}
             class="w-full h-full object-cover"
-            quality={100}
+            {...coverWidths(thumbnailSrc, 256)}
+            quality={90}
             loading={"lazy"}
           />
         )

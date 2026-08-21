@@ -7,7 +7,7 @@ medium: Netpbm (P1)
 link: https://github.com/henryrobbins/artwork/tree/master/polyominoes
 physical:
 images:
-  polyominoes.pbm: artwork/polyominoes/polyominoes.jpeg
+  polyominoes.pbm: ../../assets/artwork/polyominoes/polyominoes.jpeg
 videos:
 ---
 The [free polyominoes](https://en.wikipedia.org/wiki/Polyomino) for n in [1..4]

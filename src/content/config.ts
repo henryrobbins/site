@@ -18,74 +18,78 @@ const experienceCollection = defineCollection({
 
 const projectCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
-  schema: z.object({
-    id: z.string(),
-    name: z.string(),
-    date: z.date(),
-    logo: z.object({ color: z.string(), dark: z.string() }),
-    sponsors: z.array(z.string()).optional(),
-    description: z.string(),
-    github: z.string().optional(),
-    website: z.string().optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      date: z.date(),
+      logo: z.object({ color: image(), dark: image() }),
+      sponsors: z.array(z.string()).optional(),
+      description: z.string(),
+      github: z.string().optional(),
+      website: z.string().optional(),
+    }),
 });
 
 const researchCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/research" }),
-  schema: z.object({
-    id: z.string(),
-    name: z.string(),
-    title: z.string(),
-    date: z.date(),
-    authors: z.array(
-      z.object({ name: z.string(), link: z.string().optional() })
-    ),
-    venue: z.string(),
-    image: z.string().optional(),
-    description: z.string(),
-    paper: z.string().optional(),
-    github: z.string().optional(),
-    website: z.string().optional(),
-    projects: z.array(reference("projects")).optional(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      title: z.string(),
+      date: z.date(),
+      authors: z.array(
+        z.object({ name: z.string(), link: z.string().optional() }),
+      ),
+      venue: z.string(),
+      image: image().optional(),
+      description: z.string(),
+      paper: z.string().optional(),
+      github: z.string().optional(),
+      website: z.string().optional(),
+      projects: z.array(reference("projects")).optional(),
+    }),
 });
 
 export const exhibitionCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/exhibitions" }),
-  schema: z.object({
-    id: z.string(),
-    name: z.string(),
-    year: z.number(),
-    location: z.string(),
-    featured: z.array(reference("artwork")),
-    posters: z.array(z.string()),
-    work: z.array(z.string()),
-    thumbnail: z.string(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      year: z.number(),
+      location: z.string(),
+      featured: z.array(reference("artwork")),
+      posters: z.array(image()),
+      work: z.array(image()),
+      thumbnail: image(),
+    }),
 });
 
 export const artworkCollection = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/artwork" }),
-  schema: z.object({
-    id: z.string(),
-    artist: z.string(),
-    title: z.string(),
-    date: z.date(),
-    medium: z.string(),
-    link: z.string().optional(),
-    physical: z
-      .record(
-        z.string(),
-        z.object({
-          dimension: z.string(),
-          path: z.string(),
-        })
-      )
-      .optional()
-      .nullable(),
-    images: z.record(z.string(), z.string()).optional().nullable(),
-    videos: z.record(z.string(), z.number()).optional().nullable(),
-  }),
+  schema: ({ image }) =>
+    z.object({
+      id: z.string(),
+      artist: z.string(),
+      title: z.string(),
+      date: z.date(),
+      medium: z.string(),
+      link: z.string().optional(),
+      physical: z
+        .record(
+          z.string(),
+          z.object({
+            dimension: z.string(),
+            path: image(),
+          }),
+        )
+        .optional()
+        .nullable(),
+      images: z.record(z.string(), image()).optional().nullable(),
+      videos: z.record(z.string(), z.number()).optional().nullable(),
+    }),
 });
 
 export const collections = {

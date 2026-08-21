@@ -7,8 +7,8 @@ medium: Netpbm (P2 and P3)
 link: https://github.com/henryrobbins/artwork/tree/master/resolution
 physical:
 images:
-  florida_resolution.pgm: artwork/resolution/florida_resolution.jpeg
-  paper_resolution.pgm: artwork/resolution/paper_resolution.jpeg
+  florida_resolution.pgm: ../../assets/artwork/resolution/florida_resolution.jpeg
+  paper_resolution.pgm: ../../assets/artwork/resolution/paper_resolution.jpeg
 videos:
 ---
 The images paper and florida were photographed by River Chavez.

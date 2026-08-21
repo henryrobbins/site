@@ -170,9 +170,11 @@ a {
   border-bottom: 1px solid var(--hair);
   color: var(--muted);
   font-size: 12.5px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  line-height: 1.55;
+  /* Wrapped lines clear the "└─ " branch marker instead of running back
+     under it. */
+  padding-left: 3ch;
+  text-indent: -3ch;
 }
 
 .nav-sub::before {

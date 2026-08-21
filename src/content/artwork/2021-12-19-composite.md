@@ -1,12 +1,11 @@
 ---
 id: composite
-selected: true
 artist: Henry Robbins
 title: composite
 date: 2021-12-19
 medium: PNG
 link: https://github.com/henryrobbins/artwork/tree/master/composite
-thumbnail: ../../assets/artwork/composite/erosion_peeling_clip_composite.jpeg
+thumbnail: ../../assets/artwork/composite/taughannock_1_road_sunset_normalize_composite.jpeg
 physical:
 images:
   erosion_peeling_clip_composite.png: ../../assets/artwork/composite/erosion_peeling_clip_composite.jpeg

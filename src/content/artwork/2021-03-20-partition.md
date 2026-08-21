@@ -5,7 +5,7 @@ title: partition
 date: 2021-03-20
 medium: Netpbm (P2)
 link: https://github.com/henryrobbins/artwork/tree/master/partition
-thumbnail: ../../assets/artwork/partition/beebe_day_partition_8.jpeg
+thumbnail: ../../assets/artwork/partition/creek_partition_8.jpeg
 physical:
 images:
   beebe_day_partition_8.pgm: ../../assets/artwork/partition/beebe_day_partition_8.jpeg

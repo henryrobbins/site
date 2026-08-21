@@ -425,7 +425,9 @@ a {
 @media (hover: hover) {
   a.art-cell,
   a.exhibition-cell {
-    transition: transform 160ms ease;
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease;
   }
 
   a.art-cell:hover,
@@ -433,6 +435,18 @@ a {
     transform: scale(1.03);
     background: var(--bg);
     z-index: 2;
+    /* A cell carries rules on two edges only; the other two are its
+       neighbours', and lifting it leaves those edges bare. The outline
+       closes the box, offset inwards so it lands on the borders already
+       there rather than beside them. */
+    outline: 1px solid var(--hair);
+    outline-offset: -1px;
+    /* Just enough to separate the lifted cell from the sheet; any more and
+       the grid stops reading as a flat plane of rules. */
+    box-shadow: 0 2px 10px rgb(17 17 17 / 0.06);
+    /* The lift and the ring already answer the cursor; stroking the caption
+       on top of them is one signal too many. */
+    -webkit-text-stroke: 0;
   }
 }
 

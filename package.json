@@ -9,6 +9,7 @@
         "astro": "astro"
     },
     "dependencies": {
-        "astro": "^7.2.4"
+        "astro": "^7.2.4",
+        "opentype.js": "^2.0.0"
     }
 }

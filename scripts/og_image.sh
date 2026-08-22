@@ -1,26 +1,18 @@
 #!/usr/bin/env bash
-# Render the link preview (og:image) from scripts/og_image.html to public/og.jpg.
+# Render the link preview (og:image) to public/og.jpg.
 #
-# Headless Chrome is used so the plate is rendered by the same engine that will
-# never see it: the crawlers that consume og:image only fetch the flat file.
+# The card's chrome already carries the name and the URL, so the image is the
+# artwork alone, center-cropped to the 1.91:1 frame the platforms expect.
 set -euo pipefail
 
 root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-chrome="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-shot="$(mktemp -d)/og.png"
+source="$root/src/assets/artwork/weierstrass/sunset_weierstrass_20.jpeg"
 
-"$chrome" \
-  --headless \
-  --disable-gpu \
-  --hide-scrollbars \
-  --window-size=1200,630 \
-  --screenshot="$shot" \
-  --virtual-time-budget=10000 \
-  "file://$root/scripts/og_image.html" >/dev/null 2>&1
-
-npx --no-install -- node -e "
+node -e "
   const sharp = require('sharp');
-  sharp('$shot').jpeg({ quality: 88, chromaSubsampling: '4:4:4' })
+  sharp('$source')
+    .resize(1200, 630, { fit: 'cover', position: 'center' })
+    .jpeg({ quality: 88, chromaSubsampling: '4:4:4' })
     .toFile('$root/public/og.jpg')
     .then((i) => console.log(\`public/og.jpg  \${i.width}x\${i.height}  \${i.size} bytes\`));
 "
